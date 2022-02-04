@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main<namesArray> {
 //    variables
@@ -73,6 +74,9 @@ public class Main<namesArray> {
 //      toString => To inspect class properties outside from the class
         System.out.println(thirdPerson);
 
+
+//      array vs array lists
+
         //  array => its length is fixed when created, cannot increase/decrease length but values are changeable
         String[] namesArray = {"one", "two", "three", "four"};
         namesArray[3] = "Updating Four";
@@ -88,8 +92,29 @@ public class Main<namesArray> {
         array_str.add("second student");
         array_str.add("third student");
 
-        array_str.get(1);
+        String getV = array_str.get(1);
+        System.out.println(getV);
 
+//      .length vs .size
+        System.out.println("aPerson to string length => " + aPerson.toString().length());
+        System.out.println("array_str size() => " + array_str.size());
+
+//    hashmaps - accessing and altering
+//    object equivalent of javascript => let student = { name: "FirstName", age: 14 }
+
+        HashMap<String, Integer> student = new HashMap<String, Integer>();
+        student.put("Yokk", 12);
+        student.put("john", 13);
+        student.put("Neo", 14);
+
+        System.out.println("student Hashmap first value's age => " + student.get("Yokk"));
+
+        HashMap<Integer, Person> studentAttendents = new HashMap<Integer, Person>();
+        studentAttendents.put(1234, aPerson);
+
+        System.out.println("studentAttendents Hashmap with class/objec first value => " + studentAttendents.get(1234).getFullName());
+
+    //  enums
 
     }
 
@@ -97,16 +122,7 @@ public class Main<namesArray> {
 
 
 
-//    array vs array lists
 
-////  array => its length is fixed when created, cannot increase/decrease length but values are changeable
-//    String[] namesArray = {"one", "two", "three", "four"};
-//    System.out.println()
-
-
-//    hashmaps - accessing and altering
-
-//    enums
 
 //    loops
 
@@ -116,7 +132,7 @@ public class Main<namesArray> {
 
 //    console in/out
 
-//    .length vs .size
+
 
 //    comparisons ( == vs .equals )
 }
