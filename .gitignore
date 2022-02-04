@@ -8,6 +8,7 @@
 *.ear
 *.nar
 hs_err_pid*
+lib
 
 ##############################
 ## Maven
@@ -40,7 +41,6 @@ gradle-app.setting
 out/
 .idea/
 .idea_modules/
-*.iml
 *.ipr
 *.iws
 
@@ -110,7 +110,6 @@ workspace.xml
 build/
 !**/src/**/build
 !**/test/**/build
-*.iml
 !**/testData/**/*.iml
 .idea/remote-targets.xml
 .idea/libraries/Gradle*.xml
