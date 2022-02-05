@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class Main<namesArray> {
 //    variables
@@ -115,7 +117,58 @@ public class Main<namesArray> {
         System.out.println("studentAttendents Hashmap with class/objec first value => " + studentAttendents.get(1234).getFullName());
 
     //  enums
+        System.out.println("Suits Enum Hearts value => " + Suits.HEARTS.color);
 
+//    loops
+
+        for (int i = 0; i <= array_str.size() - 1; i++){
+            System.out.println("array_str On " + i + " is => " + array_str.get(i));
+        }
+
+//        inside loop parenthesis : is like in
+        for (String i: student.keySet()){
+            System.out.println("Student On Indice " + i + " and his/her age is " + student.get(i));
+        }
+
+//        type sout and press enter to get the System.out.println()
+
+//    iterators => Works with ArrayList
+
+        Iterator<String> it = array_str.iterator();
+        while(it.hasNext()){
+            System.out.println("Iterator iteration over array_str and the vale is => " + it.next());
+        }
+
+
+//    conditionals, only double equals as we are strictly applying type system
+
+//    console in/out
+
+        System.out.println("sout entering");
+
+//    System in
+
+//        Scanner input = new Scanner(System.in);
+//        System.out.println("Please enter your name ... ");
+//        String userNmae = input.nextLine();
+//        System.out.println("With Age ... ");
+//        int userAge = input.nextInt();
+//        System.out.println("userName " + userNmae + " and user's Age is " + userAge );
+
+
+        String val1 = optionalDefaultParams("Good");
+        String val2 = optionalDefaultParams("Good", "better");
+        System.out.println(val1 +" "+ val2);
+        System.out.println(optionalDefaultParams("Good"));
+
+    }
+
+//     Optional and Default parameter value
+
+    public static String optionalDefaultParams(String a, String... val) {
+        a = a == null ? "Default Param Value" : a;
+        String b = (val.length >= 1) ? val[0] : "";
+        return ("Param a is => " + a + " and param b is => " + b + " => if b is not served, it will be empty ");
     }
 
 
