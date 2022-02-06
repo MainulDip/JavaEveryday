@@ -11,5 +11,9 @@ java Main
 ```
 
 ### Gradle
+> Note for gradlew and gradlew.bat: gradlew is for linux and mac. gradlew.bat is for windows. when "grdlew build" command is used, it always fetches the latest gradle version and build upon that.
+
+> Local gradle installatin is for runnig the "gradle init" command to populate those files.
+
 
 ### Self Contained Application:
