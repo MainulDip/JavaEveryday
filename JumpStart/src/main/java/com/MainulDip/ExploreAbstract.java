@@ -1,3 +1,5 @@
+package com.MainulDip;
+
 // Abstract class
 abstract class Animal {
     // Abstract method (does not have a body)

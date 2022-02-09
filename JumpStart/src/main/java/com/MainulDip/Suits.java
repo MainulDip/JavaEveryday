@@ -1,3 +1,5 @@
+package com.MainulDip;
+
 public enum Suits {
 //  instantiate multiple objects from this class within this class
     HEARTS("Hearts", "red"), DIAMONDS("Diamonds", "White"),

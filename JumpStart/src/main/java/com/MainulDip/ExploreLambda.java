@@ -1,3 +1,5 @@
+package com.MainulDip;
+
 @FunctionalInterface // optional annotation, but increase readability
 interface StringFunction {
 //  this is a functional interface or "Single Abstract Method Interface"
