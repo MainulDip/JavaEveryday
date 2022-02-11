@@ -1,0 +1,2 @@
+## Java Language Tour
+It's a quick language tour to re-connect with most of the Java language syntaxes and features. When you work with multiple language everyday, it can be a good idea to have a personalized language tour. So lets start 
