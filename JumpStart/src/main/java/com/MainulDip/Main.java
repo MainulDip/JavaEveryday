@@ -32,7 +32,7 @@ public class Main<namesArray> {
     private String nickName = "Your nick name";
 
 
-//    final (const) // unchanged able
+//    final (const) // unchangeable
     private final String dateOfBirth = "1, 1, 1990";
     public final String firstSchoolName = "School Name";
 
