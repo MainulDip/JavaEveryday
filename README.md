@@ -1,10 +1,13 @@
 ## Overview:
 This Repo is a personalized walkthrough and hints for reading, inspecting and using daytoday java code in Android and Spring boot projects.
 
-## Java Tour:
-[Java Quick Language Tour](java-language-tour.md)
+<br/>
+
+### :cat: [Java Quick Language Tour](java-language-tour.md) < Click to view
+<br/>
 
 ### Compilation and execution:
+> Shell commands
 ```sh
 javac Main.java
 # with library :> add "-cp", stands for compile classPath
