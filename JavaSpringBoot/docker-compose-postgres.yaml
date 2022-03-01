@@ -26,3 +26,5 @@ volumes:
 
 
 # docker-compose -f docker-compose-postgres.yaml up -d
+# netstat  -ano  |  findstr  <Port Number>
+# taskkill  /F  /PID  <Process Id>
