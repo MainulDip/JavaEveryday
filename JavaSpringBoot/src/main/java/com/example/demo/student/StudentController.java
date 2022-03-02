@@ -1,5 +1,6 @@
 package com.example.demo.student;
 
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,18 +27,19 @@ public class StudentController {
         return studentService.getStudent(id);
     }
 
+    @Nullable
     @PostMapping
-    public Optional<Student> addStudents(@RequestBody Student student){
+    public Optional<Student> addStudents(@RequestBody Student student) {
         return studentService.addStudents(student);
     }
 
     @PatchMapping
-    public List<Student> updateStudents(){
+    public List<Student> updateStudents(@RequestBody Student student){
         return studentService.getStudents();
     }
 
     @DeleteMapping
-    public List<Student> deleteStudents(){
+    public List<Student> deleteStudents(@RequestBody Student student){
         return studentService.getStudents();
     }
 }
