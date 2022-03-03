@@ -34,8 +34,8 @@ public class StudentController {
     }
 
     @PatchMapping
-    public List<Student> updateStudents(@RequestBody Student student){
-        return studentService.getStudents();
+    public Student updateStudents(@RequestBody Student student){
+        return studentService.updateStudents(student);
     }
 
     @DeleteMapping

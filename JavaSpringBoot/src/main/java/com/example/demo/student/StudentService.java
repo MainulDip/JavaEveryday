@@ -45,4 +45,16 @@ public class StudentService {
     public Optional<Student> getStudent(Long id) {
         return studentRepository.findById(id);
     }
+
+    public Student updateStudents(Student student) {
+        Student oldStudent = studentRepository.getById(student.getId());
+        if (oldStudent == null){
+            throw new  IllegalArgumentException("Invalid Request, Email Exists");
+        }
+        oldStudent.setName(student.getName());
+        oldStudent.setEmail(student.getEmail());
+        oldStudent.setDob(student.getDob());
+        studentRepository.save(oldStudent);
+        return student;
+    }
 }
