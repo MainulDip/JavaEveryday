@@ -353,8 +353,10 @@ public class ExploreLambda {
 }
 ```
 
+### String Compare:
 ```java
-
+// comparing string from different source
+string.equals(anotherString) // return boolean
 ```
 
 <br/>
