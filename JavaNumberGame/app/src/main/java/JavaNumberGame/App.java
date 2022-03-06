@@ -6,6 +6,8 @@ package JavaNumberGame;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.sound.sampled.SourceDataLine;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
@@ -40,9 +42,15 @@ public class App {
         while(!isWinner && !gameOver) {
             playingState++;
 
-            if(theNumber == scanner.nextInt()){
+            int theGuess = scanner.nextInt();
+
+            if(theNumber == theGuess){
                 isWinner = true;
                 System.out.println("You're the winner of this game. Enjoy :)");
+            } else if (theNumber > theGuess) {
+                System.out.println("Hint: You should increase a little");
+            } else if (theNumber < theGuess) {
+                System.out.println("Hint: You should deScrease a little");
             }
 
             if(playingState == 5){
