@@ -4,11 +4,35 @@
 package ConcurrencyThread;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                for (int i=0; i<7; i++){
+                    System.out.println("Worker Thread Printing Number: " + i);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                
+            }
+            
+        });
+
+        thread.start();
+
+
+        for (int i=0; i<7; i++){
+            System.out.println("Main Thread Printing Number: " + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
