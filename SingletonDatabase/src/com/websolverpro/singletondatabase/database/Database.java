@@ -13,7 +13,10 @@ package com.websolverpro.singletondatabase.database;
  */
 
 public class Database {
+
     public String name;
+
+    private static int state = 1;
 
     public static Database instance;
 
@@ -37,5 +40,14 @@ public class Database {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        System.out.println("Counter is now: " + state);
+        state++;
+        return "Database{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

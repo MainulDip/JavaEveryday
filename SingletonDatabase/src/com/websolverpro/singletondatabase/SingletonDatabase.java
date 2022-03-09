@@ -22,5 +22,10 @@ public class SingletonDatabase {
 
         System.out.println("First Database Name: " + database.getName()); // First Database Name: singleton-database
         System.out.println("Second Database Name: " + anotherDatabase.getName()); // First Database Name: singleton-database
+
+        database.toString(); // Counter is now: 1
+        anotherDatabase.toString(); // Counter is now: 2
+        database.toString(); // Counter is now: 3
+        anotherDatabase.toString(); // Counter is now: 4
     }
 }
