@@ -44,4 +44,14 @@ public class Message {
     public void setMessage_body(String message_body) {
         this.message_body = message_body;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", sender_id=" + sender_id +
+                ", receiver_id=" + receiver_id +
+                ", message_body='" + message_body + '\'' +
+                '}';
+    }
 }
