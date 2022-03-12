@@ -141,14 +141,18 @@ public class MessagingApp {
 
     public static void addContact() {
         System.out.println("Please Insert Contact id");
-        int id = scanner.nextInt();
+        String id = scanner.next();
         System.out.println("Please Insert Contact Number");
-        int number = scanner.nextInt();
+        String number = scanner.next();
         scanner.nextLine();
         System.out.println("Please Insert Contact Name");
         String name = scanner.nextLine();
-        System.out.println(name);
+        System.out.println("id value is : " + id);
 
-        ContactList.addContact(new Contact(id, name, number));
+        if (id.equals("") || number.equals("") || name.equals("")) {
+            addContact();
+        } else {
+            ContactList.addContact(new Contact(Integer.parseInt(id), name, Integer.parseInt(number)));
+        }
     }
 }
