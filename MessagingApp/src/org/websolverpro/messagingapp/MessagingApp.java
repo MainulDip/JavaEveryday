@@ -28,26 +28,33 @@ public class MessagingApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Good to see you \nPlease Select and Enter the Number \n 1. Manage Contacts 2. Messages 3. Quit\n");
+        boolean exitApp = false;
 
-        scanner = new Scanner(System.in);
+        while (!exitApp) {
 
-        int firstFace = scanner.nextInt();
+            System.out.println("Good to see you \nPlease Select and Enter the Number \n 1. Manage Contacts 2. Messages 3. Quit\n");
 
-        switch (firstFace){
-            case 1 :
-                System.out.println("You have chosen 1, now select newt option please");
-                manageContacts();
-                break;
+            scanner = new Scanner(System.in);
 
-            case 2 :
-                System.out.println("You have chosen 2, now select newt option please");
-                manageMessage();
-                break;
+            int firstFace = scanner.nextInt();
 
-            default:
-                System.out.println("You have chosen to quit the application");
-                break;
+            switch (firstFace){
+                case 1 :
+                    System.out.println("You have chosen 1, now select newt option please");
+                    manageContacts();
+                    break;
+
+                case 2 :
+                    System.out.println("You have chosen 2, now select newt option please");
+                    manageMessage();
+                    break;
+
+                default:
+                    System.out.println("You have chosen to quit the application");
+                    exitApp = true;
+                    break;
+            }
+
         }
     }
 
@@ -71,7 +78,7 @@ public class MessagingApp {
                     break;
                 case 2 :
                     System.out.println("Add a new contact");
-                    ContactList.addContact(new Contact(4, "Contact three", 456789));
+                    addContact();
                     break;
                 case 3 :
                     System.out.println("Search For a contact");
@@ -109,7 +116,7 @@ public class MessagingApp {
                     break;
                 case 2 :
                     System.out.println("Send a new message");
-                    Messages.addMessage(new Message(4, 0, 4, "Good message 4"));
+                    sendMessage();
                     break;
                 default:
                     System.out.println("Go back to the previous menu");
@@ -117,7 +124,31 @@ public class MessagingApp {
                     break;
             }
         }
+    }
 
+    public static void sendMessage() {
+        System.out.println("Please Insert Message id");
+        int id = scanner.nextInt();
+        System.out.println("Please Insert Message recipient id");
+        int receiver_id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Please Insert Message body");
+        String message_body = scanner.nextLine();
+        System.out.println(message_body);
 
+        Messages.addMessage(new Message(id, 4, receiver_id, message_body));
+    }
+
+    public static void addContact() {
+        System.out.println("Please Insert Contact id");
+        int id = scanner.nextInt();
+        System.out.println("Please Insert Contact Number");
+        int number = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Please Insert Contact Name");
+        String name = scanner.nextLine();
+        System.out.println(name);
+
+        ContactList.addContact(new Contact(id, name, number));
     }
 }
