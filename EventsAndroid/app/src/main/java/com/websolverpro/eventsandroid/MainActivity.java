@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,6 +75,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 System.out.println("Checked Radio ID from parameter " + i);
             }
         });
+
+
+//        Playing with progressbar
+
+        ProgressBar mainProgressBar = findViewById(R.id.progress_top);
+//        setTimeout( () -> mainProgressBar.setVisibility(View.GONE),1000);
+
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    public void run() {
+                        mainProgressBar.setVisibility(View.GONE);
+                    }
+                }, 4000);
     }
 
     @Override
