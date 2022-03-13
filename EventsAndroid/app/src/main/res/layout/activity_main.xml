@@ -4,29 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:paddingVertical="27dp"
+    android:paddingHorizontal="27dp">
 
     <TextView
+        android:id="@+id/textViewWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:id="@+id/textViewWelcome"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:text="Hello World"
         android:textColor="@color/black"
         android:textSize="47dp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textViewWelcome"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="27dp"
+        android:layout_marginBottom="27dp"
+        android:hint="Name:"
+        android:lines="2"
+        android:textColor="@color/black"/>
 
     <Button
+        android:id="@+id/btnClickMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click Me"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/textViewWelcome"
-        android:layout_marginTop="47dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
         android:padding="20dp"
+        android:text="Click Me"
         android:textSize="21dp"
-        android:textStyle="bold"
-        android:id="@+id/btnClickMe"/>
+        android:textStyle="bold"/>
 
 </RelativeLayout>

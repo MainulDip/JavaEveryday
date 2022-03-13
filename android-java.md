@@ -16,7 +16,11 @@ btnClickMe.setOnClickListener(new View.OnClickListener() {
     }
 });
 
-// Or by implementing View.OnClickListener interface to the activity and overriding the method
+// Or by implementing View.OnClickListener interface to the activity and overriding the method and setting the click listener on that method by
+
+btnClickMe.setOnClickListener(this);
+
+// and
 
 @Override
 public void onClick(View view) {
@@ -30,3 +34,7 @@ public void onClick(View view) {
     }
 }
 ```
+> Every UI Element is a view (extending from View) like TextView, EditText ect.
+
+> Different Listeners: type element.setListener and wait/look for IDE suggessions. Like setLongClickListener and ..dragListener etc.
+
