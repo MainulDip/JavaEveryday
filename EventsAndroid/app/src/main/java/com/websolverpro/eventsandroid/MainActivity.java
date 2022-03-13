@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     System.out.println("UN Checked Harry Potter");
                 }
 
+            }
+        });
+
+//        playing with radio group and radio button
+
+        RadioGroup radioGroupMarital = findViewById(R.id.radioMaritalGroup);
+        radioGroupMarital.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                System.out.println("RadioGroup : " + radioGroup.getId());
+                System.out.println("Checked Radio ID : "+radioGroup.getCheckedRadioButtonId());
+                System.out.println("Checked Radio ID from parameter " + i);
             }
         });
     }
