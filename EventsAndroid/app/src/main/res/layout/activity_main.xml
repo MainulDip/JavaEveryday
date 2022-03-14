@@ -73,7 +73,19 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:visibility="visible"
-        android:id="@+id/progress_top"/>
+        android:id="@+id/progress_top"
+        />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progress_top"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:visibility="visible"
+        android:progress="0"
+        android:max="100"
+        android:layout_marginTop="27dp"
+        android:id="@+id/progressLine"/>
 
     <RadioGroup
         android:layout_width="wrap_content"

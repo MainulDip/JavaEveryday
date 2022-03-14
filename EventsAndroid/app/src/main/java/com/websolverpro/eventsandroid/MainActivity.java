@@ -3,6 +3,7 @@ package com.websolverpro.eventsandroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -85,9 +86,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        mainProgressBar.setVisibility(View.GONE);
+                        mainProgressBar.setVisibility(View.INVISIBLE);
                     }
                 }, 4000);
+
+
+
+        ProgressBar progressBarLine = findViewById(R.id.progressLine);
+
+
+        Thread progressThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    progressBarLine.incrementProgressBy(1);
+                    System.out.println("progress");
+//                    SystemClock.sleep(10);
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        progressThread.start();
     }
 
     @Override
