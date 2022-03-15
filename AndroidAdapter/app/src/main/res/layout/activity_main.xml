@@ -23,5 +23,15 @@
         android:id="@+id/listViewEx"
         />
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/studentSpinner"
+        android:layout_marginTop="27dp"
+        android:layout_below="@id/listViewEx"
+        android:layout_centerHorizontal="true"
+        android:entries="@array/students"
+        />
+
 
 </RelativeLayout>

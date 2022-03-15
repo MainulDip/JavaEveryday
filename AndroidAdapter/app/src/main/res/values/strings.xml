@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndroidAdapter</string>
+    <string-array name="students">
+        <item>First Student 1</item>
+        <item>Second Student 2</item>
+        <item>Third Student 3</item>
+        <item>Fourth Student 4</item>
+    </string-array>
 </resources>

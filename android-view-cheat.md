@@ -12,5 +12,5 @@ Android View elements are mostly self explanatory. So just some minimal quick st
 Add vectors through the res/drawable and images through res/minimap.
 
 ### Adapters: ArrayAdapter | 
-used to inject data to listview or recycler view. 
+used to fetch and inject data to listview or recycler view. 
 
