@@ -14,3 +14,13 @@ Add vectors through the res/drawable and images through res/minimap.
 ### Adapters: ArrayAdapter | 
 used to fetch and inject data to listview or recycler view. 
 
+### XML Files:
+
+#### Images and Icons:
+> From Drawable -> new Image asset or Vector asset
+
+#### Localization and Strings: 
+
+#### Menu: 
+In resource directory, create a new directory named "menu" and create "munu resource file".
+

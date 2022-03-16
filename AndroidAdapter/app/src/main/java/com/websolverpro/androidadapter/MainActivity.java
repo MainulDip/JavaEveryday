@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listViewEx;
     Spinner spinnerGender;
+    Spinner spinnerStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        Spinner
+//        Spinner gender
 
         ArrayList<String> genderList = new ArrayList<>(Arrays.asList("Please Select", "Male", "Female", "Other", "Ignore"));
         spinnerGender = findViewById(R.id.genderSpinner);
@@ -64,7 +65,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        Spinner Student
 
+        spinnerStudent = findViewById(R.id.studentSpinner);
+        spinnerStudent.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity.this, spinnerStudent.getSelectedItem().toString() + " Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+//        Task
+        /**
+         * Create Menu Item
+         * Show Tost Message when clicked
+         * Use menu item icon
+         * Menu will be created with the Inflater from the activity
+         * create a directory named "menu" and generate the menu resource file.
+         */
 
     }
 }
