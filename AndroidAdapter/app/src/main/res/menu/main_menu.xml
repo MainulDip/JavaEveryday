@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="Settings"
+        android:id="@+id/main_menu"
+        android:icon="@drawable/icn_main_menu"
+        app:showAsAction="always"/>
+
+    <item
+        android:title="Alerm"
+        android:id="@+id/menu_alerm"
+        android:icon="@drawable/icn_alerm"
+        app:showAsAction="always"/>
+</menu>
