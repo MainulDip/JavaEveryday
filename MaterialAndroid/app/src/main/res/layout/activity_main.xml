@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="7dp"
         android:id="@+id/cardTopView">
 
         <LinearLayout
@@ -22,9 +22,9 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/stockimage"
+                android:src="@drawable/spooky"
                 />
 
             <LinearLayout
@@ -40,6 +40,7 @@
                     android:layout_height="wrap_content"
                     android:text="First CardView Text"
                     android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:layout_gravity="center_horizontal"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -48,6 +49,7 @@
                     android:text="Second CardView Text"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
+                    android:layout_gravity="center_horizontal"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -56,16 +58,23 @@
                     android:text="Third CardView Text"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
+                    android:layout_gravity="center_horizontal"
                     />
 
             </LinearLayout>
 
         </LinearLayout>
-
-
-
-
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="76dp"
+        android:layout_height="21dp"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button"
@@ -79,20 +88,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="76dp"
-        android:layout_height="21dp"
-        android:text="Hello World!"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardTopView" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/btnGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +111,10 @@
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:icon="@drawable/ic_alert" />
+            app:icon="@drawable/ic_alert"
+            android:insetRight="7dp"
+            android:insetLeft="7dp"
+            />
 
         <Button
             android:id="@+id/shareBtn"
