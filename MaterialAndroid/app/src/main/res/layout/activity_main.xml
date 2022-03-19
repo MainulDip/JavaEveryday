@@ -22,9 +22,9 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/img_stock"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:src="@drawable/stockimage"
                 />
 
             <LinearLayout
@@ -67,35 +67,33 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="76dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="112dp"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="136dp"
         android:backgroundTint="@color/colorTesting"
         android:text="Button"
         android:theme="@style/Theme.MaterialAndroid"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="76dp"
+        android:layout_height="21dp"
+        android:text="Hello World!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardTopView" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/btnGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button">
