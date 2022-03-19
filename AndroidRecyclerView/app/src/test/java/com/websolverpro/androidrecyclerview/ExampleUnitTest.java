@@ -1,4 +1,4 @@
-package com.websolverpro.androiidrecyclerview;
+package com.websolverpro.androidrecyclerview;
 
 import org.junit.Test;
 
