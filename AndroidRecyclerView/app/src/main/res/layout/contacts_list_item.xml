@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
     android:id="@+id/parentOfElements"
-    app:cardElevation="7dp"
-    app:cardCornerRadius="7dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    app:cardCornerRadius="7dp"
+    app:cardElevation="7dp">
 
     <RelativeLayout
+        android:id="@+id/cardElementsRelative"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/cardElementsRelative">
+        android:paddingTop="14dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Contact Name"
             android:id="@+id/txtName"
-            android:layout_centerHorizontal="true"
-            android:textStyle="bold"/>
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email Address"
+            android:layout_centerHorizontal="true"
+            android:text="Contact Name"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/txtEmail"
-            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/txtName"
-            android:layout_marginTop="7dp"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:text="Email Address"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/elementImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/txtEmail"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/ic_launcher_background" />
 
     </RelativeLayout>
-
 
 
 </androidx.cardview.widget.CardView>

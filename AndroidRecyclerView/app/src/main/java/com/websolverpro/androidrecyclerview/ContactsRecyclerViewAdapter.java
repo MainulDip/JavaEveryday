@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
@@ -38,6 +41,8 @@ public class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRe
 
         private TextView txtName;
         private CardView parentOfTxtName;
+        private TextView txtEmail;
+        private ImageView elementImg;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -45,6 +50,8 @@ public class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRe
 //            set the view holder from layout xml and access it from other methods
             txtName = itemView.findViewById(R.id.txtName);
             parentOfTxtName = itemView.findViewById(R.id.parentOfElements);
+            txtEmail = itemView.findViewById(R.id.txtEmail);
+            elementImg = itemView.findViewById(R.id.elementImg);
         }
     }
 
@@ -73,6 +80,17 @@ public class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtName.setText(contacts.get(position).getName());
+        holder.txtEmail.setText(contacts.get(position).getEmail());
+//        holder.elementImg.setImageURI(contacts.get(position).getImgUrl());
+
+        Glide.with(context)
+                .asBitmap()
+                .load(contacts.get(position).getImgUrl())
+                .into(holder.elementImg);
+
+        if(position == contacts.size() - 1) {
+            Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
+        }
 
 //        set event listener
         holder.parentOfTxtName.setOnClickListener(new View.OnClickListener() {
