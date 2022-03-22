@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parentOfElements"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     app:cardCornerRadius="7dp"
-    app:cardElevation="7dp">
+    app:cardElevation="7dp"
+    android:layout_centerHorizontal="true">
 
     <RelativeLayout
         android:id="@+id/cardElementsRelative"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="14dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="14dp"
+        >
 
         <TextView
             android:id="@+id/txtName"
@@ -35,11 +37,11 @@
         <ImageView
             android:id="@+id/elementImg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="400dp"
             android:layout_below="@id/txtEmail"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="7dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:layout_marginVertical="12dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     </RelativeLayout>
 

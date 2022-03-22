@@ -78,28 +78,26 @@ public class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRe
      */
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.txtName.setText(contacts.get(position).getName());
         holder.txtEmail.setText(contacts.get(position).getEmail());
 //        holder.elementImg.setImageURI(contacts.get(position).getImgUrl());
 
         Glide.with(context)
-                .asBitmap()
+//                .asBitmap()
                 .load(contacts.get(position).getImgUrl())
                 .into(holder.elementImg);
 
-        if(position == contacts.size() - 1) {
-            Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
-        }
+        System.out.println("ImageUrl: "+contacts.get(position).getImgUrl());
 
 //        set event listener
-        holder.parentOfTxtName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("hello");
-                Toast.makeText(context, "Hello" + holder.txtName.getText(), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        holder.parentOfTxtName.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                System.out.println("hello");
+//                Toast.makeText(context, "Hello" + holder.txtName.getText(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override
