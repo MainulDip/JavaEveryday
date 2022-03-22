@@ -88,16 +88,16 @@ public class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRe
                 .load(contacts.get(position).getImgUrl())
                 .into(holder.elementImg);
 
-        System.out.println("ImageUrl: "+contacts.get(position).getImgUrl());
+//        System.out.println("ImageUrl: "+contacts.get(position).getImgUrl());
 
 //        set event listener
-//        holder.parentOfTxtName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                System.out.println("hello");
-//                Toast.makeText(context, "Hello" + holder.txtName.getText(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        holder.parentOfTxtName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("hello");
+                Toast.makeText(context, "Hello" + holder.txtName.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
