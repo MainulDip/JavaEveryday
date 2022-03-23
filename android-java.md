@@ -38,3 +38,5 @@ public void onClick(View view) {
 
 > Different Listeners: type element.setListener and wait/look for IDE suggessions. Like setLongClickListener and ..dragListener etc.
 
+### RecyclerView:
+### :cat: [RecyclerView Implementation](./AndroidRecyclerView/README.md) < Click to view
