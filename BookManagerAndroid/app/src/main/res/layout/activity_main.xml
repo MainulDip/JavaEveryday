@@ -22,14 +22,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
+        android:fontFamily="@font/comic_neue_bold"
         android:text="Book Manager"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/buttonAllBooks"
-        android:layout_width="wrap_content"
+        android:layout_width="212dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:text="All Books"
@@ -40,9 +42,9 @@
 
     <Button
         android:id="@+id/buttonReading"
-        android:layout_width="wrap_content"
+        android:layout_width="212dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="4dp"
         android:text="Reading"
         app:layout_constraintEnd_toEndOf="@+id/buttonAllBooks"
         app:layout_constraintStart_toStartOf="@+id/buttonAllBooks"
@@ -50,9 +52,9 @@
 
     <Button
         android:id="@+id/buttonReadAlready"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="7dp"
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Already Read"
         app:layout_constraintEnd_toEndOf="@+id/buttonReading"
         app:layout_constraintStart_toStartOf="@+id/buttonReading"
@@ -60,9 +62,9 @@
 
     <Button
         android:id="@+id/buttonWantToRead"
-        android:layout_width="wrap_content"
+        android:layout_width="212dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="4dp"
         android:text="Wishlist"
         app:layout_constraintEnd_toEndOf="@+id/buttonReadAlready"
         app:layout_constraintHorizontal_bias="0.5"
@@ -71,9 +73,9 @@
 
     <Button
         android:id="@+id/buttonFavourite"
-        android:layout_width="wrap_content"
+        android:layout_width="212dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="4dp"
         android:text="Favourite Book"
         app:layout_constraintEnd_toEndOf="@+id/buttonWantToRead"
         app:layout_constraintHorizontal_bias="0.536"
@@ -95,7 +97,7 @@
         android:id="@+id/textViewInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="4dp"
         android:text="Developed By ...."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,9 +106,9 @@
 
     <Button
         android:id="@+id/buttonAbout"
-        android:layout_width="wrap_content"
+        android:layout_width="212dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="4dp"
         android:text="About"
         app:layout_constraintEnd_toEndOf="@+id/buttonFavourite"
         app:layout_constraintStart_toStartOf="@+id/buttonFavourite"
