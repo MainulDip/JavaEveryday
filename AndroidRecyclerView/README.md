@@ -6,6 +6,6 @@
 
 ### :cat: [MainActivity](./app/src/main/java/com/websolverpro/androidrecyclerview/MainActivity.java) < Click to view
 
-### :cat: [RecyclerView Adapter](./app/src/main/java/com/websolverpro/androidrecyclerview/ContactsRecyclerViewAdapter.java.java) < Click to view
+### :cat: [RecyclerView Adapter](./app/src/main/java/com/websolverpro/androidrecyclerview/ContactsRecyclerViewAdapter.java) < Click to view
 
-### :cat: [Data Structure (POJO | Plain Old Java Object) for RecyclerView Adapter](./app/src/main/java/com/websolverpro/androidrecyclerview/Contact.java.java) < Click to view
+### :cat: [Data Structure (POJO | Plain Old Java Object) for RecyclerView Adapter](./app/src/main/java/com/websolverpro/androidrecyclerview/Contact.java) < Click to view

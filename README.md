@@ -4,6 +4,8 @@ This Repo is a personalized walkthrough and hints for reading, inspecting and us
 <br/>
 
 ### :cat: [Java Quick Language Tour](java-language-tour.md) < Click to view
+### :cat: [Android Java Tour](./android-java.md) < Click to view
+
 <br/>
 
 ### Compilation and execution:
