@@ -1,17 +1,20 @@
 package com.websolverpro.bookmanagerandroid;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.Glide;
 
@@ -45,9 +48,11 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Log.d(TAG, "onBindViewHolder: Called");
         holder.bookName.setText(books.get(position).getName());
+        holder.authorName.setText(books.get(position).getAuthor());
+        holder.shortDescription.setText(books.get(position).getShortDesc());
 
         Glide.with(context)
                 .load(books.get(position).getImageUrl())
@@ -59,6 +64,16 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                 Toast.makeText(context, books.get(position).getName() + ": Selected", Toast.LENGTH_SHORT).show();
             }
         });
+
+        if(books.get(position).getExpanded()){
+            TransitionManager.beginDelayedTransition(holder.parent);
+            holder.expandedCard.setVisibility(View.VISIBLE);
+            holder.downArrow.setVisibility(View.GONE);
+        } else {
+            TransitionManager.beginDelayedTransition(holder.parent);
+            holder.expandedCard.setVisibility(View.GONE);
+            holder.upArrow.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -73,12 +88,48 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
         private ImageView bookImg;
         private TextView bookName;
 
+        private ImageView downArrow, upArrow;
+        private RelativeLayout nonExpandedCard, expandedCard;
+        private TextView authorName, shortDescription;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             parent = itemView.findViewById(R.id.bookListLayoutParent);
             bookImg = itemView.findViewById(R.id.bookImg);
             bookName = itemView.findViewById(R.id.bookName);
+
+            downArrow = itemView.findViewById(R.id.iconDownArrow);
+            upArrow = itemView.findViewById(R.id.iconUpArrow);
+
+            nonExpandedCard = itemView.findViewById(R.id.nonExpandedCard);
+            expandedCard = itemView.findViewById(R.id.expandedCard);
+
+            authorName = itemView.findViewById(R.id.authorName);
+            shortDescription = itemView.findViewById(R.id.shortDesc);
+
+            downArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, "Expanding Request", Toast.LENGTH_SHORT).show();
+
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.getExpanded());
+
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
+
+            upArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Book book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.getExpanded());
+
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
+
         }
     }
 }
