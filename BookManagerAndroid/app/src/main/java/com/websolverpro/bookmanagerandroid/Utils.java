@@ -12,15 +12,92 @@ public class Utils {
 
     private static ArrayList<Book> allBooks;
 
-    public static ArrayList<Book> getAllBooks() {
-        return allBooks;
-    }
+    private static ArrayList<Book> reading;
+    private static ArrayList<Book> wishList;
+    private static ArrayList<Book> favourite;
+    private static ArrayList<Book> alreadyRead;
+
+    //    Constructor
 
     private Utils() {
         if( null == allBooks){
             initData();
         }
+
+        if(reading == null) {
+            reading = new ArrayList<>();
+        }
+
+        if(wishList == null) {
+            wishList = new ArrayList<>();
+        }
+
+        if(favourite == null) {
+            favourite = new ArrayList<>();
+        }
+
+        if(alreadyRead == null) {
+            alreadyRead = new ArrayList<>();
+        }
     }
+
+//    Instance Getter: Singleton
+
+    public static Utils getInstance() {
+        if (null == instance) {
+            instance = new Utils();
+        }
+        return instance;
+    }
+
+//    Getters Setters
+
+    public static void setInstance(Utils instance) {
+        Utils.instance = instance;
+    }
+
+    public static void setAllBooks(ArrayList<Book> allBooks) {
+        Utils.allBooks = allBooks;
+    }
+
+    public static ArrayList<Book> getReading() {
+        return reading;
+    }
+
+    public static void setReading(ArrayList<Book> reading) {
+        Utils.reading = reading;
+    }
+
+    public static ArrayList<Book> getWishList() {
+        return wishList;
+    }
+
+    public static void setWishList(ArrayList<Book> wishList) {
+        Utils.wishList = wishList;
+    }
+
+    public static ArrayList<Book> getFavourite() {
+        return favourite;
+    }
+
+    public static void setFavourite(ArrayList<Book> favourite) {
+        Utils.favourite = favourite;
+    }
+
+    public static ArrayList<Book> getAlreadyRead() {
+        return alreadyRead;
+    }
+
+    public static void setAlreadyRead(ArrayList<Book> alreadyRead) {
+        Utils.alreadyRead = alreadyRead;
+    }
+
+    public static ArrayList<Book> getAllBooks() {
+        return allBooks;
+    }
+
+
+//    Helpers
 
     private void initData() {
         allBooks = new ArrayList<>(Arrays.asList(
@@ -39,12 +116,4 @@ public class Utils {
         ));
     }
 
-    public static Utils getInstance() {
-        if(null != instance){
-            return instance;
-        } else {
-            instance = new Utils();
-            return instance;
-        }
-    }
 }
