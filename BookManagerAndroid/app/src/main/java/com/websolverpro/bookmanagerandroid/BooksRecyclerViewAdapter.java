@@ -3,6 +3,7 @@ package com.websolverpro.bookmanagerandroid;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.Glide;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -64,6 +66,9 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
             public void onClick(View view) {
 //                Toast.makeText(context, books.get(position).getName() + ": Selected", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, BookActivity.class);
+
+                System.out.println(books.get(position));
+                intent.putExtra("TheBook", (Serializable) books.get(position));
                 context.startActivity(intent);
             }
         });
