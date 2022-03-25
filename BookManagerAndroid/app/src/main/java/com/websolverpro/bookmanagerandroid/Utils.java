@@ -52,44 +52,37 @@ public class Utils {
 
 //    Getters Setters
 
-    public static void setInstance(Utils instance) {
-        Utils.instance = instance;
-    }
-
-    public static void setAllBooks(ArrayList<Book> allBooks) {
-        Utils.allBooks = allBooks;
-    }
 
     public static ArrayList<Book> getReading() {
         return reading;
     }
 
-    public static void setReading(ArrayList<Book> reading) {
-        Utils.reading = reading;
+    public static void setReading(Book reading) {
+        Utils.reading.add(reading);
     }
 
     public static ArrayList<Book> getWishList() {
         return wishList;
     }
 
-    public static void setWishList(ArrayList<Book> wishList) {
-        Utils.wishList = wishList;
+    public static void setWishList(Book wishList) {
+        Utils.wishList.add(wishList);
     }
 
     public static ArrayList<Book> getFavourite() {
         return favourite;
     }
 
-    public static void setFavourite(ArrayList<Book> favourite) {
-        Utils.favourite = favourite;
+    public static void setFavourite(Book favourite) {
+        Utils.favourite.add(favourite);
     }
 
     public static ArrayList<Book> getAlreadyRead() {
         return alreadyRead;
     }
 
-    public static void setAlreadyRead(ArrayList<Book> alreadyRead) {
-        Utils.alreadyRead = alreadyRead;
+    public static void setAlreadyRead(Book alreadyRead) {
+        Utils.alreadyRead.add(alreadyRead);
     }
 
     public static ArrayList<Book> getAllBooks() {
