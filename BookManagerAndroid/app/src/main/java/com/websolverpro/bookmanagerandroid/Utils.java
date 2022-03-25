@@ -94,13 +94,13 @@ public class Utils {
 
     private void initData() {
         allBooks = new ArrayList<>(Arrays.asList(
-                new Book(1, "FistBook", "Authorfirst", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
-                new Book(2, "SecondBook", "AuthorSecond", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
+                new Book(1, "FistBook", "Authorfirst", "https://www.snk-corp.co.jp/us/games/kof-xv/characters/img/character_kula.png", "small description", "This is long Description", 100),
+                new Book(2, "SecondBook", "AuthorSecond", "https://static.wikia.nocookie.net/snk/images/4/47/Kof_xv_iori_render.png", "small description", "This is long Description", 100),
                 new Book(3, "ThirdBook", "AuthorThird", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
                 new Book(4, "fourthBook", "AuthorFourth", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
                 new Book(1, "FistBook", "Authorfirst", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
-                new Book(2, "SecondBook", "Authorfirst", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
-                new Book(3, "ThirdBook", "Authorfirst", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
+                new Book(2, "SecondBook", "Authorfirst", "https://pngimage.net/wp-content/uploads/2018/06/terry-bogard-png-5.png", "small description", "This is long Description", 100),
+                new Book(3, "ThirdBook", "Authorfirst", "https://www.nicepng.com/png/detail/201-2015422_street-fighter-5-zangief-by-hes6789-street-fighter.png", "small description", "This is long Description", 100),
                 new Book(4, "fourthBook", "Authorfirst", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
                 new Book(1, "FistBook", "Authorfirst", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
                 new Book(2, "SecondBook", "Authorfirst", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),

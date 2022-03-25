@@ -4,84 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BookActivity"
-    android:padding="4dp">
+    tools:context=".BookActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-4dp"
+        android:layout_marginBottom="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/bookImgDet"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="4dp"
+                android:src="@mipmap/maishiranuie"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@mipmap/maishiranuie" />
-
-            <Button
-                android:id="@+id/btnReadingDet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:text="Reading"
-                app:layout_constraintStart_toEndOf="@+id/bookImgDet"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
+                android:id="@+id/btnReadingDet"
+                android:layout_width="147dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:text="Add Reading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/alreadyReadDet" />
+
+            <Button
                 android:id="@+id/btnWishlistDet"
-                android:layout_width="wrap_content"
+                android:layout_width="147dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
-                android:text="Wishlist"
-                app:layout_constraintBottom_toBottomOf="@+id/btnReadingDet"
-                app:layout_constraintStart_toEndOf="@+id/btnReadingDet"
-                app:layout_constraintTop_toTopOf="@+id/btnReadingDet" />
+                android:text="Add Wishlist"
+                app:layout_constraintEnd_toStartOf="@+id/guideline9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/alreadyReadDet" />
 
             <Button
                 android:id="@+id/alreadyReadDet"
-                android:layout_width="wrap_content"
+                android:layout_width="147dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
                 android:text="Already Read"
-                app:layout_constraintBottom_toBottomOf="@+id/addFavDet"
-                app:layout_constraintStart_toEndOf="@+id/addFavDet" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/bookImgDet" />
 
             <Button
                 android:id="@+id/addFavDet"
-                android:layout_width="wrap_content"
+                android:layout_width="147dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:text="Add Fav"
-                app:layout_constraintStart_toEndOf="@+id/bookImgDet"
-                app:layout_constraintTop_toBottomOf="@+id/btnReadingDet" />
+                app:layout_constraintEnd_toStartOf="@+id/guideline9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bookImgDet" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="27dp"
                 android:text="Name : "
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bookImgDet" />
+                app:layout_constraintTop_toBottomOf="@+id/btnWishlistDet" />
 
             <TextView
                 android:id="@+id/bookNameDet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
+                android:layout_marginTop="27dp"
                 android:text="Some Name"
                 app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/btnWishlistDet" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
                 android:layout_marginTop="7dp"
                 android:text="Author : "
                 app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +113,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
                 android:layout_marginTop="7dp"
                 android:text="Total Pages : "
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,10 +132,25 @@
                 android:id="@+id/longDescriptionDet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
                 android:layout_marginTop="7dp"
                 android:text="More Description About The Book"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="180dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

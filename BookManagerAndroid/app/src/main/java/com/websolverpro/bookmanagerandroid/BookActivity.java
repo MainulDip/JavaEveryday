@@ -4,18 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import java.io.Serializable;
-
 public class BookActivity extends AppCompatActivity {
 
-    private Button reading, wishlist, addFav, alreadyRead;
+    private Button addReading, addWishlist, addFav, addAlreadyRead;
     private TextView bookName, authorName, bookPages, longDescription;
     private ImageView bookImg;
     private Book book;
@@ -35,23 +34,61 @@ public class BookActivity extends AppCompatActivity {
         if(intent != null) {
             book = (Book) intent.getSerializableExtra("TheBook");
             System.out.println(book);
+
+            bookName.setText(book.getName());
+            authorName.setText(book.getAuthor());
+
+            Glide.with(this)
+//                    .load("https://c.tenor.com/dsDEBEfUeFIAAAAC/mai-shiranui-kof.gif")
+                    .load(book.getImageUrl())
+                    .into(bookImg);
         }
 
-        bookName.setText(book.getName());
-        authorName.setText(book.getAuthor());
 
-        Glide.with(this)
-                .load("https://c.tenor.com/dsDEBEfUeFIAAAAC/mai-shiranui-kof.gif")
-                .into(bookImg);
 
         longDescription.setText(sampleLongDesc);
+
+//        Set Click Listeners
+
+        addFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.getInstance().setFavourite(book);
+                Toast.makeText(BookActivity.this, book.getName()+" Add Favourite", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addReading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.setReading(book);
+                Toast.makeText(BookActivity.this, book.getName()+" Add Favourite", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addAlreadyRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.setAlreadyRead(book);
+                Toast.makeText(BookActivity.this, book.getName()+" Add Already Read", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.setWishList(book);
+                Toast.makeText(BookActivity.this, book.getName()+" Add To Wishlists", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void initLayoutElements() {
-        reading = findViewById(R.id.btnReadingDet);
-        wishlist = findViewById(R.id.btnWishlistDet);
+        addReading = findViewById(R.id.btnReadingDet);
+        addWishlist = findViewById(R.id.btnWishlistDet);
         addFav = findViewById(R.id.addFavDet);
-        alreadyRead = findViewById(R.id.alreadyReadDet);
+        addAlreadyRead = findViewById(R.id.alreadyReadDet);
 
         bookName = findViewById(R.id.bookNameDet);
         authorName = findViewById(R.id.authorNameDet);

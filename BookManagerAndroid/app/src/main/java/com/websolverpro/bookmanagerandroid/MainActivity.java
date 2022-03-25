@@ -1,5 +1,12 @@
 package com.websolverpro.bookmanagerandroid;
 
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.BUTTON_TYPE;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_ALL_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_ALREADY_READ_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_FAV_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_READING_LIST_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_WISHLIST;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -23,9 +30,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
+                intent.putExtra(BUTTON_TYPE, SHOW_ALL_BOOKS);
                 startActivity(intent);
             }
         });
+
+        buttonFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
+                intent.putExtra(BUTTON_TYPE, SHOW_FAV_BOOKS);
+                startActivity(intent);
+            }
+        });
+
+        deployClickListener(buttonReading, SHOW_READING_LIST_BOOKS);
+        deployClickListener(buttonAlreadyRead, SHOW_ALREADY_READ_BOOKS);
+        deployClickListener(buttonWantToRead, SHOW_WISHLIST);
 
 
     }
@@ -37,5 +58,16 @@ public class MainActivity extends AppCompatActivity {
         buttonWantToRead = findViewById(R.id.buttonWantToRead);
         buttonFavourite = findViewById(R.id.buttonFavourite);
         buttonAbout = findViewById(R.id.buttonAbout);
+    }
+
+    private void deployClickListener (View view, String intentExtra){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
+                intent.putExtra(BUTTON_TYPE, intentExtra);
+                startActivity(intent);
+            }
+        });
     }
 }
