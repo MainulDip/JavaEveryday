@@ -61,10 +61,19 @@ public class AllBooksActivity extends AppCompatActivity {
                     break;
             }
         }
-
-
-
         adapter.setBooks(books);
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent intent = getIntent();
+
+        if(intent != null && intent.getStringExtra(BUTTON_TYPE) != null && !intent.getStringExtra(BUTTON_TYPE).equals(SHOW_ALL_BOOKS)) {
+            Intent backIntent = new Intent(AllBooksActivity.this, MainActivity.class);
+            backIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK );
+            startActivity(backIntent);
+        }
     }
 }
