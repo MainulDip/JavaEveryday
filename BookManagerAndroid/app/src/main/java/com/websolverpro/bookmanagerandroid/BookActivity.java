@@ -47,7 +47,42 @@ public class BookActivity extends AppCompatActivity {
                     .load(book.getImageUrl())
                     .into(bookImg);
 
-            handlerFav();
+            /**
+             * Set Click Listeners for every button on this activity
+             */
+
+//            handlerFav();
+            bindClickListener(addFav, new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    Utils.setFavourite(book);
+                    return null;
+                }
+            }, "Add Favourite", Utils.getFavourite(), book);
+
+            bindClickListener(addAlreadyRead, new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    Utils.setAlreadyRead(book);
+                    return null;
+                }
+            }, "Set Already Read", Utils.getAlreadyRead(), book);
+
+            bindClickListener(addWishlist, new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    Utils.setWishList(book);
+                    return null;
+                }
+            }, "Add WishList", Utils.getWishList(), book);
+
+            bindClickListener(addReading, new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    Utils.setReading(book);
+                    return null;
+                }
+            }, "Add Reading List", Utils.getReading(), book);
         }
 
 
@@ -55,66 +90,11 @@ public class BookActivity extends AppCompatActivity {
         longDescription.setText(sampleLongDesc);
 
 
-        /**
-         * Set Click Listeners for every button on this activity
-         */
 
-
-//        bindClickListener(addFav, Utils.setFavourite, "Add Favourite", Utils.getFavourite(), book );
-
-        addReading.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.setReading(book);
-                Toast.makeText(BookActivity.this, book.getName()+" Add Favourite", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        addAlreadyRead.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.setAlreadyRead(book);
-                Toast.makeText(BookActivity.this, book.getName()+" Add Already Read", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        addWishlist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.setWishList(book);
-                Toast.makeText(BookActivity.this, book.getName()+" Add To Wishlists", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
 
-    /**
-     * already read book handler
-     */
-
-    private void handlerFav(){
-        Boolean bookAlreadyExists = false;
-        for (Book singleBook: Utils.getFavourite()){
-            if(singleBook.getId() == book.getId()){
-                bookAlreadyExists = true;
-            }
-        }
-
-        if(bookAlreadyExists){
-            Toast.makeText(this, "Book Already Selected Before", Toast.LENGTH_SHORT).show();
-            addFav.setEnabled(false);
-            return;
-        } else {
-            addFav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Utils.getInstance().setFavourite(book);
-                    Toast.makeText(BookActivity.this, book.getName() + " Add Favourite", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-    }
 
     /**
      * Helper method for crating click listeners
@@ -144,6 +124,7 @@ public class BookActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     try {
                         func.call();
+                        view.setEnabled(false);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
