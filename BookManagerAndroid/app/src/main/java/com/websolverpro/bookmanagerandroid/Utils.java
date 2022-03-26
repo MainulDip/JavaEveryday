@@ -1,10 +1,8 @@
 package com.websolverpro.bookmanagerandroid;
 
-import android.os.Parcelable;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.Callable;
 
 public class Utils {
 
@@ -57,32 +55,36 @@ public class Utils {
         return reading;
     }
 
-    public static void setReading(Book reading) {
+    public static Callable<Void> setReading(Book reading) {
         Utils.reading.add(reading);
+        return null;
     }
 
     public static ArrayList<Book> getWishList() {
         return wishList;
     }
 
-    public static void setWishList(Book wishList) {
+    public static Callable<Void> setWishList(Book wishList) {
         Utils.wishList.add(wishList);
+        return null;
     }
 
     public static ArrayList<Book> getFavourite() {
         return favourite;
     }
 
-    public static void setFavourite(Book favourite) {
+    public static Runnable setFavourite(Book favourite) {
         Utils.favourite.add(favourite);
+        return null;
     }
 
     public static ArrayList<Book> getAlreadyRead() {
         return alreadyRead;
     }
 
-    public static void setAlreadyRead(Book alreadyRead) {
+    public static Callable<Void> setAlreadyRead(Book alreadyRead) {
         Utils.alreadyRead.add(alreadyRead);
+        return null;
     }
 
     public static ArrayList<Book> getAllBooks() {

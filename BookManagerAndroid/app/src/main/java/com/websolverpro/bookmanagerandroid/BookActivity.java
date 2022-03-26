@@ -12,6 +12,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.function.Function;
+
 public class BookActivity extends AppCompatActivity {
 
     private Button addReading, addWishlist, addFav, addAlreadyRead;
@@ -42,21 +46,21 @@ public class BookActivity extends AppCompatActivity {
 //                    .load("https://c.tenor.com/dsDEBEfUeFIAAAAC/mai-shiranui-kof.gif")
                     .load(book.getImageUrl())
                     .into(bookImg);
+
+            handlerFav();
         }
 
 
 
         longDescription.setText(sampleLongDesc);
 
-//        Set Click Listeners
 
-        addFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.getInstance().setFavourite(book);
-                Toast.makeText(BookActivity.this, book.getName()+" Add Favourite", Toast.LENGTH_SHORT).show();
-            }
-        });
+        /**
+         * Set Click Listeners for every button on this activity
+         */
+
+
+//        bindClickListener(addFav, Utils.setFavourite, "Add Favourite", Utils.getFavourite(), book );
 
         addReading.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +86,71 @@ public class BookActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    /**
+     * already read book handler
+     */
+
+    private void handlerFav(){
+        Boolean bookAlreadyExists = false;
+        for (Book singleBook: Utils.getFavourite()){
+            if(singleBook.getId() == book.getId()){
+                bookAlreadyExists = true;
+            }
+        }
+
+        if(bookAlreadyExists){
+            Toast.makeText(this, "Book Already Selected Before", Toast.LENGTH_SHORT).show();
+            addFav.setEnabled(false);
+            return;
+        } else {
+            addFav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Utils.getInstance().setFavourite(book);
+                    Toast.makeText(BookActivity.this, book.getName() + " Add Favourite", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    /**
+     * Helper method for crating click listeners
+     * experiment with it later
+     */
+
+    private void bindClickListener(View view, Callable<Void> func, String str, ArrayList<Book> categoryList, Book incommingBook){
+
+        /**
+         * check if book exists already in the category
+         */
+
+        Boolean bookAlreadyExists = false;
+        for (Book singleBook: categoryList){
+            if(singleBook.getId() == incommingBook.getId()){
+                bookAlreadyExists = true;
+            }
+        }
+
+        if(bookAlreadyExists){
+            Toast.makeText(this, "Book Already Selected Before", Toast.LENGTH_SHORT).show();
+            view.setEnabled(false);
+            return;
+        } else {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        func.call();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(BookActivity.this, book.getName()+" "+str, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void initLayoutElements() {

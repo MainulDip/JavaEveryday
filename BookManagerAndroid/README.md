@@ -8,3 +8,4 @@ wishlist, currently reading list and already read list. Also you can view the di
 => Show the list of the category when added by redirecting to that activity
 => make back button redirects to the home page
 => Understand Activity Lifecycle
+=> find java callback method systems docs
