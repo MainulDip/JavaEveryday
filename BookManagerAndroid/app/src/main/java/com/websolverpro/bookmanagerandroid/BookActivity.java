@@ -1,5 +1,11 @@
 package com.websolverpro.bookmanagerandroid;
 
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.BUTTON_TYPE;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_ALREADY_READ_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_FAV_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_READING_LIST_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_WISHLIST;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -58,7 +64,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setFavourite(book);
                     return null;
                 }
-            }, "Add Favourite", Utils.getFavourite(), book);
+            }, "Add Favourite", Utils.getFavourite(), book, SHOW_FAV_BOOKS);
 
             bindClickListener(addAlreadyRead, new Callable<Void>() {
                 @Override
@@ -66,7 +72,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setAlreadyRead(book);
                     return null;
                 }
-            }, "Set Already Read", Utils.getAlreadyRead(), book);
+            }, "Set Already Read", Utils.getAlreadyRead(), book, SHOW_ALREADY_READ_BOOKS);
 
             bindClickListener(addWishlist, new Callable<Void>() {
                 @Override
@@ -74,7 +80,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setWishList(book);
                     return null;
                 }
-            }, "Add WishList", Utils.getWishList(), book);
+            }, "Add WishList", Utils.getWishList(), book, SHOW_WISHLIST);
 
             bindClickListener(addReading, new Callable<Void>() {
                 @Override
@@ -82,7 +88,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setReading(book);
                     return null;
                 }
-            }, "Add Reading List", Utils.getReading(), book);
+            }, "Add Reading List", Utils.getReading(), book, SHOW_READING_LIST_BOOKS);
         }
 
 
@@ -101,7 +107,7 @@ public class BookActivity extends AppCompatActivity {
      * experiment with it later
      */
 
-    private void bindClickListener(View view, Callable<Void> func, String str, ArrayList<Book> categoryList, Book incommingBook){
+    private void bindClickListener(View view, Callable<Void> func, String str, ArrayList<Book> categoryList, Book incommingBook, String intentString){
 
         /**
          * check if book exists already in the category
@@ -125,6 +131,9 @@ public class BookActivity extends AppCompatActivity {
                     try {
                         func.call();
                         view.setEnabled(false);
+                        Intent intent = new Intent(BookActivity.this, AllBooksActivity.class);
+                        intent.putExtra(BUTTON_TYPE, intentString);
+                        BookActivity.this.startActivity(intent);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
