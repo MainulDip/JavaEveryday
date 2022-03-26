@@ -98,7 +98,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
 
         private ImageView downArrow, upArrow;
         private RelativeLayout nonExpandedCard, expandedCard;
-        private TextView authorName, shortDescription;
+        private TextView authorName, shortDescription, txtButtonDeleteRecyclerView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -115,6 +115,8 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
 
             authorName = itemView.findViewById(R.id.authorName);
             shortDescription = itemView.findViewById(R.id.shortDesc);
+
+            txtButtonDeleteRecyclerView = itemView.findViewById(R.id.buttonDeleteRecyclerView);
 
             downArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -135,6 +137,19 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                     book.setExpanded(!book.getExpanded());
 
                     notifyItemChanged(getAdapterPosition());
+                }
+            });
+
+            /**
+             * Delete Functionality
+             */
+
+            txtButtonDeleteRecyclerView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, "Deleting", Toast.LENGTH_SHORT).show();
+                    Book book = books.get(getAdapterPosition());
+
                 }
             });
 

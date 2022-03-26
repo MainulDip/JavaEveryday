@@ -33,14 +33,14 @@
                 android:text="Book Name"/>
 
             <ImageView
+                android:id="@+id/iconDownArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/bookImg"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="0dp"
                 android:padding="7dp"
-                android:src="@drawable/ic_down_arrow"
-                android:id="@+id/iconDownArrow"/>
+                android:src="@drawable/ic_down_arrow" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -75,11 +75,22 @@
                 android:layout_marginTop="7dp"
                 android:text="Short Description"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:id="@+id/buttonDeleteRecyclerView"
+                android:layout_below="@id/shortDesc"
+                android:layout_marginVertical="7dp"
+                android:paddingVertical="7dp"
+                android:paddingHorizontal="12dp"
+                android:background="#FF5722"
+                android:textColor="#fff"/>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/shortDesc"
-                android:layout_marginTop="7dp"
+                android:layout_below="@id/buttonDeleteRecyclerView"
                 android:background="#FFEB3B"
                 android:paddingVertical="7dp"
                 android:src="@drawable/ic_up_arrow"
