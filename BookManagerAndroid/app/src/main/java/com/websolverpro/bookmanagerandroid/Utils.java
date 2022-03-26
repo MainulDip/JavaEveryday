@@ -90,6 +90,10 @@ public class Utils {
     public static ArrayList<Book> getAllBooks() {
         return allBooks;
     }
+    public static void deleteBook(Book book) {
+        allBooks.remove(book);
+    }
+
 
 
 

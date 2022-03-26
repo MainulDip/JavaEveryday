@@ -149,7 +149,8 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                 public void onClick(View view) {
                     Toast.makeText(context, "Deleting", Toast.LENGTH_SHORT).show();
                     Book book = books.get(getAdapterPosition());
-
+                    Utils.deleteBook(book);
+                    notifyItemChanged(getAdapterPosition());
                 }
             });
 
