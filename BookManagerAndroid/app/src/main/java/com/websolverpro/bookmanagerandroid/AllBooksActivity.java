@@ -27,17 +27,14 @@ public class AllBooksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_books);
 
         booksRecyclerView = findViewById(R.id.booksRecyclerView);
-        adapter = new BooksRecyclerViewAdapter(this);
 
-        booksRecyclerView.setAdapter(adapter);
-
-        booksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Intent intent = getIntent();
 
         ArrayList<Book> books = new ArrayList<>();
 
         if(intent != null) {
+
             switch (intent.getStringExtra(BUTTON_TYPE)){
                 case ALL_BOOKS:
                     books = Utils.getInstance().getAllBooks();
@@ -58,8 +55,15 @@ public class AllBooksActivity extends AppCompatActivity {
                     books = Utils.getInstance().getAllBooks();
                     break;
             }
+
+            adapter = new BooksRecyclerViewAdapter(this, intent.getStringExtra(BUTTON_TYPE));
+
+            booksRecyclerView.setAdapter(adapter);
+
+            booksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            adapter.setBooks(books);
         }
-        adapter.setBooks(books);
     }
 
     @Override

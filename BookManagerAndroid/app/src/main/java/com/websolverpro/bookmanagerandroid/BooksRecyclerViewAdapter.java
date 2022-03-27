@@ -34,14 +34,16 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
     private ArrayList<Book> books = new ArrayList<>();
 
     private Context context;
+    private String store;
 
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
         notifyDataSetChanged();
     }
 
-    public BooksRecyclerViewAdapter(Context context) {
+    public BooksRecyclerViewAdapter(Context context, String store) {
         this.context = context;
+        this.store = store;
     }
 
     @NonNull
@@ -62,6 +64,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
         Glide.with(context)
                 .load(books.get(position).getImageUrl())
                 .into(holder.bookImg);
+        holder.expandedCard.setVisibility(View.GONE);
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +74,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
 
                 System.out.println(books.get(position));
                 intent.putExtra("TheBook", (Serializable) books.get(position));
+                holder.expandedCard.setVisibility(View.GONE);
                 context.startActivity(intent);
             }
         });
@@ -119,6 +123,12 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
             shortDescription = itemView.findViewById(R.id.shortDesc);
 
             txtButtonDeleteRecyclerView = itemView.findViewById(R.id.buttonDeleteRecyclerView);
+            System.out.println("store == ALL_BOOKS" + store.equals( ALL_BOOKS));
+            if(store.equals( ALL_BOOKS)) {
+                txtButtonDeleteRecyclerView.setVisibility(View.GONE);
+            } else {
+                txtButtonDeleteRecyclerView.setVisibility(View.VISIBLE);
+            }
 
             downArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -151,7 +161,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                 public void onClick(View view) {
                     Toast.makeText(context, "Deleting", Toast.LENGTH_SHORT).show();
                     Book book = books.get(getAdapterPosition());
-                    Utils.deleteBook(book, ALL_BOOKS);
+                    Utils.deleteBook(book, store);
                     notifyItemChanged(getAdapterPosition());
                 }
             });

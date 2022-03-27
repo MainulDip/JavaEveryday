@@ -98,7 +98,7 @@ public class Utils {
     public static void deleteBook(Book book, String store) {
         switch (store){
             case ALL_BOOKS:
-                allBooks.remove(book);
+//                allBooks.remove(book);
                 break;
             case FAV_BOOKS:
                 favourite.remove(book);
@@ -112,7 +112,6 @@ public class Utils {
             default:
                 break;
         }
-
     }
 
 
