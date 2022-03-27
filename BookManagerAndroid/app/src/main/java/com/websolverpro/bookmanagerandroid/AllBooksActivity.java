@@ -1,7 +1,6 @@
 package com.websolverpro.bookmanagerandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,16 +8,15 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AllBooksActivity extends AppCompatActivity {
 
-    public static final String SHOW_ALL_BOOKS = "SHOW_ALL_BOOKS";
-    public static final String SHOW_FAV_BOOKS = "SHOW_FAV_BOOKS";
+    public static final String ALL_BOOKS = "ALL_BOOKS";
+    public static final String FAV_BOOKS = "FAV_BOOKS";
     public static final String BUTTON_TYPE = "String BUTTON_TYPE";
-    public static final String SHOW_READING_LIST_BOOKS = "SHOW_READING_LIST_BOOKS";
-    public static final String SHOW_WISHLIST = "SHOW_WISHLIST";
-    public static final String SHOW_ALREADY_READ_BOOKS = "SHOW_ALREADY_READ_BOOKS";
+    public static final String READING_LIST_BOOKS = "READING_LIST_BOOKS";
+    public static final String WISHLIST = "WISHLIST";
+    public static final String ALREADY_READ_BOOKS = "ALREADY_READ_BOOKS";
 
     private RecyclerView booksRecyclerView;
     private BooksRecyclerViewAdapter adapter;
@@ -41,19 +39,19 @@ public class AllBooksActivity extends AppCompatActivity {
 
         if(intent != null) {
             switch (intent.getStringExtra(BUTTON_TYPE)){
-                case SHOW_ALL_BOOKS:
+                case ALL_BOOKS:
                     books = Utils.getInstance().getAllBooks();
                     break;
-                case SHOW_FAV_BOOKS:
+                case FAV_BOOKS:
                     books = Utils.getInstance().getFavourite();
                     break;
-                case SHOW_ALREADY_READ_BOOKS:
+                case ALREADY_READ_BOOKS:
                     books = Utils.getAlreadyRead();
                     break;
-                case SHOW_WISHLIST:
+                case WISHLIST:
                     books = Utils.getWishList();
                     break;
-                case SHOW_READING_LIST_BOOKS:
+                case READING_LIST_BOOKS:
                     books = Utils.getReading();
                     break;
                 default:
@@ -70,7 +68,7 @@ public class AllBooksActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        if(intent != null && intent.getStringExtra(BUTTON_TYPE) != null && !intent.getStringExtra(BUTTON_TYPE).equals(SHOW_ALL_BOOKS)) {
+        if(intent != null && intent.getStringExtra(BUTTON_TYPE) != null && !intent.getStringExtra(BUTTON_TYPE).equals(ALL_BOOKS)) {
             Intent backIntent = new Intent(AllBooksActivity.this, MainActivity.class);
             backIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK );
             startActivity(backIntent);

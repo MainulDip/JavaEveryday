@@ -1,10 +1,10 @@
 package com.websolverpro.bookmanagerandroid;
 
 import static com.websolverpro.bookmanagerandroid.AllBooksActivity.BUTTON_TYPE;
-import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_ALREADY_READ_BOOKS;
-import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_FAV_BOOKS;
-import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_READING_LIST_BOOKS;
-import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_WISHLIST;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.ALREADY_READ_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.FAV_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.READING_LIST_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.WISHLIST;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +20,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
-import java.util.function.Function;
 
 public class BookActivity extends AppCompatActivity {
 
@@ -64,7 +63,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setFavourite(book);
                     return null;
                 }
-            }, "Add Favourite", Utils.getFavourite(), book, SHOW_FAV_BOOKS);
+            }, "Add Favourite", Utils.getFavourite(), book, FAV_BOOKS);
 
             bindClickListener(addAlreadyRead, new Callable<Void>() {
                 @Override
@@ -72,7 +71,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setAlreadyRead(book);
                     return null;
                 }
-            }, "Set Already Read", Utils.getAlreadyRead(), book, SHOW_ALREADY_READ_BOOKS);
+            }, "Set Already Read", Utils.getAlreadyRead(), book, ALREADY_READ_BOOKS);
 
             bindClickListener(addWishlist, new Callable<Void>() {
                 @Override
@@ -80,7 +79,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setWishList(book);
                     return null;
                 }
-            }, "Add WishList", Utils.getWishList(), book, SHOW_WISHLIST);
+            }, "Add WishList", Utils.getWishList(), book, WISHLIST);
 
             bindClickListener(addReading, new Callable<Void>() {
                 @Override
@@ -88,7 +87,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setReading(book);
                     return null;
                 }
-            }, "Add Reading List", Utils.getReading(), book, SHOW_READING_LIST_BOOKS);
+            }, "Add Reading List", Utils.getReading(), book, READING_LIST_BOOKS);
         }
 
 

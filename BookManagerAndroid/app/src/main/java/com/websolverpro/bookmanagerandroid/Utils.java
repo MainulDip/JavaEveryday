@@ -1,5 +1,10 @@
 package com.websolverpro.bookmanagerandroid;
 
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.ALL_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.FAV_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.READING_LIST_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.WISHLIST;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
@@ -90,8 +95,24 @@ public class Utils {
     public static ArrayList<Book> getAllBooks() {
         return allBooks;
     }
-    public static void deleteBook(Book book) {
-        allBooks.remove(book);
+    public static void deleteBook(Book book, String store) {
+        switch (store){
+            case ALL_BOOKS:
+                allBooks.remove(book);
+                break;
+            case FAV_BOOKS:
+                favourite.remove(book);
+                break;
+            case WISHLIST:
+                wishList.remove(book);
+                break;
+            case READING_LIST_BOOKS:
+                reading.remove(book);
+                break;
+            default:
+                break;
+        }
+
     }
 
 

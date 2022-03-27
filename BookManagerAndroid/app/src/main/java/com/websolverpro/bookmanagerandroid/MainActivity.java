@@ -1,11 +1,11 @@
 package com.websolverpro.bookmanagerandroid;
 
 import static com.websolverpro.bookmanagerandroid.AllBooksActivity.BUTTON_TYPE;
-import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_ALL_BOOKS;
-import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_ALREADY_READ_BOOKS;
-import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_FAV_BOOKS;
-import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_READING_LIST_BOOKS;
-import static com.websolverpro.bookmanagerandroid.AllBooksActivity.SHOW_WISHLIST;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.ALL_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.ALREADY_READ_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.FAV_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.READING_LIST_BOOKS;
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.WISHLIST;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
-                intent.putExtra(BUTTON_TYPE, SHOW_ALL_BOOKS);
+                intent.putExtra(BUTTON_TYPE, ALL_BOOKS);
                 startActivity(intent);
             }
         });
@@ -39,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
-                intent.putExtra(BUTTON_TYPE, SHOW_FAV_BOOKS);
+                intent.putExtra(BUTTON_TYPE, FAV_BOOKS);
                 startActivity(intent);
             }
         });
 
-        deployClickListener(buttonReading, SHOW_READING_LIST_BOOKS);
-        deployClickListener(buttonAlreadyRead, SHOW_ALREADY_READ_BOOKS);
-        deployClickListener(buttonWantToRead, SHOW_WISHLIST);
+        deployClickListener(buttonReading, READING_LIST_BOOKS);
+        deployClickListener(buttonAlreadyRead, ALREADY_READ_BOOKS);
+        deployClickListener(buttonWantToRead, WISHLIST);
 
 
     }

@@ -1,5 +1,7 @@
 package com.websolverpro.bookmanagerandroid;
 
+import static com.websolverpro.bookmanagerandroid.AllBooksActivity.ALL_BOOKS;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -149,7 +151,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                 public void onClick(View view) {
                     Toast.makeText(context, "Deleting", Toast.LENGTH_SHORT).show();
                     Book book = books.get(getAdapterPosition());
-                    Utils.deleteBook(book);
+                    Utils.deleteBook(book, ALL_BOOKS);
                     notifyItemChanged(getAdapterPosition());
                 }
             });
