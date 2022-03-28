@@ -4,6 +4,7 @@ import static com.websolverpro.bookmanagerandroid.AllBooksActivity.ALL_BOOKS;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.util.Log;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
@@ -175,8 +177,24 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                 public void onClick(View view) {
                     Toast.makeText(context, "Deleting", Toast.LENGTH_SHORT).show();
                     Book book = books.get(getAdapterPosition());
-                    Utils.deleteBook(book, store);
-                    notifyItemChanged(getAdapterPosition());
+
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                    alertDialog.setMessage("Are you sure?");
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Utils.deleteBook(book, store);
+                            notifyItemChanged(getAdapterPosition());
+                        }
+                    });
+                    alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(context, "Deleting Canceled", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    alertDialog.show();
                 }
             });
         }

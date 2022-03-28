@@ -42,3 +42,25 @@ public void onClick(View view) {
 
 ### RecyclerView:
 ### :cat: [RecyclerView Implementation](./AndroidRecyclerView/README.md) < Click to view
+### :cat: [RecyclerView Implementation](./BookManagerAndroid//README.md) < Click to view
+
+### AlertDialog: AlertDialog.Builder
+```java
+AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+alertDialog.setMessage("Are you sure?");
+alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialogInterface, int i) {
+        Utils.deleteBook(book, store);
+        notifyItemChanged(getAdapterPosition());
+    }
+});
+alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialogInterface, int i) {
+        Toast.makeText(context, "Deleting Canceled", Toast.LENGTH_SHORT).show();
+    }
+});
+```
+
+

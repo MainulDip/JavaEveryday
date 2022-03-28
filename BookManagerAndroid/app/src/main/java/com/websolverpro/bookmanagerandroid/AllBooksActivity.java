@@ -37,10 +37,10 @@ public class AllBooksActivity extends AppCompatActivity {
 
             switch (intent.getStringExtra(BUTTON_TYPE)){
                 case ALL_BOOKS:
-                    books = Utils.getInstance().getAllBooks();
+                    books = Utils.getAllBooks();
                     break;
                 case FAV_BOOKS:
-                    books = Utils.getInstance().getFavourite();
+                    books = Utils.getFavourite();
                     break;
                 case ALREADY_READ_BOOKS:
                     books = Utils.getAlreadyRead();
@@ -52,7 +52,7 @@ public class AllBooksActivity extends AppCompatActivity {
                     books = Utils.getReading();
                     break;
                 default:
-                    books = Utils.getInstance().getAllBooks();
+                    books = Utils.getAllBooks();
                     break;
             }
 

@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Utils.getInstance();
+
         initViews();
 
         buttonAllBooks.setOnClickListener(new View.OnClickListener() {
