@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecyclerViewAdapter.ViewHolder> {
 
@@ -35,6 +36,9 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
 
     private Context context;
     private String store;
+
+    private ArrayList<Integer> previouslyExpanded = new ArrayList<>();
+    private ArrayList<Integer> previousAdapterPosition = new ArrayList<>();
 
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
@@ -55,26 +59,25 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: Called");
-        holder.bookName.setText(books.get(position).getName());
-        holder.authorName.setText(books.get(position).getAuthor());
-        holder.shortDescription.setText(books.get(position).getShortDesc());
+        holder.bookName.setText(books.get(holder.getAdapterPosition()).getName());
+        holder.authorName.setText(books.get(holder.getAdapterPosition()).getAuthor());
+        holder.shortDescription.setText(books.get(holder.getAdapterPosition()).getShortDesc());
 
         Glide.with(context)
-                .load(books.get(position).getImageUrl())
+                .load(books.get(holder.getAdapterPosition()).getImageUrl())
                 .into(holder.bookImg);
-        holder.expandedCard.setVisibility(View.GONE);
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(context, books.get(position).getName() + ": Selected", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "" + books.get(holder.getAdapterPosition()).getExpanded(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, BookActivity.class);
 
-                System.out.println(books.get(position));
-                intent.putExtra("TheBook", (Serializable) books.get(position));
-                holder.expandedCard.setVisibility(View.GONE);
+                System.out.println(books.get(holder.getAdapterPosition()));
+                intent.putExtra("TheBook", (Serializable) books.get(holder.getAdapterPosition()));
+                books.get(holder.getAdapterPosition()).setExpanded(false);
                 context.startActivity(intent);
             }
         });
@@ -86,7 +89,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
         } else {
             TransitionManager.beginDelayedTransition(holder.parent);
             holder.expandedCard.setVisibility(View.GONE);
-            holder.upArrow.setVisibility(View.VISIBLE);
+            holder.downArrow.setVisibility(View.VISIBLE);
         }
 
     }
@@ -124,6 +127,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
 
             txtButtonDeleteRecyclerView = itemView.findViewById(R.id.buttonDeleteRecyclerView);
             System.out.println("store == ALL_BOOKS" + store.equals( ALL_BOOKS));
+
             if(store.equals( ALL_BOOKS)) {
                 txtButtonDeleteRecyclerView.setVisibility(View.GONE);
             } else {
@@ -133,12 +137,23 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
             downArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "Expanding Request", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "Expanding Request", Toast.LENGTH_SHORT).show();
+
+                    if(previouslyExpanded.size() > 0){
+                        for(Integer pe: previouslyExpanded){
+                            System.out.println("previouslyExpanded: "+ pe);
+                            books.get(pe).setExpanded(false);
+                            notifyItemChanged(pe);
+                        }
+                        previouslyExpanded.removeAll(previouslyExpanded);
+                    }
+
+                    previouslyExpanded.add(getAdapterPosition());
 
                     Book book = books.get(getAdapterPosition());
                     book.setExpanded(!book.getExpanded());
 
-                    notifyItemChanged(getAdapterPosition());
+                notifyItemChanged(getAdapterPosition());
                 }
             });
 
@@ -147,7 +162,6 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                 public void onClick(View view) {
                     Book book = books.get(getAdapterPosition());
                     book.setExpanded(!book.getExpanded());
-
                     notifyItemChanged(getAdapterPosition());
                 }
             });
@@ -165,7 +179,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                     notifyItemChanged(getAdapterPosition());
                 }
             });
-
         }
+
     }
 }
