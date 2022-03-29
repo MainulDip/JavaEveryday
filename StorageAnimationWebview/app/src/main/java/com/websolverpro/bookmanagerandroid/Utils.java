@@ -127,9 +127,15 @@ public class Utils {
         }
     }
 
-
-
-
+    /**
+     * Shared Preference Implementation Without Broken Changes
+     * 1. Create Separate Shared Preferences for each category
+     * 2. Initialize Shared Preference With Some Data. When app first load, check if shared storage is populated or not.
+     * 3. Create helper function that will update the targeted storage when called
+     * 4. When book/s are inserted or deleted, those functions will also call the storage updater function
+     * 5. Getters will fetch data from the storage and deserialize and return
+     * 6. Setters will serialize and store data to shared preference storage
+     */
 
 //    Helpers
 
