@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                        intent.putExtra("url", "https://websolverpro.com");
                         startActivity(intent);
                     }
                 });

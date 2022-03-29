@@ -26,6 +26,8 @@ public class AllBooksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_books);
 
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_up);
+
         booksRecyclerView = findViewById(R.id.booksRecyclerView);
 
 
@@ -77,5 +79,11 @@ public class AllBooksActivity extends AppCompatActivity {
             backIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK );
             startActivity(backIntent);
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_up);
     }
 }
