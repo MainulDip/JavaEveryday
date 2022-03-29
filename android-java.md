@@ -49,18 +49,20 @@ public void onClick(View view) {
 AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 alertDialog.setMessage("Are you sure?");
 alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialogInterface, int i) {
-        Utils.deleteBook(book, store);
-        notifyItemChanged(getAdapterPosition());
-    }
+@Override
+public void onClick(DialogInterface dialogInterface, int i) {
+    Utils.deleteBook(book, store);
+    notifyItemChanged(getAdapterPosition());
+}
 });
 alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-    @Override
-    public void onClick(DialogInterface dialogInterface, int i) {
-        Toast.makeText(context, "Deleting Canceled", Toast.LENGTH_SHORT).show();
-    }
+@Override
+public void onClick(DialogInterface dialogInterface, int i) {
+    Toast.makeText(context, "Deleting Canceled", Toast.LENGTH_SHORT).show();
+}
 });
+
+alertDialog.create().show();
 ```
 
 

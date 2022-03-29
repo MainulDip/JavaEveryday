@@ -194,7 +194,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                         }
                     });
 
-                    alertDialog.show();
+                    alertDialog.create().show();
                 }
             });
         }
