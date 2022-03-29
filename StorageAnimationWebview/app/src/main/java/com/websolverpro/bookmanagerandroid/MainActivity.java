@@ -7,12 +7,15 @@ import static com.websolverpro.bookmanagerandroid.AllBooksActivity.FAV_BOOKS;
 import static com.websolverpro.bookmanagerandroid.AllBooksActivity.READING_LIST_BOOKS;
 import static com.websolverpro.bookmanagerandroid.AllBooksActivity.WISHLIST;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -26,7 +29,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /**
+         * Generate Data Utils
+         */
         Utils.getInstance();
+
+        /**
+         *
+         */
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP);
 
         initViews();
 
@@ -102,5 +114,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    /**
+     * Define Custom Behaviour For Top Back Bytton
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

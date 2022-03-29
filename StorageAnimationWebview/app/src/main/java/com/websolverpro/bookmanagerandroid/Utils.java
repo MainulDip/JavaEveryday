@@ -6,6 +6,9 @@ import static com.websolverpro.bookmanagerandroid.AllBooksActivity.FAV_BOOKS;
 import static com.websolverpro.bookmanagerandroid.AllBooksActivity.READING_LIST_BOOKS;
 import static com.websolverpro.bookmanagerandroid.AllBooksActivity.WISHLIST;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
@@ -21,9 +24,16 @@ public class Utils {
     private static ArrayList<Book> favourite;
     private static ArrayList<Book> alreadyRead;
 
+    /**
+     * Shared Preferences
+     */
+    private SharedPreferences sharedPreferences;
+
     //    Constructor
 
     private Utils() {
+
+//        sharedPreferences = context.getSharedPreferences("alternate_db", Context.MODE_PRIVATE);
         if( null == allBooks){
             initData();
         }

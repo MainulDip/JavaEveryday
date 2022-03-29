@@ -1,5 +1,6 @@
 package com.websolverpro.bookmanagerandroid;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,8 @@ public class AllBooksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_books);
 
         overridePendingTransition(R.anim.slide_in, R.anim.slide_up);
+
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP);
 
         booksRecyclerView = findViewById(R.id.booksRecyclerView);
 
