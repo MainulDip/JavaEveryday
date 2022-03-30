@@ -66,3 +66,44 @@ alertDialog.create().show();
 ```
 
 
+### Shared Preferences:
+> Key value paired type of storate
+
+```java
+private static ArrayList<Book> allBooks;
+private static SharedPreferences spManagerBook;
+private static SharedPreferences.Editor spEditor;
+private static Type collectionType = new TypeToken<ArrayList<Book>>(){}.getType();
+private static Gson gson = new Gson();
+private Context context;
+
+spManagerBook = context.getSharedPreferences(MANAGER_BOOK, Context.MODE_PRIVATE);
+spEditor = spManagerBook.edit();
+
+ArrayList<Book> data = new ArrayList<>(Arrays.asList(
+        new Book(1, "FistBook", "Authorfirst", "https://www.snk-corp.co.jp/us/games/kof-xv/characters/img/character_kula.png", "small description", "This is long Description", 100),
+        new Book(2, "SecondBook", "AuthorSecond", "https://static.wikia.nocookie.net/snk/images/4/47/Kof_xv_iori_render.png", "small description", "This is long Description", 100)
+));
+
+spEditor.putString(ALL_BOOKS, gson.toJson(data));
+spEditor.commit();
+
+allBooks = gson.fromJson(spManagerBook.getString(ALL_BOOKS, ALL_BOOKS), collectionType);
+```
+
+### Checking null case
+```java
+/**
+* as getString will return default string if nothing found, we can check that for null/errors case
+*/
+
+if(!spManagerBook.getString(ALL_BOOKS, ALL_BOOKS).equals(ALL_BOOKS)){
+    allBooks = gson.fromJson(spManagerBook.getString(ALL_BOOKS, ALL_BOOKS), collectionType);
+} else {
+    initData();
+}
+```
+
+### Docs: https://github.com/google/gson/blob/master/UserGuide.md
+
+### Personal Implementation :cat: [Shared Preferences Implementation](./StorageAnimationWebview/app/src/main/java/com/websolverpro/bookmanagerandroid/Utils.java) < Click to view
