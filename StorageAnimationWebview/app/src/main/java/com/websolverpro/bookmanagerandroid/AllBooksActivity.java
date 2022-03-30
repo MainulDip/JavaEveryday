@@ -1,6 +1,5 @@
 package com.websolverpro.bookmanagerandroid;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,16 +44,16 @@ public class AllBooksActivity extends AppCompatActivity {
                     books = Utils.getAllBooks();
                     break;
                 case FAV_BOOKS:
-                    books = Utils.getFavourite();
+                    books = Utils.getFavourites();
                     break;
                 case ALREADY_READ_BOOKS:
-                    books = Utils.getAlreadyRead();
+                    books = Utils.getAlreadyReads();
                     break;
                 case WISHLIST:
-                    books = Utils.getWishList();
+                    books = Utils.getWishLists();
                     break;
                 case READING_LIST_BOOKS:
-                    books = Utils.getReading();
+                    books = Utils.getReadings();
                     break;
                 default:
                     books = Utils.getAllBooks();

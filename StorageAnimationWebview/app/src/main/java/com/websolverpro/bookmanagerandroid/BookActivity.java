@@ -63,7 +63,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setFavourite(book);
                     return null;
                 }
-            }, "Add Favourite", Utils.getFavourite(), book, FAV_BOOKS);
+            }, "Add Favourite", Utils.getFavourites(), book, FAV_BOOKS);
 
             bindClickListener(addAlreadyRead, new Callable<Void>() {
                 @Override
@@ -71,7 +71,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setAlreadyRead(book);
                     return null;
                 }
-            }, "Set Already Read", Utils.getAlreadyRead(), book, ALREADY_READ_BOOKS);
+            }, "Set Already Read", Utils.getAlreadyReads(), book, ALREADY_READ_BOOKS);
 
             bindClickListener(addWishlist, new Callable<Void>() {
                 @Override
@@ -79,7 +79,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setWishList(book);
                     return null;
                 }
-            }, "Add WishList", Utils.getWishList(), book, WISHLIST);
+            }, "Add WishList", Utils.getWishLists(), book, WISHLIST);
 
             bindClickListener(addReading, new Callable<Void>() {
                 @Override
@@ -87,7 +87,7 @@ public class BookActivity extends AppCompatActivity {
                     Utils.setReading(book);
                     return null;
                 }
-            }, "Add Reading List", Utils.getReading(), book, READING_LIST_BOOKS);
+            }, "Add Reading List", Utils.getReadings(), book, READING_LIST_BOOKS);
         }
 
 
