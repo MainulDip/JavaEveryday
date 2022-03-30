@@ -27,13 +27,15 @@ public class Utils {
     /**
      * Shared Preferences
      */
-    private SharedPreferences sharedPreferences;
+    private static SharedPreferences spAllBooks, spReading, spWishList, spFavourite, spAlreadyRead ;
+
+    private Context context;
 
     //    Constructor
 
-    private Utils() {
+    private Utils(Context context) {
+        this.context = context;
 
-//        sharedPreferences = context.getSharedPreferences("alternate_db", Context.MODE_PRIVATE);
         if( null == allBooks){
             initData();
         }
@@ -57,9 +59,9 @@ public class Utils {
 
 //    Instance Getter: Singleton
 
-    public static Utils getInstance() {
+    public static Utils getInstance(Context context) {
         if (null == instance) {
-            instance = new Utils();
+            instance = new Utils(context);
         }
         return instance;
     }
@@ -140,6 +142,9 @@ public class Utils {
 //    Helpers
 
     private void initData() {
+        spAllBooks = context.getSharedPreferences("alternate_db", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = spAllBooks.edit();
+
         allBooks = new ArrayList<>(Arrays.asList(
                 new Book(1, "FistBook", "Authorfirst", "https://www.snk-corp.co.jp/us/games/kof-xv/characters/img/character_kula.png", "small description", "This is long Description", 100),
                 new Book(2, "SecondBook", "AuthorSecond", "https://static.wikia.nocookie.net/snk/images/4/47/Kof_xv_iori_render.png", "small description", "This is long Description", 100),
@@ -154,6 +159,8 @@ public class Utils {
                 new Book(11, "ThirdBook", "Authorfirst", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100),
                 new Book(12, "fourthBook", "Authorfirst", "https://i.pinimg.com/originals/c7/fc/13/c7fc134dc49ab111954d83fc14251947.png", "small description", "This is long Description", 100)
         ));
+
+
     }
 
 }

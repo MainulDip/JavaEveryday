@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Generate Data Utils
          */
-        Utils.getInstance();
+        Utils.getInstance(this);
 
         /**
          *
