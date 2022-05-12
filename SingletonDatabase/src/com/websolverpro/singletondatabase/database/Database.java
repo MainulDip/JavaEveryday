@@ -18,6 +18,7 @@ public class Database {
 
     private static int state = 1;
 
+    // volatile
     public static Database instance;
 
 //    to force stop using multiple threads so there will be no multiple instance errors.
