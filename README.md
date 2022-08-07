@@ -4,6 +4,7 @@ This Repo is a personalized walkthrough and hints for reading, inspecting and us
 <br/>
 
 ### :cat: [Java Quick Language Tour](java-language-tour.md) < Click to view
+### :cat: [Java Part 2 Language Tour](java-tour-part-2.md) < Click to view
 <br/>
 
 ### Compilation and execution:

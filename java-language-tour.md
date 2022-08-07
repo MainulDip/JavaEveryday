@@ -364,3 +364,4 @@ string.equals(anotherString) // return boolean
 ```java
 
 ```
+### :cat: [Java Part 2 Language Tour](java-tour-part-2.md) < Click to view

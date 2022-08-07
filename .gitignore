@@ -178,3 +178,4 @@ kotlin-ide/
 .externalNativeBuild
 .cxx
 local.properties
+temp/
