@@ -58,3 +58,202 @@ public class Computer implements Electronic {
 ```
 
 ### Abstract classes:
+```java
+abstract class Shape 
+{
+    int color;
+    // An abstract function
+    abstract void draw();
+}
+```
+> abstract class observations
+
+- An instance of an abstract class can not be created.
+
+- Constructors are allowed.
+
+- We can have an abstract class without any abstract method.
+
+- There can be a final method in abstract class but any abstract method in class(abstract class) can not be declared as final  or in simper terms final method can not be abstract itself as it will yield an error: “Illegal combination of modifiers: abstract and final”
+
+- We are not allowed to create objects for an abstract class.
+
+- We can define static methods in an abstract class
+
+- We can use the abstract keyword for declaring top-level classes (Outer class) as well as inner classes as abstract
+
+- If a class contains at least one abstract method then compulsory should declare a class as abstract 
+
+- If the Child class is unable to provide implementation to all abstract methods of the Parent class then we should declare that Child class as abstract so that the next level Child class should provide implementation to the remaining abstract method
+
+```java
+abstract class B {
+  //declaring inner class as abstract with abstract method
+    abstract class C {
+        abstract void myAbstractMethod();
+    }
+}
+class D extends B {
+    class E extends C {
+      // implementing the abstract method
+        void myAbstractMethod() { System.out.println("Inside abstract method implementation"); }
+    }
+}
+ 
+public class Main {
+ 
+    public static void main(String args[])
+    {
+        // Instantiating the outer class
+        D outer = new D();
+ 
+        // Instantiating the inner class
+        D.E inner = outer.new E();
+        inner.myAbstractMethod(); // Inside abstract method implementation
+    }
+}
+```
+
+### More on Generics:
+Generics was added in Java 5 to provide compile-time type checking and removing risk of ClassCastException that was common while working with collection classes.
+
+- List Generics
+```java
+List<String> list1 = new ArrayList<String>(); // java 7 ? List<String> list1 = new ArrayList<>(); 
+list1.add("abc");
+//list1.add(new Integer(5)); //compiler error
+
+// parameterized value to a parameterized type like => new HashMap<String, List<String>>()
+
+for(String str : list1){
+     //no type casting needed, avoids ClassCastException
+}
+```
+- Generic Class and interface:
+
+```java
+
+public class GenericsType<T> {
+
+	private T t;
+	
+	public T get(){
+		return this.t;
+	}
+	
+	public void set(T t1){
+		this.t=t1;
+	}
+	
+	public static void main(String args[]){
+		GenericsType<String> type = new GenericsType<>();
+		type.set("Pankaj"); //valid
+		
+		GenericsType type1 = new GenericsType(); //raw type
+		type1.set("Pankaj"); //valid
+		type1.set(10); //valid and autoboxing support
+	}
+}
+
+// interface
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+```
+
+- Generic Naming Convention:
+ - E - Element (used extensively by the Java Collections Framework,  f or example ArrayList, Set etc.)
+ - K - Key (Used in Map)
+ - N - Number
+ - T - Type
+ - V - Value (Used in Map)
+ - S,U,V etc. - 2nd, 3rd, 4th types
+
+
+- Bounded Type:
+This is used to restrict the type of objects (upper bound limit) that can be used in the parameterized type. To declare a bounded type parameter, list the type parameter’s name, followed by the extends keyword, followed by its upper bound. Java Generics supports multiple bounds also, i.e <T extends A & B & C>
+```java
+public static <T extends Comparable<T>> int compare(T t1, T t2){
+		return t1.compareTo(t2);
+	}
+```
+
+### Generics Wildcard Bounded(<? extends Object>) / Unbounded(List<?>, etc) / Lower-Bounded (List<? super Integer>):
+The question mark (?), represents the wildcard, stands for unknown type in generics. There are 3 types of Generics Wildcards.
+
+ 1. Upper-Bound / Subtyping Wildcard:
+ Upper bounded wildcards are used to relax the restriction on the type of variable in a method.
+```java
+public static void main(String[] args) {
+    List<Integer> ints = new ArrayList<>();
+    ints.add(3); ints.add(5); ints.add(10);
+    double sum = sum(ints);
+    System.out.println("Sum of ints="+sum);
+}
+
+public static double sum(List<? extends Number> list){
+    double sum = 0;
+    for(Number n : list){
+        sum += n.doubleValue();
+    }
+    return sum;
+}
+```
+```java
+List<? extends Integer> intList = new ArrayList<>();
+List<? extends Number>  numList = intList;  // OK. List<? extends Integer> is a subtype of List<? extends Number>
+```
+2. Unbounded Wildcard:
+Allow generic method to work with all types. Its same as using <? extends Object>.
+```java
+public static void printData(List<?> list){
+    for(Object obj : list){
+        System.out.print(obj + "::");
+    }
+}
+```
+
+3. Lower-Bounded Wildcard / contravariance:
+When Generic methods argument can be that Type <T> or superclass of the Type <T>
+
+```java
+
+public class GenericsTester {
+
+   public static void addCat(List<? super Cat> catList) {
+      catList.add(new RedCat());
+      System.out.println("Cat Added");
+   }
+
+   public static void main(String[] args) {
+      List<Animal> animalList= new ArrayList<Animal>();
+      List<Cat> catList= new ArrayList<Cat>();
+      List<RedCat> redCatList= new ArrayList<RedCat>();
+      List<Dog> dogList= new ArrayList<Dog>();
+
+      //add list of super class Animal of Cat class
+      addCat(animalList);
+
+      //add list of Cat class
+      addCat(catList);
+
+      //compile time error
+      //can not add list of subclass RedCat of Cat class
+      //addCat(redCatList);
+
+      //compile time error
+      //can not add list of subclass Dog of Superclass Animal of Cat class
+      //addCat.addMethod(dogList); 
+   }
+}
+class Animal {}
+
+class Cat extends Animal {}
+
+class RedCat extends Cat {}
+
+class Dog extends Animal {}
+```
+
+### Generics Type Erasure:
+Java Generics provide type-checking at compile time and it has no use at run time, so java compiler uses type erasure feature to remove all the generics type checking code in byte code and insert type-casting if necessary. Type erasure ensures that no new classes are created for parameterized types; consequently, generics incur no runtime overhead.
