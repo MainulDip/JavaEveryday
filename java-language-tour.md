@@ -364,8 +364,8 @@ string.equals(anotherString) // return boolean
 ```java
 
 ```
-<<<<<<< HEAD
 ### :cat: [Java Part 2 Language Tour](java-tour-part-2.md) < Click to view
+
 =======
 
 
@@ -374,4 +374,3 @@ string.equals(anotherString) // return boolean
  _Programme interface (for testing, mocking, design-patterns etc), not implementation
  _Data Structures (arrays, list, sets, maps, etc) and Algorighm
  _Testing More
->>>>>>> 20f1ff2e9de83529deec9b31928998957d9a3568
