@@ -1,5 +1,5 @@
 ## Android With Java:
-This is a personalized overview of the core android development concepts and terms with some practical walk through.
+This is a personalized overview of the core android development concepts and terms with some practical walk through docs
 
 ### :cat: [Android View/Layout](./android-view-cheat.md) < Click to view
 
