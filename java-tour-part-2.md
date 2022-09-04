@@ -315,7 +315,7 @@ public class CallableExample{
 ```
 
 ### Future Interface:
- A Java Future, java.util.concurrent.Future, represents the result of an asynchronous computation. When the asynchronous task is created, a Java Future object is returned. This Future object functions as a handle to the result of the asynchronous task. Once the asynchronous task completes, the result can be accessed via the Future object returned when the task was started.
+ A Java Future, java.util.concurrent.Future, represents the result of an asynchronous computation, added in Java 5. When the asynchronous task is created, a Java Future object is returned. This Future object functions as a handle to the result of the asynchronous task. Once the asynchronous task completes, the result can be accessed via the Future object returned when the task was started. But alone, it doesn't provide error handling.
 
 Some of Java's built-in concurrency utilities, like e.g. the Java ExecutorService, return a Java Future object from some of their methods. In the case of the ExecutorService, it returns a Future when you submit a Callable for it to execute concurrently (asynchronously).
 
@@ -331,9 +331,148 @@ public interface Future<V> {
 ```
 
 ### Completable Future:
+Java 8 introduced the CompletableFuture class. Along with the Future interface as Concurrency API improvement. it also implemented the CompletionStage interface. This interface defines the contract for an asynchronous computation step that we can combine with other steps with error handling. It is about 50 different methods for composing, combining, and executing asynchronous computation steps and handling errors.
+
+https://www.baeldung.com/java-completablefuture
 https://blog.devgenius.io/details-implementation-of-java-asynchronous-programming-using-completable-future-949826bac6f3
 
 https://rjlfinn.medium.com/asynchronous-programming-in-java-d6410d53df4d
 
+
+### Thread Pool:
+Thread pool is a pattern. Other than  creating a new thread each time a request arrives and service this new request in the newly created thread, it reuses previously created threads to execute current tasks and offers a solution to the problem of thread cycle overhead and resource thrashing. Since the thread is already existing when the request arrives, the delay introduced by thread creation is eliminated, making the application more responsive.
+
+
+Based on Thread Pool Java provides the Executor framework which is centered around the Executor interface, its sub-interface –ExecutorService and the class-ThreadPoolExecutor, which implements both of these interfaces. By using the executor, one only has to implement the Runnable objects and send them to the executor to execute.
+- this Executor Framework (Thread Pool) provides advantage of threading, but focus on the tasks that you want the thread to perform, instead of thread mechanics.
+
+- To use thread pools, we first create a object of ExecutorService and pass a set of tasks to it. ThreadPoolExecutor class allows to set the core and maximum pool size.The runnables that are run by a particular thread are executed sequentially.
+
+### Executor Thread Pool Methods:
+ - newFixedThreadPool(int) : Creates a fixed size thread pool. if all threads are being currently run by the executor then the pending tasks are placed in a queue and are executed when a thread becomes idle.
+ - newCachedThreadPool() : Creates a thread pool that creates new threads as needed, reuse previously constructed threads are available
+ - newSingleThreadExecutor() : Creates a single thread.
+
+```java
+// Java Thread Pool Implementation using Executor's Fixed Thread Pool
+  
+// Task class to be executed (Step 1)
+class Task implements Runnable   
+{
+    private String name;
+      
+    public Task(String s)
+    {
+        name = s;
+    }
+      
+    // Prints task name and sleeps for 1s
+    // This Whole process is repeated 5 times
+    public void run()
+    {
+        try
+        {
+            for (int i = 0; i<=5; i++)
+            {
+                if (i==0)
+                {
+                    Date d = new Date();
+                    SimpleDateFormat ft = new SimpleDateFormat("hh:mm:ss");
+                    System.out.println("Initialization Time for"
+                            + " task name - "+ name +" = " +ft.format(d));   
+                    //prints the initialization time for every task 
+                }
+                else
+                {
+                    Date d = new Date();
+                    SimpleDateFormat ft = new SimpleDateFormat("hh:mm:ss");
+                    System.out.println("Executing Time for task name - "+
+                            name +" = " +ft.format(d));   
+                    // prints the execution time for every task 
+                }
+                Thread.sleep(1000);
+            }
+            System.out.println(name+" complete");
+        }
+          
+        catch(InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
+public class Test
+{
+     // Maximum number of threads in thread pool
+    static final int MAX_T = 3;             
+  
+    public static void main(String[] args)
+    {
+        // creates five tasks
+        Runnable r1 = new Task("task 1");
+        Runnable r2 = new Task("task 2");
+        Runnable r3 = new Task("task 3");
+        Runnable r4 = new Task("task 4");
+        Runnable r5 = new Task("task 5");      
+          
+        // creates a thread pool with MAX_T no. of 
+        // threads as the fixed pool size(Step 2)
+        ExecutorService pool = Executors.newFixedThreadPool(MAX_T);  
+         
+        // passes the Task objects to the pool to execute (Step 3)
+        pool.execute(r1);
+        pool.execute(r2);
+        pool.execute(r3);
+        pool.execute(r4);
+        pool.execute(r5); 
+          
+        // pool shutdown ( Step 4)
+        pool.shutdown();    
+    }
+}
+```
+Output:
+```txt
+Initialization Time for task name - task 3 = 07:36:37
+Initialization Time for task name - task 1 = 07:36:37
+Initialization Time for task name - task 2 = 07:36:37
+Executing Time for task name - task 1 = 07:36:38
+Executing Time for task name - task 2 = 07:36:38
+Executing Time for task name - task 3 = 07:36:38
+Executing Time for task name - task 2 = 07:36:39
+Executing Time for task name - task 3 = 07:36:39
+Executing Time for task name - task 1 = 07:36:39
+Executing Time for task name - task 2 = 07:36:40
+Executing Time for task name - task 3 = 07:36:40
+Executing Time for task name - task 1 = 07:36:40
+Executing Time for task name - task 2 = 07:36:41
+Executing Time for task name - task 1 = 07:36:41
+Executing Time for task name - task 3 = 07:36:41
+Executing Time for task name - task 2 = 07:36:42
+Executing Time for task name - task 3 = 07:36:42
+Executing Time for task name - task 1 = 07:36:42
+task 2 complete
+Initialization Time for task name - task 4 = 07:36:43
+task 3 complete
+task 1 complete
+Initialization Time for task name - task 5 = 07:36:43
+Executing Time for task name - task 5 = 07:36:44
+Executing Time for task name - task 4 = 07:36:44
+Executing Time for task name - task 4 = 07:36:45
+Executing Time for task name - task 5 = 07:36:45
+Executing Time for task name - task 4 = 07:36:46
+Executing Time for task name - task 5 = 07:36:46
+Executing Time for task name - task 5 = 07:36:47
+Executing Time for task name - task 4 = 07:36:47
+Executing Time for task name - task 5 = 07:36:48
+Executing Time for task name - task 4 = 07:36:48
+task 4 complete
+task 5 complete
+```
+
+
+
+https://www.geeksforgeeks.org/thread-pools-java/
+https://www.baeldung.com/thread-pool-java-and-guava
 ### Java Light-Weight-Thread (Kotlin Coroutine) Implementation:
 https://medium.com/@esocogmbh/coroutines-in-pure-java-65661a379c85
