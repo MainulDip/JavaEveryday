@@ -41,7 +41,7 @@ gradle init
 > plugins atomatically add tasks. There are core and third party plugins
 
 ### Groovy DSL: 
-> Dynamically Typed and can be written outside of the class
+> Dynamically Typed and can be written outside of the class.
 
 ```groovy
 def myVar = 'Executing as a script'

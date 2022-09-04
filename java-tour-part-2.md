@@ -259,4 +259,5 @@ class Dog extends Animal {}
 Java Generics provide type-checking at compile time and it has no use at run time, so java compiler uses type erasure feature to remove all the generics type checking code in byte code and insert type-casting if necessary. Type erasure ensures that no new classes are created for parameterized types; consequently, generics incur no runtime overhead.
 
 ### Callback & Closure
+https://www.geeksforgeeks.org/asynchronous-synchronous-callbacks-java/
 ### Lambda
