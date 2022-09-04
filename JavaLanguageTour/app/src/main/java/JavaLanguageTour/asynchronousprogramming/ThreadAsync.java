@@ -1,6 +1,6 @@
-package asyncprogramming;
+package JavaLanguageTour.asynchronousprogramming;
 
-public class AsyncIntro {
+public class ThreadAsync {
     public static void main(String[] args) {
         System.out.println("Bismillah");
     }
