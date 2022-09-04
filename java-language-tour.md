@@ -371,6 +371,6 @@ string.equals(anotherString) // return boolean
 
 ### Java Important Concept Next :
  - Java Mamory Management (How mamory works), grabage collectors
- _Programme interface (for testing, mocking, design-patterns etc), not implementation
+ - Programme interface (for testing, mocking, design-patterns etc), not implementation
  _Data Structures (arrays, list, sets, maps, etc) and Algorighm
  _Testing More .......
