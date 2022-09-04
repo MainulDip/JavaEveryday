@@ -271,3 +271,69 @@ In Java, Callbacks can be implemented using an interface. The general procedure 
 
 https://www.geeksforgeeks.org/asynchronous-synchronous-callbacks-java/
 ### Lambda
+
+
+### Runnable vs Callable:
+Both interfaces are designed to represent a task that can be run by multiple threads. We can run Runnable tasks using the Thread class or ExecutorService, whereas we can only run Callables using the latter/ExecutorService.
+
+```java
+// Runnable
+class RunnableImpl implements Runnable {
+ 
+  public void run()
+  {
+    System.out.println("Hello World from a different thread than Main");
+  }
+}
+public class RunnableExample{
+    static ExecutorService executor = Executors.newFixedThreadPool(2);
+  public static void main(String[] args){
+          // Creating and running runnable task using Thread class
+          RunnableImpl task = new RunnableImpl();
+        Thread thread = new Thread(task);
+          thread.start();
+          // Creating and running runnable task using Executor Service.
+          executor.submit(task);
+    }
+}
+
+// Callable
+class CallableMessage implements Callable<String>{
+  public String call() throws Exception{
+      return "Hello World!";
+  } 
+}
+ 
+public class CallableExample{
+  static ExecutorService executor = Executors.newFixedThreadPool(2);
+    public static void main(String[] args) throws Exception{
+        CallableMessage task = new CallableMessage();
+         Future<String> message = executor.submit(task);
+         System.out.println(message.get().toString());
+    }
+}
+```
+
+### Future Interface:
+ A Java Future, java.util.concurrent.Future, represents the result of an asynchronous computation. When the asynchronous task is created, a Java Future object is returned. This Future object functions as a handle to the result of the asynchronous task. Once the asynchronous task completes, the result can be accessed via the Future object returned when the task was started.
+
+Some of Java's built-in concurrency utilities, like e.g. the Java ExecutorService, return a Java Future object from some of their methods. In the case of the ExecutorService, it returns a Future when you submit a Callable for it to execute concurrently (asynchronously).
+
+```java
+// Future Interface Signature
+public interface Future<V> {
+    boolean cancel(boolean mayInterruptIfRunning)
+    V       get();
+    V       get(long timeout, TimeUnit unit);
+    boolean isCancelled();
+    boolean isDone();
+}
+```
+
+### Completable Future:
+https://blog.devgenius.io/details-implementation-of-java-asynchronous-programming-using-completable-future-949826bac6f3
+
+https://rjlfinn.medium.com/asynchronous-programming-in-java-d6410d53df4d
+
+### Java Light-Weight-Thread (Kotlin Coroutine) Implementation:
+https://medium.com/@esocogmbh/coroutines-in-pure-java-65661a379c85

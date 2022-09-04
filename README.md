@@ -40,7 +40,7 @@ gradle init
 
 > plugins atomatically add tasks. There are core and third party plugins
 
-### Groovy DSL: 
+### Groovy DSLs
 > Dynamically Typed and can be written outside of the class.
 
 ```groovy
