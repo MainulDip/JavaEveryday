@@ -353,6 +353,9 @@ Based on Thread Pool Java provides the Executor framework which is centered arou
  - newCachedThreadPool() : Creates a thread pool that creates new threads as needed, reuse previously constructed threads are available
  - newSingleThreadExecutor() : Creates a single thread.
 
+ Example:
+ Here we are controling Task (Runnable interface) using Executors.newFixedThreadPool(int) which returns ExecutorService (java.util.concurrent.ExecutorService) or ThreadPoolExecutor which implements ExecutorService. Then we call the (ThreadPoolExecutor) "pool"'s "execute" method to run the tasks (Runnable) sequentially.
+
 ```java
 // Java Thread Pool Implementation using Executor's Fixed Thread Pool
   

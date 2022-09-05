@@ -2,7 +2,8 @@ package JavaLanguageTour.threadpooljava;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 // Java program to illustrate
 // ThreadPool
@@ -11,9 +12,9 @@ class Task implements Runnable
 {
     private String name;
 
-    public Task(String s)
+    public Task(String taskname)
     {
-        name = s;
+        name = taskname;
     }
 
     // Prints task name and sleeps for 1s

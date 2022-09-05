@@ -66,7 +66,7 @@ myClosure()
 ### Building and Execution Jar file
 > ./gradlew build && java -jar build\libs\JumpStart.jar
 
-### Manifest inside jar closure
+### Manifest inside jar closure:
 ```groovy
 jar {
     manifest {
