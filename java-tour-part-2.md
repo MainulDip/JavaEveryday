@@ -333,6 +333,99 @@ public interface Future<V> {
 ### Completable Future:
 Java 8 introduced the CompletableFuture class. Along with the Future interface as Concurrency API improvement. it also implemented the CompletionStage interface. This interface defines the contract for an asynchronous computation step that we can combine with other steps with error handling. It is about 50 different methods for composing, combining, and executing asynchronous computation steps and handling errors.
 
+ - ### Using CompletableFuture as a Simple Future:
+ CompletableFuture class implements the Future interface, so we can use it as a Future implementation, but with additional completion logic.
+```java
+public Future<String> calculateAsync() throws InterruptedException{
+    CompletableFuture<String> completableFuture = new CompletableFuture<>();
+
+    Executors.newCachedThreadPool().submit(() -> {
+        Thread.sleep(500);
+        completableFuture.complete("Hello");
+        return null;
+    });
+
+    return completableFuture;
+}
+
+public static void main(){
+    Future<String> completableFuture = calculateAsync();
+    String result = completableFuture.get();
+    assertEquals("Hello", result);
+
+    // standalone test
+    testComputableStandalone()
+}
+
+public boolean testComputableStandalone(){
+    Future<String> completableFuture = 
+    CompletableFuture.completedFuture("Hello");
+    String result = completableFuture.get();
+    assertEquals("Hello", result);
+}
+```
+- ### CompletableFuture's runAsync and supplyAsync:
+Static methods runAsync and supplyAsync allow us to create a CompletableFuture instance out of Runnable and Supplier functional types correspondingly. Both are functional interfaces that allow passing their instances as lambda expressions.
+
+The Runnable interface is the same old interface that is used in threads and it does not allow to return a value.
+
+The Supplier interface is a generic functional interface with a single method that has no arguments and returns a value of a parameterized type.
+```java
+CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "Hello");
+assertEquals("Hello", future.get());
+```
+- ### thenApply() : Processing Results of Asynchronous Computations
+thenApply() accepts a Function instance, uses it to process the result, and returns a Future that holds a value returned by a function. We can also use thenAccept() and thenRun() methods.
+```java
+CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
+
+CompletableFuture<String> future = completableFuture.thenApply(s -> s + " World");
+
+// CompletableFuture<Void> future = completableFuture.thenAccept(s -> System.out.println("Computation returned: " + s));
+
+// CompletableFuture<Void> future = completableFuture.thenRun(() -> System.out.println("Computation finished."));
+
+assertEquals("Hello World", future.get());
+```
+- ### Combining/Chaining Futures:
+```java
+CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello").thenCompose(s -> CompletableFuture.supplyAsync(() -> s + " World"));
+assertEquals("Hello World", completableFuture.get());
+```
+- ### Running Multiple Futures in Parallel:
+```java
+CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Hello");
+CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "Beautiful");
+CompletableFuture<String> future3 = CompletableFuture.supplyAsync(() -> "World");
+
+CompletableFuture<Void> combinedFuture= CompletableFuture.allOf(future1, future2, future3);
+
+combinedFuture.get();
+
+assertTrue(future1.isDone());
+assertTrue(future2.isDone());
+assertTrue(future3.isDone());
+```
+- CompletableFuture Error Handling:
+```java
+String name = null;
+
+CompletableFuture<String> completableFuture =  CompletableFuture.supplyAsync(() -> {
+      if (name == null) {
+          throw new RuntimeException("Computation error!");
+      }
+      return "Hello, " + name;
+  }).handle((s, t) -> s != null ? s : "Hello, Stranger!");
+
+assertEquals("Hello, Stranger!", completableFuture.get());
+
+// using completeExceptionally
+CompletableFuture<String> completableFuture = new CompletableFuture<>();
+
+completableFuture.completeExceptionally(
+  new RuntimeException("Calculation failed!"));
+```
+
 https://www.baeldung.com/java-completablefuture
 https://blog.devgenius.io/details-implementation-of-java-asynchronous-programming-using-completable-future-949826bac6f3
 
