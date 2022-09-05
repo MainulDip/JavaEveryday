@@ -1,5 +1,5 @@
 ## Android-View Mini Docs:
-Android View elements are mostly self explanatory. So just some minimal quick start and overview will be good.
+Android View elements are mostly self explanatory. So just some minimal quick start and overview will be good
 
 ### Layout Type:
 > Relative | Constraint | Linear | 
