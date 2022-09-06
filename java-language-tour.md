@@ -340,7 +340,7 @@ public class ExploreLambda {
             return s + "!" + t + " 77";
         };
         StringFunction ask = (s, t) -> s + t + " ?";
-//        System.out.println(exclaim("good", "boy"));
+//      System.out.println(exclaim("good", "boy"));
         printFormatted("Hello", "World", exclaim);
         exclaim.defaultMethod();
         printFormatted("Hello", "Dolly", ask);

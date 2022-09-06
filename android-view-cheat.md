@@ -1,7 +1,7 @@
 ## Android-View Mini Docs :
 Android View elements are mostly self explanatory. So just some minimal quick start and overview will be good
 
-### Layout Type:
+### Layout Type :
 > Relative | Constraint | Linear | 
 
 > Linear: Elements placed one after one. Can set orientation vertical/horizontal. Attributes: layout_weight, background etc. Inside LinearLayout, Relative and Constraint Layout are also placeable.

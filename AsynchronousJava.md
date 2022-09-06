@@ -77,3 +77,19 @@ public class TestThread {
    }
 }
 ```
+
+### CountDownLatch:
+CountDownLatch has a counter field, which can be decremented as required. We can then use it to block a calling thread until it's been counted down to zero.
+```kotlin
+// Though in kotlin, works same in Java
+val countDownLatch = CountDownLatch(repos.size)
+for (repo in repos) {
+    service.getRepoContributorsCall(req.org, repo.name)
+        .onResponse { responseUsers ->
+            // processing repository
+            countDownLatch.countDown()
+        }
+}
+countDownLatch.await() // blocks code execution until finished to zero
+updateResults(allUsers.aggregate())
+```

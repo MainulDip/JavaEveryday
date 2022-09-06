@@ -4,7 +4,7 @@ This is a personalized overview of the core android development concepts and ter
 ### :cat: [Android View/Layout](./android-view-cheat.md) < Click to view
 
 ### Adding Click Listener :
-> Button extends TextView and TextView extends View, so in root button is a View
+> Button extends TextView and TextView extends View, so in root button is a View :
 
 ```java
 // add click listener adding a onClick function from the activity.xml to activity.java
