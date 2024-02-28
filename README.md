@@ -86,3 +86,25 @@ mkdir test && cd test && mkdir java && cd java && mkdir com && cd com && mkdir M
 
 
 ### Self Contained Application:
+
+
+### Dealing with `Null`:
+Java allows `null` return in any `reference` type. Like, String, Int, Object etc. But returning null end up buggy for lots of different cases. Better approach use `Optional<T>` and return `Optional.empty()`
+
+```java
+public Optional<Item> getItem(int itemId){
+        
+    boolean isAvailable = inventoryChecker.checkAvailability(itemId);
+
+    if (isAvailable) {
+        Optional<Item> item = Optional.of(inventoryManager.markAsSold(itemId));
+        return item;
+    } else {
+       // return null; // not good
+       // throw new IllegalArgumentException("Message") // better than returning null
+       return Optional.empty(); // best approach
+    }
+ }
+```
+
+https://medium.com/javarevisited/just-dont-return-null-dcdf5d77128f
