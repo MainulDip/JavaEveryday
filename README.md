@@ -125,3 +125,10 @@ protected @NotNull String getSound() {
 - static member can access non-static members through instance of the class. Like how singleton pattern is implemented (private contractor to block instantiation directly and static member to create and hold the instance).
 - static member can access other static members directly. 
 - when referencing class members, implicit `this` is always there. can be made explicit also (redundant)
+
+### <?> short of <? extends Object>, UpperBound and Lower bound <? super T>:
+<?> is a shorthand for <? extends Object>, it's also known as an unbounded wildcard. Object is the lower most reference type in java. Unless object this signature is for `upper bound wildcard`.
+
+Lower bound <? super T> where T is the lower bound.
+
+### Java Type Hierarchy System
