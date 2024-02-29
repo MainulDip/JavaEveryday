@@ -1,11 +1,16 @@
 package org.example.animal;
 
 
+import org.jetbrains.annotations.NotNull;
+
 public class Goat extends Animal implements Locomotion {
+
+    public static String sth = "Sth";
 
     @Override
     protected String getSound() {
-        return null;
+        // return null; // will mark by IDE if null is returned
+        return sth;
     }
 
     @Override

@@ -91,6 +91,8 @@ mkdir test && cd test && mkdir java && cd java && mkdir com && cd com && mkdir M
 ### Dealing with `Null`:
 Java allows `null` return in any `reference` type. Like, String, Int, Object etc. But returning null end up buggy for lots of different cases. Better approach use `Optional<T>` and return `Optional.empty()`
 
+Jetbrain's @NotNull annotation can also be used. https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
+
 ```java
 public Optional<Item> getItem(int itemId){
         
@@ -106,5 +108,20 @@ public Optional<Item> getItem(int itemId){
     }
  }
 ```
-
 https://medium.com/javarevisited/just-dont-return-null-dcdf5d77128f
+
+### Nullability annotations (`@NotNull`, `@Nullable` by Intellij IDEA):
+By explicitly declaring the nullability of elements, the code becomes easier to maintain and less prone to nullability-related errors. `'org.jetbrains:annotations:24.0.0'` (groupid:artifact:version) is the dependency.
+
+https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
+```java
+protected @NotNull String getSound() {
+    // return null; // will mark by IDE if null is returned
+    return "food";
+}
+```
+### Java Static Method/Prop and `this`:
+- static member cannot access non-static members, but non-static member can reference static members
+- static member can access non-static members through instance of the class. Like how singleton pattern is implemented (private contractor to block instantiation directly and static member to create and hold the instance).
+- static member can access other static members directly. 
+- when referencing class members, implicit `this` is always there. can be made explicit also (redundant)
