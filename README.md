@@ -127,8 +127,38 @@ protected @NotNull String getSound() {
 - when referencing class members, implicit `this` is always there. can be made explicit also (redundant)
 
 ### <?> short of <? extends Object>, UpperBound and Lower bound <? super T>:
-<?> is a shorthand for <? extends Object>, it's also known as an unbounded wildcard. Object is the lower most reference type in java. Unless object this signature is for `upper bound wildcard`.
+There are 3 wildcard in Java
+1. upper bound (`<? extends T`)
+2. lower bound (`<? super T?>`)
+3. unbound (`<? extends Object>` or short `<?>`), Object is the lower most reference type in java
 
-Lower bound <? super T> where T is the lower bound.
+- upper bound ex: `<? extends Number>` reads `all classes that extends Number class or Number itself`. 
 
-### Java Type Hierarchy System
+- Lower bound ex: `<? super Integer>` reads `all the super class of Integer or Integer itself`. IE, Number is allowed here as Integer's super class is Number. But Double is not allowed here as Integer doesn't extend Double. (Note, they both come from the common Number abstract class)
+
+* The abstract class `Number` is the superclass of platform classes representing numeric values that are convertible to the primitive types byte, double, float, int, long, and short.
+
+* Note, wildcards are used with both generics class and function. Not for directly declaring class popery type
+
+* Note, Java support single inheritance and multiple interface implementation
+
+```java
+public static void main(String[] args) {
+    List<Integer> list1 = Arrays.asList(4, 5, 6, 7);
+    printOnlyIntegerClassorSuperClass(list1);
+    
+    List<Number> list2 = Arrays.asList(4, 5, 6, 7);
+    printOnlyIntegerClassorSuperClass(list2);
+
+    List<Double> list3 = Arrays.asList(4.0, 5.0, 6.0, 7.0);
+    // printOnlyIntegerClassorSuperClass(list3); // not ok, will throw error
+}
+
+public static void printOnlyIntegerClassorSuperClass(
+        List<? super Integer> list) {
+    System.out.println(list);
+}
+```
+
+### Intellij IDEA note:
+- `pressing shift twice` will open quick file navigation

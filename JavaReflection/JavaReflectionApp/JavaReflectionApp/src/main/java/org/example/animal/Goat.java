@@ -38,28 +38,4 @@ public class Goat extends Animal implements Locomotion {
 //        System.out.println(goat.getSound().toLowerCase());
 //        System.out.println(goat.getLocomotion());
 //    }
-
-    public static void main(String[] args) {
-        // Lower Bounded Integer List
-        List<Integer> list1 = Arrays.asList(4, 5, 6, 7);
-
-        // Integer list object is being passed
-        printOnlyIntegerClassorSuperClass(list1);
-
-        // Number list
-        List<Number> list2 = Arrays.asList(4, 5, 6, 7);
-
-        // Integer list object is being passed
-        printOnlyIntegerClassorSuperClass(list2);
-
-        List<Double> list3 = Arrays.asList(4.0, 5.0, 6.0, 7.0);
-
-        // Integer list object is being passed
-//        printOnlyIntegerClassorSuperClass(list3);
-    }
-
-    public static void printOnlyIntegerClassorSuperClass(
-            List<? super Integer> list) {
-        System.out.println(list);
-    }
 }

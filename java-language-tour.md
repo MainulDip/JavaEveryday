@@ -10,6 +10,11 @@ public class Main {
   }
 }
 ```
+
+> ### Single inheritance (`extends`) and Multiple Interface Implementation (`implements`):
+Java class can inherit/extend only one another class/abstract and multiple interfaces, while an interface can inherit other interfaces.
+Note Java allows multiple inheritance using interfaces.
+
 > ### Variables & Types:
 ```java
 int myNum = 5;      // Integer (whole number), by default public if not mentioned private
