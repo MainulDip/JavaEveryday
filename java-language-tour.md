@@ -375,3 +375,7 @@ string.equals(anotherString) // return boolean
 
 ### Java Important Concept Next :
  - Java Mamory Management (How mamory works), grabage collectors
+
+ android.permission.WRITE_SECURE_SETTINGS
+
+ adb -d shell pm grant packageName  android.permission.WRITE_SECURE_SETTINGS

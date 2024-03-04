@@ -10,11 +10,12 @@ public class AnimalUnitTest {
     @Test
     public void givenObject_whenGetsClassName_thenCorrect() {
         Object goat = new Goat("goat");
+        // note Class type implements some interfaces form java.lang.reflect
         Class<?> clazz = goat.getClass();
 
         assertEquals("Goat", clazz.getSimpleName());
-        assertEquals("org.example.animal.Goat", clazz.getName());
-        assertEquals("org.example.animal.Goat", clazz.getCanonicalName());
+        assertEquals("org.example.animal.Goat", clazz.getName()); // getName returns a `fully qualified class name`
+        assertEquals("org.example.animal.Goat", clazz.getCanonicalName()); // getCanonicalName returns a Canonical name
     }
 
     @Test

@@ -160,5 +160,92 @@ public static void printOnlyIntegerClassorSuperClass(
 }
 ```
 
+### Canonical vs Simple vs Fully Qualified Class Name:
+`SimpleName` is simple, its the class name.
+
+`Canonical Name` is the class name along with the package name. It comes form word `Canon` (an accepted principle or rule). So Canonical means, something that follows a principle or rule or canon law.
+
+`Fully Qualified Class Name` along with class name it contains the package that the class originated from. It's kinda same as `Canonical Name` but differ slightly.
+
+```java
+package p1;  
+class A {  
+    class B { }  
+}  
+class C extends A { }
+```
+Both `p1.A.B` and `p1.C.B` are fully qualified names that represent the member class B. But only `p1.A.B` is its canonical name.
+
+Docs => https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.7 and https://www.javatpoint.com/canonical-name-java
+
+### Local vs inner/nested vs local-inner class:
+`Local` classes are classes that are defined in a block, like in a method body, a for loop, or an if clause.
+
+`Nested/Inner` classes are defined inside of a class, same level as class property/method. Non-static nested classes are called `inner` classes. Static nested classes are called `Static Nested Classes`.
+
+`Local Inner` classes are local classes inside inner classes.
+
+### Anonymous Classes in Java:
+Interfaces cannot be instantiated directly like regular classes. Anonymous classes can be used to mimic instantiation mechanism.
+```java
+public class A {
+  
+    interface HelloWorld {
+        public void greet();
+        public void greetSomeone(String someone);
+    }
+  
+    public void sayHello() {
+        
+        // implementing HelloWorld interface regular way
+        class EnglishGreeting implements HelloWorld {
+            String name = "world";
+            public void greet() {
+                greetSomeone("world");
+            }
+            public void greetSomeone(String someone) {
+                name = someone;
+                System.out.println("Hello " + name);
+            }
+        }
+      
+        HelloWorld englishGreeting = new EnglishGreeting();
+
+
+        // implementing and instantiating HelloWorld interface using anonymous class
+        HelloWorld frenchGreeting = new HelloWorld() {
+            String name = "tout le monde";
+            public void greet() {
+                greetSomeone("tout le monde");
+            }
+            public void greetSomeone(String someone) {
+                name = someone;
+                System.out.println("Salut " + name);
+            }
+        };
+        
+        // implementing and instantiating HelloWorld interface using anonymous class
+        HelloWorld spanishGreeting = new HelloWorld() {
+            String name = "mundo";
+            public void greet() {
+                greetSomeone("mundo");
+            }
+            public void greetSomeone(String someone) {
+                name = someone;
+                System.out.println("Hola, " + name);
+            }
+        };
+        englishGreeting.greet();
+        frenchGreeting.greetSomeone("Fred");
+        spanishGreeting.greet();
+    }
+
+    public static void main(String... args) {
+        HelloWorldAnonymousClasses myApp = new A();
+        myApp.sayHello();
+    }            
+}
+```
+
 ### Intellij IDEA note:
 - `pressing shift twice` will open quick file navigation

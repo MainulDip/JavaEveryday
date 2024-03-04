@@ -269,7 +269,7 @@ https://blog.devgenius.io/details-implementation-of-java-asynchronous-programmin
 https://rjlfinn.medium.com/asynchronous-programming-in-java-d6410d53df4d
 
 
-### Thread Pool:
+### Thread Pool
 Thread pool is a pattern. Other than  creating a new thread each time a request arrives and service this new request in the newly created thread, it reuses previously created threads to execute current tasks and offers a solution to the problem of thread cycle overhead and resource thrashing. Since the thread is already existing when the request arrives, the delay introduced by thread creation is eliminated, making the application more responsive.
 
 
