@@ -611,5 +611,5 @@ protected @NotNull String getSound() {
 ### Java Light-Weight-Thread (Kotlin Coroutine) Implementation:
 https://medium.com/@esocogmbh/coroutines-in-pure-java-65661a379c85
 
-### Java 21 Virtual Threads:
+### Java 21 Virtual Threads
 

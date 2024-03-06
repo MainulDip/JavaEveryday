@@ -284,7 +284,7 @@ Based on Thread Pool Java provides the Executor framework which is centered arou
  - newSingleThreadExecutor() : Creates a single thread.
 
  Example:
- Here we are controling Task (Runnable interface) using Executors.newFixedThreadPool(int) which returns ExecutorService (java.util.concurrent.ExecutorService) or ThreadPoolExecutor which implements ExecutorService. Then we call the (ThreadPoolExecutor) "pool"'s "execute" method to run the tasks (Runnable) sequentially. The Task (Runnable) is setup to pause/hold the thread using "Thread.sleep(1000) to check the behavour of "Thread Poos" implementation and how "java.util.concurrent.ExecutorService" resue the paused thread, queque and complete tasks.
+ Here we are controlling Task (Runnable interface) using Executors.newFixedThreadPool(int) which returns ExecutorService (java.util.concurrent.ExecutorService) or ThreadPoolExecutor which implements ExecutorService. Then we call the (ThreadPoolExecutor) "pool"'s "execute" method to run the tasks (Runnable) sequentially. The Task (Runnable) is setup to pause/hold the thread using "Thread.sleep(1000) to check the behaver of "Thread Poos" implementation and how "java.util.concurrent.ExecutorService" reuse the paused thread, queue and complete tasks.
 
 ```java
 // Java Thread Pool Implementation using Executor's Fixed Thread Pool
@@ -406,4 +406,4 @@ task 5 complete
 https://www.geeksforgeeks.org/thread-pools-java/
 https://www.baeldung.com/thread-pool-java-and-guava
 
-### Java 21 Virtual Threads
+### Java 21 Virtual Threads:

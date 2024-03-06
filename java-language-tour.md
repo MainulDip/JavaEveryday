@@ -374,7 +374,7 @@ string.equals(anotherString) // return boolean
 
 
 ### Java Important Concept Next :
- - Java Mamory Management (How mamory works), grabage collectors
+ - Java Memory Management (How memory works), garbage collectors
 
  android.permission.WRITE_SECURE_SETTINGS
 

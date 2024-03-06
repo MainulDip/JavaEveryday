@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AnimalUnitTest {
+
+    // class names
     @Test
     public void givenObject_whenGetsClassName_thenCorrect() {
         Object goat = new Goat("goat");
@@ -18,6 +20,7 @@ public class AnimalUnitTest {
         assertEquals("org.example.animal.Goat", clazz.getCanonicalName()); // getCanonicalName returns a Canonical name
     }
 
+    // class modifiers
     @Test
     void givenClass_whenRecognisesModifiers_thenCorrect() throws ClassNotFoundException {
         Class<?> goatClass = Class.forName("org.example.animal.Goat");
@@ -38,6 +41,7 @@ public class AnimalUnitTest {
         assertTrue(Modifier.isPublic(animalMods));
     }
 
+    // Package information
     @Test
     public void givenClass_whenGetsPackageInfo_thenCorrect() {
         Goat goat = new Goat("goat");
@@ -45,5 +49,33 @@ public class AnimalUnitTest {
         Package pkg = goatClass.getPackage(); // Package implements Reflection Interface
 
         assertEquals("org.example.animal", pkg.getName());
+    }
+
+    // Superclass
+    @Test
+    public void givenClass_whenGetsSuperClass_thenCorrect() {
+        Goat goat = new Goat("goat");
+        String str = "any string";
+
+        Class<?> goatClass = goat.getClass();
+        Class<?> goatSuperClass = goatClass.getSuperclass();
+
+        assertEquals("Animal", goatSuperClass.getSimpleName());
+        assertEquals("Object", str.getClass().getSuperclass().getSimpleName());
+    }
+
+    // Implemented Interfaces
+    @Test
+    public void givenClass_whenGetsImplementedInterfaces_thenCorrect() throws ClassNotFoundException {
+        Class<?> goatClass = Class.forName("org.example.animal.Goat");
+        Class<?> animalClass = Class.forName("org.example.animal.Animal");
+
+        Class<?>[] goatInterfaces = goatClass.getInterfaces();
+        Class<?>[] animalInterfaces = animalClass.getInterfaces();
+
+        assertEquals(1, goatInterfaces.length);
+        assertEquals(1, animalInterfaces.length);
+        assertEquals("Locomotion", goatInterfaces[0].getSimpleName());
+        assertEquals("Eating", animalInterfaces[0].getSimpleName());
     }
 }
