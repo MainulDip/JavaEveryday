@@ -30,6 +30,7 @@ public class Goat extends Animal implements Locomotion {
     }
 
     public Goat(String name) {
+        super(name);
         this.name = name;
     }
 
