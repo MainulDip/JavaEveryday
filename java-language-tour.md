@@ -373,7 +373,7 @@ string.equals(anotherString) // return boolean
 =======
 
 
-### Java Important Concept Next :
+### Java Important Concept Next
  - Java Memory Management (How memory works), garbage collectors.
 
  android.permission.WRITE_SECURE_SETTINGS

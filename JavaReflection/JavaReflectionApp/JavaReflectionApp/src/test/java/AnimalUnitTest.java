@@ -124,9 +124,9 @@ public class AnimalUnitTest {
             List<String> actualFields = getFieldNames(fields);
 
             assertEquals(2, actualFields.size());
-//            System.out.println(actualFields.size());
+            System.out.println(actualFields.size());
             assertTrue(actualFields.containsAll(Arrays.asList("name", "CATEGORY")));
-//            actualFields.forEach(System.out::println);
+            actualFields.forEach(System.out::println);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -142,4 +142,5 @@ public class AnimalUnitTest {
         assertTrue(actualMethods.containsAll(Arrays.asList("getCATEGORY", "getName",
                 "setName", "getSound")));
     }
+
 }
