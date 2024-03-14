@@ -608,7 +608,7 @@ protected @NotNull String getSound() {
 - static member can access other static members directly. 
 - when referencing class members, implicit `this` is always there. can be made explicit also (redundant)
 
-### Java Light-Weight-Thread (Kotlin Coroutine) Implementation:
+### Java Light-Weight-Thread (Kotlin Coroutine) Implementation
 https://medium.com/@esocogmbh/coroutines-in-pure-java-65661a379c85
 
 ### Java 21 Virtual Threads
