@@ -266,7 +266,7 @@ completableFuture.completeExceptionally(
 https://www.baeldung.com/java-completablefuture
 https://blog.devgenius.io/details-implementation-of-java-asynchronous-programming-using-completable-future-949826bac6f3
 
-https://rjlfinn.medium.com/asynchronous-programming-in-java-d6410d53df4d
+https://rjlfinn.medium.com/asynchronous-programming-in-java-d6410d53df4d.
 
 
 ### Thread Pool

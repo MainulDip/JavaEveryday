@@ -41,7 +41,7 @@ public final String firstSchoolName = "School Name";
 - User-defined/non-primitive types: Class, Object, String, Array, Interface 
 
 
-> ### Type casting/convertion: 2 types
+> ### Type casting/conversion: 2 types
 
 1. Widening Casting (automatically) - converting a smaller type to a larger type size
     - byte -> short -> char -> int -> long -> float -> double
@@ -138,7 +138,7 @@ for (int i = 0; i <= array_str.size() - 1; i++){
     System.out.println("array_str On " + i + " is => " + array_str.get(i));
 }
 
-// inside loop parenthesis : is like in
+// inside loop parenthesis `:` is like in
 for (String i: student.keySet()){
     System.out.println("Student On Indice " + i + " and his/her age is " + student.get(i));
 }
@@ -175,7 +175,9 @@ switch(expression) {
 }
 
 //  foreach, lambda and method reference expression
-List<String> alphabets = new ArrayList<>(Arrays.asList("aa", "bbb", "cat", "dog")); alphabets.forEach(s -> System.out.println(s));
+List<String> alphabets = new ArrayList<>(Arrays.asList("aa", "bbb", "cat", "dog")); 
+alphabets.forEach(s -> System.out.println(s));
+
 // Using method reference
 alphabets.forEach(System.out::println);
 
