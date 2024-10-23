@@ -254,6 +254,10 @@ public class HigherOrderMethods {
 <br/>
 
 > ### List | ArrayList | Array | HashMap
+- Array's length is fixed once created
+- ArrayList, more convenient Array. Its mutable and re-sizeable
+- HashMaps are like dictionary (key/value pairs), where keys needs to be unique and value can be null
+- Hashtable does not allow keys or values to be set to null 
 ```java
 //  array vs array lists
 //  array => its length is fixed when created, cannot increase/decrease length but values are changeable
@@ -265,7 +269,7 @@ System.out.println(3);
 // setting array length when creation
 int[] numbersArray = new int[20];
 
-// ArrayList, more conveinent than only array thing in java.
+// ArrayList, more convenient than only array thing in java.
 // Also index are called indices here
 ArrayList<String> array_str = new ArrayList<>();
 array_str.add("firstt student");
@@ -325,6 +329,7 @@ System.out.println("Suits Enum Hearts value => " + Suits.HEARTS.color);
 <br/>
 
 ### Lambda and Functional Interface
+Lambda is like implementing SAM (Single Abstract Method) in Java.
 ```java
 package com.mainuldip;
 

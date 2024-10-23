@@ -31,7 +31,7 @@ public interface Electronic {
     // Constant variable
     String LED = "LED";
 
-    // Abstract method, must be overried
+    // Abstract method, must be overridden
     int getElectricityUse();
 
     // Static method
@@ -68,7 +68,7 @@ abstract class Shape
 ```
 > abstract class observations
 
-- An instance of an abstract class can not be created.
+- An instance of an abstract class can not be created. (kotlin allows)
 
 - Constructors are allowed.
 
@@ -76,7 +76,7 @@ abstract class Shape
 
 - There can be a final method in abstract class but any abstract method in class(abstract class) can not be declared as final  or in simper terms final method can not be abstract itself as it will yield an error: “Illegal combination of modifiers: abstract and final”
 
-- We are not allowed to create objects for an abstract class.
+- We are not allowed to create objects for an abstract class. (kotlin allows)
 
 - We can define static methods in an abstract class
 
@@ -171,7 +171,7 @@ public interface Comparable<T> {
 
 
 - Bounded Type:
-This is used to restrict the type of objects (upper bound limit) that can be used in the parameterized type. To declare a bounded type parameter, list the type parameter’s name, followed by the extends keyword, followed by its upper bound. Java Generics supports multiple bounds also, i.e <T extends A & B & C>
+This is used to restrict the type of objects (upper bound limit) that can be used in the parameterized type. To declare a bounded type parameter, list the type parameter’s name, followed by the extends keyword, followed by its upper bound. Java Generics supports multiple bounds also, i.e <T extends A & B & C>...
 ```java
 public static <T extends Comparable<T>> int compare(T t1, T t2){
 		return t1.compareTo(t2);
