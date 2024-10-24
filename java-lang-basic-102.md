@@ -182,7 +182,7 @@ public static <T extends Comparable<T>> int compare(T t1, T t2){
 The question mark (?), represents the wildcard, stands for unknown type in generics. There are 3 types of Generics Wildcards.
 
  1. Upper-Bound / Subtyping Wildcard:
- Upper bounded wildcards are used to relax the restriction on the type of variable in a method.
+ Upper bounded wildcards are used to relax the restriction on the type of variable in a method. Reads `anything '?' that extends the specified class or the specified class itself`
 ```java
 public static void main(String[] args) {
     List<Integer> ints = new ArrayList<>();
@@ -214,7 +214,7 @@ public static void printData(List<?> list){
 ```
 
 3. Lower-Bounded Wildcard / contravariance:
-When Generic methods argument can be that Type <T> or superclass of the Type <T>
+When Generic methods argument can be that Type <T> or superclass of the Type <T>. Reads `anything '?' that is the specified class's superclass or the specified class itself`.
 
 ```java
 
