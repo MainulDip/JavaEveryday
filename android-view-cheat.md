@@ -71,5 +71,5 @@ Menu xml:
 #### Multiple Layout File | Variation
 We can define multiple xml file for different orientaion (proatrait/landscape), and for different versions.
 
-> Variation are created by using "create landscape/tablet/other variation"
+> Variation are created by using "create landscape/tablet/other variation"...
 
