@@ -271,7 +271,7 @@ In Java, Callbacks can be implemented using an interface. The general procedure 
 
 https://www.geeksforgeeks.org/asynchronous-synchronous-callbacks-java/
 ### Lambda:
-In Java Lambda is used to implement `SAM` interface, its implementation signature is `(props:T) -> {}`. Note, there is no return type like kotlin, as the return type is declared in the `SAM` interface class.
+In Java Lambda is used to implement `SAM` interface, its implementation signature is `(props:T) -> {}`. Note, there is no return type like kotlin, as the return type is declared in the `SAM` interface class....
 
 
 ### Runnable vs Callable:

@@ -329,7 +329,7 @@ System.out.println("Suits Enum Hearts value => " + Suits.HEARTS.color);
 <br/>
 
 ### Lambda and Functional Interface
-Lambda is like implementing SAM (Single Abstract Method) in Java.
+Lambda is like implementing SAM (Single Abstract Method) in Java
 ```java
 package com.mainuldip;
 

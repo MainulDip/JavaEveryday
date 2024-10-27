@@ -1,3 +1,49 @@
+### Java Functional Interface:
+```java
+public class FunctionalInterface1 {
+	public static void main(String[] args) {
+		ExFnInFoo.Foo foo = parameter -> parameter + " from lambda";
+		ExFnInFoo fooInstance = new ExFnInFoo();
+		String resultFoo = fooInstance.add("Message ", foo);
+		System.out.println("resultFoo = " + resultFoo);
+		
+		Bar bar = param -> param + " from Bar Lambda";
+		System.out.println(bar.method("Direct SAM Impl"));
+		
+		// directly instantiating an abstract class that implements a SAM
+		AbstractFnInterfaceBar abstractFnInterfaceBar = new AbstractFnInterfaceBar(){
+			@Override
+			public String method(String string) {
+				return string;
+			}			
+		};
+		System.out.println(abstractFnInterfaceBar.method("Something"));
+			
+	}
+}
+
+class ExFnInFoo {
+	// annotating is optional but good practice for readability
+	@FunctionalInterface
+	public interface Foo {
+	    String method(String string);
+	}
+	public String add(String string, Foo foo) {
+	    return foo.method(string);
+	}
+}
+
+// annotating is optional but good practice for readability
+@FunctionalInterface
+interface Bar {
+    String method(String string);
+}
+
+abstract class AbstractFnInterfaceBar implements Bar {}
+
+// result = Message  from lambda
+```
+
 ### Java Lambda:
 In Java, Lambda expressions are used to express instances of `functional interfaces` (An interface with a single abstract method is called a functional interface, SAM in kotlin).
 
