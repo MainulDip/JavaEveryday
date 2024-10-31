@@ -217,7 +217,8 @@ assertThat(stringList).containsExactly("A", "B", "C", "E");
 assertThat(stringArray).containsExactly("A", "B", "C", "D");
 ```
 
-### Optional in Java
+### Optionals in Java | `Optional<T>`:
+Optionals are used to avoid null exception and get proper IDE suggestion. As returning null form method will not be warned by IDE
 ```java
 import java.util.Optional;
 class JavaOptional {

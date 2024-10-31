@@ -1,7 +1,9 @@
 ## Java Language Tour
 It's a quick language tour to re-connect with most of the Java language syntaxes and features. When you work with multiple language everyday, it can be a good idea to have a personalized language tour. So lets start
 
-> ### Intro signature:
+### Intro signature:
+The starting point of a Java Application is the `main` function of the Application marked class.
+But most frameworks hide this and use `inversion of control` pattern.
 
 ```java
 public class Main {
@@ -11,11 +13,14 @@ public class Main {
 }
 ```
 
-> ### Single inheritance (`extends`) and Multiple Interface Implementation (`implements`):
+### Single inheritance (`extends`) and Multiple Interface Implementation (`implements`):
 Java class can inherit/extend only one another class/abstract and multiple interfaces, while an interface can inherit other interfaces.
 Note Java allows multiple inheritance using interfaces.
 
-> ### Variables & Types:
+### Variables & Types | Primitive and Non-Primitive/reference data types:
+Watch closely and mark the different use of `lowercase` and `Uppercase` type declaration.
+- System-defined/primitive types: byte, short, int, long, float, double, boolean, char
+- User-defined/non-primitive types: Class, Object, String, Array, Interface 
 ```java
 int myNum = 5;      // Integer (whole number), by default public if not mentioned private
 
@@ -35,13 +40,13 @@ public final String firstSchoolName = "School Name";
 
 <br/>
 
-> ### Primitive and Non-Premitive/reference data types:
+### Primitive and Non-Primitive/reference data types:
 
 - System-defined/primitive types: byte, short, int, long, float, double, boolean, char
 - User-defined/non-primitive types: Class, Object, String, Array, Interface 
 
 
-> ### Type casting/conversion: 2 types
+### Type casting/conversion: 2 types
 
 1. Widening Casting (automatically) - converting a smaller type to a larger type size
     - byte -> short -> char -> int -> long -> float -> double
@@ -72,7 +77,7 @@ String changingTypeString = String.valueOf( aDecimalPoinNum ); // also Double.to
 
 <br/>
 
-> ### Operators:
+### Operators:
 ```txt
 +	(Addition)
 -	(Subtraction)
@@ -88,7 +93,7 @@ String changingTypeString = String.valueOf( aDecimalPoinNum ); // also Double.to
 
 <br/>
 
-> ### assignment operators
+### assignment operators
 - \=
 - \+=
 - \-=
@@ -103,7 +108,7 @@ String changingTypeString = String.valueOf( aDecimalPoinNum ); // also Double.to
 - \<<< (bitwise unsigned right shift )
 
 
-> ### Comparison Operators
+### Comparison Operators
 
 - \==
 - \!=
@@ -112,16 +117,7 @@ String changingTypeString = String.valueOf( aDecimalPoinNum ); // also Double.to
 - \>=
 - \<=
 
-> ### Comparison Operators
-
-- \==
-- \!=
-- \>
-- \<
-- \>=
-- \<=
-
-> ### Logical Operators
+### Logical Operators
 
 - \&& 
 - \|| 
@@ -131,7 +127,7 @@ String changingTypeString = String.valueOf( aDecimalPoinNum ); // also Double.to
 
 <br/>
 
-> ### Conditionals, Loop, Iterator
+### Conditionals, Loop, Iterator
 ```java
 // loops
 for (int i = 0; i <= array_str.size() - 1; i++){
@@ -147,9 +143,9 @@ for (String i: student.keySet()){
 
 // iterators => Works with ArrayList
 
-Iterator<String> it = array_str.iterator();
+Iterator<String> iterate = array_str.iterator();
 
-while(it.hasNext()){
+while(iterate.hasNext()){
     System.out.println("Iterator iteration over array_str and the vale is => " + it.next());
 }
 
@@ -253,9 +249,12 @@ public class HigherOrderMethods {
 
 <br/>
 
-> ### List | ArrayList | Array | HashMap
+### Method Reference:
+Use `::fn` to reference a function. `System.out::println` with package name specified.
+
+### List | ArrayList | Array | HashMap
 - Array's length is fixed once created
-- ArrayList, more convenient Array. Its mutable and re-sizeable
+- ArrayList, more convenient than Array. Its mutable and re-sizeable
 - HashMaps are like dictionary (key/value pairs), where keys needs to be unique and value can be null
 - Hashtable does not allow keys or values to be set to null 
 ```java
@@ -376,12 +375,8 @@ string.equals(anotherString) // return boolean
 
 ```
 
-### :cat: [Java Part 2 Language Tour](java-lang-basic-102.md) < Click to view
 
-=======
-
-
-### Java Important Concept Next
+### Java Important Concept
  - Java Memory Management (How memory works), garbage collectors.
 
  android.permission.WRITE_SECURE_SETTINGS

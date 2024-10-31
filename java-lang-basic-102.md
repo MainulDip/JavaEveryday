@@ -3,7 +3,7 @@ Continued From java-language-tour.md (follow the overview)
 
 ### Interfaces:
 
-- supports multiple inheritance of interfaces "public class Car implements Fly, Transform {}"
+- supports multiple inheritance of interfaces. `public class Car implements Fly, Transform {/* define */}`, here Car is implementing 2 interfaces.
 
 - use constants variables, abstract methods, static methods, default methods in interface
 
@@ -13,17 +13,17 @@ Continued From java-language-tour.md (follow the overview)
 
 - we can't use the final word in the interface definition, as it will result in a compiler error
 
-- all interface declarations should have the public or default access modifier; the abstract modifier will be added automatically by the compiler
+- all interface declarations should have the `public` or `default` access modifier; the abstract modifier will be added automatically by the compiler
 
-- an interface method can't be protected or final
+- an interface `method` can't be protected or final
 
-- up until Java 9, interface methods could not be private; however, Java 9 introduced the possibility to define private methods in interfaces
+- up until Java 9, interface `methods` could not be private; however, Java 9 introduced the possibility to define private methods in interfaces
 
-- interface variables are public, static, and final by definition; we're not allowed to change their visibility
+- interface `variables` are public, static, and final by definition; we're not allowed to change their visibility
 
-- When an interface extends another interface, it inherits all of that interface's abstract methods
+- When an interface extends another interface, it inherits all of that interface's `abstract methods`
 
-- When an abstract class implements an interface, it inherits all of its abstract and default methods.
+- When an abstract class implements an interface, it inherits all of its `abstract` and `default methods`.
 
 ```java
 public interface Electronic {
@@ -66,9 +66,7 @@ abstract class Shape
     abstract void draw();
 }
 ```
-> abstract class observations
-
-- An instance of an abstract class can not be created. (kotlin allows)
+- An instance of an abstract class can not be created directly. kotlin allows but differently by creating a object, like an object inheriting the abstract class.
 
 - Constructors are allowed.
 
@@ -82,7 +80,7 @@ abstract class Shape
 
 - We can use the abstract keyword for declaring top-level classes (Outer class) as well as inner classes as abstract
 
-- If a class contains at least one abstract method then compulsory should declare a class as abstract 
+- If a class contains at least one abstract method then the class required to be declared as `abstract` 
 
 - If the Child class is unable to provide implementation to all abstract methods of the Parent class then we should declare that Child class as abstract so that the next level Child class should provide implementation to the remaining abstract method
 
