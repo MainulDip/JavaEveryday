@@ -1,27 +1,14 @@
-### Java Functional Interface:
-```java
-public class FunctionalInterface1 {
-	public static void main(String[] args) {
-		ExFnInFoo.Foo foo = parameter -> parameter + " from lambda";
-		ExFnInFoo fooInstance = new ExFnInFoo();
-		String resultFoo = fooInstance.add("Message ", foo);
-		System.out.println("resultFoo = " + resultFoo);
-		
-		Bar bar = param -> param + " from Bar Lambda";
-		System.out.println(bar.method("Direct SAM Impl"));
-		
-		// directly instantiating an abstract class that implements a SAM
-		AbstractFnInterfaceBar abstractFnInterfaceBar = new AbstractFnInterfaceBar(){
-			@Override
-			public String method(String string) {
-				return string;
-			}			
-		};
-		System.out.println(abstractFnInterfaceBar.method("Something"));
-			
-	}
-}
+### Java Lambda + Functional Interface | Built-in and Customs:
+Java functional interface (`interface with single method`) are the first step to use lambda in java (java 8).
 
+Lambda Syntax ( no trailing lambda like kotlin/swift )
+- `parameter -> expression` or `(parameter1, parameter2) -> expression` or `(parameter1, parameter2) -> { code blocks }`
+
+`java.util.function` package contains most of the built-in functional interface. So instead of making custom, those can be used if matches the developer need.
+
+* Custom Functional Interface and Lambda Implementation
+
+```java
 class ExFnInFoo {
 	// annotating is optional but good practice for readability
 	@FunctionalInterface
@@ -41,7 +28,34 @@ interface Bar {
 
 abstract class AbstractFnInterfaceBar implements Bar {}
 
-// result = Message  from lambda
+
+// usages example
+public class FunctionalInterface1 {
+	public static void main(String[] args) {
+		ExFnInFoo.Foo foo = parameter -> parameter + " from predefined lambda";
+		ExFnInFoo fooInstance = new ExFnInFoo();
+		String resultFoo = fooInstance.add("Message ", foo);
+		System.out.println("resultFoo = " + resultFoo);
+		
+		// Directly implementing lambda
+		String resultFooDirectLambda = fooInstance.add("Message ", parameter -> parameter + " from direct lambda");
+		System.out.println("resultFooDirectLambda = " + resultFooDirectLambda);
+		
+		
+		Bar bar = param -> param + " from Bar Lambda";
+		System.out.println(bar.method("Direct SAM Impl"));
+		
+		// directly instantiating an abstract class that implements a SAM
+		AbstractFnInterfaceBar abstractFnInterfaceBar = new AbstractFnInterfaceBar(){
+			@Override
+			public String method(String string) {
+				return string;
+			}			
+		};
+		System.out.println(abstractFnInterfaceBar.method("Something"));
+			
+	}
+}
 ```
 
 ### Java Lambda:

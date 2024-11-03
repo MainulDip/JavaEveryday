@@ -7,7 +7,7 @@
 - completableFuture
 
 ### AtomicInteger:
-It's a java.util.concurrent.atomic.AtomicInteger class provides operations on underlying int value that can be read and written atomically, and also contains advanced atomic operations.
+It's a java.util.concurrent.atomic.AtomicInteger class provides operations on underlying int value that can be read and written atomically, and also contains advanced atomic operations....
 
 - without AtomicInteger
 ```java

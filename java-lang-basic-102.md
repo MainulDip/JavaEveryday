@@ -3,7 +3,7 @@ Continued From java-language-tour.md (follow the overview)
 
 ### Interfaces:
 
-- supports multiple inheritance of interfaces. `public class Car implements Fly, Transform {/* define */}`, here Car is implementing 2 interfaces.
+- supports multiple inheritance of interfaces. `public class Car implements Fly, Transform {/* define */}`, here Car is implementing 2 interfaces....
 
 - use constants variables, abstract methods, static methods, default methods in interface
 

@@ -3,7 +3,7 @@ It's a quick language tour to re-connect with most of the Java language syntaxes
 
 ### Intro signature:
 The starting point of a Java Application is the `main` function of the Application marked class.
-But most frameworks hide this and use `inversion of control` pattern.
+But most frameworks hide this and use `inversion of control` pattern....
 
 ```java
 public class Main {
