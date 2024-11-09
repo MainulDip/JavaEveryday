@@ -64,7 +64,7 @@ In Java, Lambda expressions are used to express instances of `functional interfa
 * Note: that lambda expressions can only be used to implement functional interfaces. So, have to define a functional interface first then implement the lambda block, then call. Or a Framework can define the Interface, consumer needs to define the implementation. 
 
 * lambda body can contain zero, one, or more statements. 
-* for single statement curly brackets are not mandatory and `return` is implicit
+* for single statement curly brackets are not mandatory and `return` is implicit...
 * return type of the anonymous function is the same as the type of the value returned within the code block, or void if nothing is returned.
 
 ```java

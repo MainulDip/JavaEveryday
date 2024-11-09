@@ -7,7 +7,7 @@
 - completableFuture
 
 ### AtomicInteger:
-It's a java.util.concurrent.atomic.AtomicInteger class provides operations on underlying int value that can be read and written atomically, and also contains advanced atomic operations....
+It's a java.util.concurrent.atomic.AtomicInteger class provides operations on underlying int value that can be read and written `atomically`, and also contains advanced atomic operations....
 
 - without AtomicInteger
 ```java
@@ -106,12 +106,12 @@ In Java, Callbacks can be implemented using an interface. The general procedure 
   4. Use that reference to invoke the callback method.
 
 https://www.geeksforgeeks.org/asynchronous-synchronous-callbacks-java/
-### Lambda:
+### Lambda | SAM implementation:
 In Java Lambda is used to implement `SAM` interface, its implementation signature is `(props:T) -> {}`. Note, there is no return type like kotlin, as the return type is declared in the `SAM` interface class.
 
 
 ### Runnable vs Callable:
-Both interfaces are designed to represent a task that can be run by multiple threads. We can run Runnable tasks using the Thread class or ExecutorService, whereas we can only run Callables using the latter/ExecutorService.
+Both interfaces are designed to represent a task that can be run by multiple threads. We can run Runnable tasks using the Thread class or ExecutorService, whereas we can only run Callable using the latter/ExecutorService.
 
 ```java
 // Runnable
@@ -152,9 +152,9 @@ public class CallableExample{
 ```
 
 ### Future Interface:
- A Java Future, java.util.concurrent.Future, represents the result of an asynchronous computation, added in Java 5. When the asynchronous task is created, a Java Future object is returned. This Future object functions as a handle to the result of the asynchronous task. Once the asynchronous task completes, the result can be accessed via the Future object returned when the task was started. But alone, it doesn't provide error handling.
+ A Java `Future`, java.util.concurrent.Future, represents the result of an asynchronous computation, added in Java 5. When the asynchronous task is created, a Java Future object is returned. This Future object functions as a handle to the result of the asynchronous task. Once the asynchronous task completes, the result can be accessed via the Future object returned when the task was started. But alone, it doesn't provide error handling.
 
-Some of Java's built-in concurrency utilities, like e.g. the Java ExecutorService, return a Java Future object from some of their methods. In the case of the ExecutorService, it returns a Future when you submit a Callable for it to execute concurrently (asynchronously).
+Some of Java's built-in concurrency utilities, like e.g. the Java `ExecutorService`, return a Java Future object from some of their methods. In the case of the ExecutorService, it returns a Future when you submit a Callable for it to execute concurrently (asynchronously).
 
 ```java
 // Future Interface Signature
@@ -167,10 +167,10 @@ public interface Future<V> {
 }
 ```
 
-### Completable Future:
+### `Completable` Future:
 Java 8 introduced the CompletableFuture class. Along with the Future interface as Concurrency API improvement. it also implemented the CompletionStage interface. This interface defines the contract for an asynchronous computation step that we can combine with other steps with error handling. It is about 50 different methods for composing, combining, and executing asynchronous computation steps and handling errors.
 
- - ### Using CompletableFuture as a Simple Future:
+ * Using `CompletableFuture`e as a Simple Future:
  CompletableFuture class implements the Future interface, so we can use it as a Future implementation, but with additional completion logic.
 ```java
 public Future<String> calculateAsync() throws InterruptedException{
@@ -201,8 +201,8 @@ public boolean testComputableStandalone(){
     assertEquals("Hello", result);
 }
 ```
-- ### CompletableFuture's runAsync and supplyAsync:
-Static methods runAsync and supplyAsync allow us to create a CompletableFuture instance out of Runnable and Supplier functional types correspondingly. Both are functional interfaces that allow passing their instances as lambda expressions.
+- ### CompletableFuture's `runAsync` and `supplyAsync`:
+Static methods `runAsync` and `supplyAsync` allow us to create a CompletableFuture instance out of `Runnable` and `Supplier` functional types correspondingly. Both are functional interfaces that allow passing their instances as lambda expressions.
 
 The Runnable interface is the same old interface that is used in threads and it does not allow to return a value.
 
@@ -211,7 +211,7 @@ The Supplier interface is a generic functional interface with a single method th
 CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "Hello");
 assertEquals("Hello", future.get());
 ```
-- ### thenApply() : Processing Results of Asynchronous Computations
+- ### `thenApply()` : Processing Results of Asynchronous Computations
 thenApply() accepts a Function instance, uses it to process the result, and returns a Future that holds a value returned by a function. We can also use thenAccept() and thenRun() methods.
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
@@ -224,12 +224,12 @@ CompletableFuture<String> future = completableFuture.thenApply(s -> s + " World"
 
 assertEquals("Hello World", future.get());
 ```
-- ### Combining/Chaining Futures:
+- ### Combining/Chaining Futures `thenCompose`:
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello").thenCompose(s -> CompletableFuture.supplyAsync(() -> s + " World"));
 assertEquals("Hello World", completableFuture.get());
 ```
-- ### Running Multiple Futures in Parallel:
+- ### Running Multiple Futures in Parallel `CompletableFuture.allOf`:
 ```java
 CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Hello");
 CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "Beautiful");
