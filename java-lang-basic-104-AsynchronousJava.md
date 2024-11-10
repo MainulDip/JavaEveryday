@@ -9,6 +9,8 @@
 ### AtomicInteger:
 It's a java.util.concurrent.atomic.AtomicInteger class provides operations on underlying int value that can be read and written `atomically`, and also contains advanced atomic operations....
 
+AtomicInteger and other Atomic variables allow concurrent accesses along threads. It have get and set methods that work like reads and writes on volatile variables. The atomic `compareAndSet` method also has memory consistency features.
+
 - without AtomicInteger
 ```java
 public class TestThread {
@@ -167,10 +169,10 @@ public interface Future<V> {
 }
 ```
 
-### `Completable` Future:
-Java 8 introduced the CompletableFuture class. Along with the Future interface as Concurrency API improvement. it also implemented the CompletionStage interface. This interface defines the contract for an asynchronous computation step that we can combine with other steps with error handling. It is about 50 different methods for composing, combining, and executing asynchronous computation steps and handling errors.
+### `Completable` Future | java 8:
+Works along with the Future interface as Concurrency API improvement. it also implemented the `CompletionStage` interface. This interface defines the contract for an asynchronous computation step that we can combine with other steps with error handling. There's about 50 different methods for composing, combining, and executing asynchronous computation steps and handling errors.
 
- * Using `CompletableFuture`e as a Simple Future:
+ * Using `CompletableFuture` as a Simple Future:
  CompletableFuture class implements the Future interface, so we can use it as a Future implementation, but with additional completion logic.
 ```java
 public Future<String> calculateAsync() throws InterruptedException{
@@ -201,17 +203,17 @@ public boolean testComputableStandalone(){
     assertEquals("Hello", result);
 }
 ```
-- ### CompletableFuture's `runAsync` and `supplyAsync`:
+### CompletableFuture's `runAsync` and `supplyAsync`:
 Static methods `runAsync` and `supplyAsync` allow us to create a CompletableFuture instance out of `Runnable` and `Supplier` functional types correspondingly. Both are functional interfaces that allow passing their instances as lambda expressions.
 
-The Runnable interface is the same old interface that is used in threads and it does not allow to return a value.
+The `Runnable` interface is the same old interface that is used in threads and it does not allow to return a value.
 
-The Supplier interface is a generic functional interface with a single method that has no arguments and returns a value of a parameterized type.
+The `Supplier` interface is a generic functional interface with a single method that has no arguments and returns a value of a parameterized type.
 ```java
 CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "Hello");
 assertEquals("Hello", future.get());
 ```
-- ### `thenApply()` : Processing Results of Asynchronous Computations
+### `thenApply()` : Processing Results of Asynchronous Computations
 thenApply() accepts a Function instance, uses it to process the result, and returns a Future that holds a value returned by a function. We can also use thenAccept() and thenRun() methods.
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
@@ -270,11 +272,11 @@ https://rjlfinn.medium.com/asynchronous-programming-in-java-d6410d53df4d....
 
 
 ### Thread Pool
-Thread pool is a pattern. Other than  creating a new thread each time a request arrives and service this new request in the newly created thread, it reuses previously created threads to execute current tasks and offers a solution to the problem of thread cycle overhead and resource thrashing. Since the thread is already existing when the request arrives, the delay introduced by thread creation is eliminated, making the application more responsive.
+Thread pool is a pattern. Other than  creating a new thread each time (a request arrives and service this new request in the newly created thread), it reuses previously created threads to execute current tasks and offers a solution to the problem of thread cycle overhead and resource thrashing. Since the thread is already existing when the request arrives, the delay introduced by thread creation is eliminated, making the application more responsive.
 
 
 Based on Thread Pool Java provides the Executor framework which is centered around the Executor interface, its sub-interface –ExecutorService and the class-ThreadPoolExecutor, which implements both of these interfaces. By using the executor, one only has to implement the Runnable objects and send them to the executor to execute.
-- this Executor Framework (Thread Pool) provides advantage of threading, but focus on the tasks that you want the thread to perform, instead of thread mechanics.
+- this Executor Framework (Thread Pool) provides advantage of threading, but focus on the tasks that you want the thread to perform, instead of thread mechanics
 
 - To use thread pools, we first create a object of ExecutorService and pass a set of tasks to it. ThreadPoolExecutor class allows to set the core and maximum pool size.The runnables that are run by a particular thread are executed sequentially...
 

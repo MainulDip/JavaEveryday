@@ -46,7 +46,7 @@ public final String firstSchoolName = "School Name";
 - User-defined/non-primitive types: Class, Object, String, Array, Interface 
 
 
-### Type casting/conversion: 2 types
+### Type casting/conversion | Widening/Auto vs Narrowing/Manual
 
 1. Widening Casting (automatically) - converting a smaller type to a larger type size
     - byte -> short -> char -> int -> long -> float -> double

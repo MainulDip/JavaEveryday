@@ -438,7 +438,7 @@ Thread pool is a pattern. Other than  creating a new thread each time a request 
 Based on Thread Pool Java provides the Executor framework which is centered around the Executor interface, its sub-interface –ExecutorService and the class-ThreadPoolExecutor, which implements both of these interfaces. By using the executor, one only has to implement the Runnable objects and send them to the executor to execute.
 - this Executor Framework (Thread Pool) provides advantage of threading, but focus on the tasks that you want the thread to perform, instead of thread mechanics.
 
-- To use thread pools, we first create a object of ExecutorService and pass a set of tasks to it. ThreadPoolExecutor class allows to set the core and maximum pool size.The runnables that are run by a particular thread are executed sequentially.
+- To use thread pools, we first create a object of ExecutorService and pass a set of tasks to it. ThreadPoolExecutor class allows to set the core and maximum pool size.The runnables that are run by a particular thread are executed sequentially.......
 
 ### Executor Thread Pool Methods:
  - newFixedThreadPool(int) : Creates a fixed size thread pool. if all threads are being currently run by the executor then the pending tasks are placed in a queue and are executed when a thread becomes idle.

@@ -399,7 +399,7 @@ applyInverse(3, n -> n * n + 7);
 ```
 
 ### Method reference in java:
-When a function/method accepts another function or lambda, a method reference can be injected if both parameter type is same.
+When a function/method accepts another function or lambda, a method reference can be injected if both parameter type is same
 
 ```java
 Stream<Number> numberStream = Stream.of(1,2L);
