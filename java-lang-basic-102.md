@@ -259,7 +259,7 @@ Java Generics provide type-checking at compile time and it has no use at run tim
 ### Callback & Closure
 A CallBack Function is a function that is passed into another function as an argument and is expected to execute after some kind of event. The purpose of the callback function is to inform a class Sync/Async if some work in another class is done. This is also used in event handling, as we get notified when a button is clicked via callback function.
 
-This type of design pattern is used in Observer Design Pattern.The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependent, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
+This type of design pattern is used in `Observer` Design Pattern.The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependent, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
 
 In Java, Callbacks can be implemented using an interface. The general procedure are:
   1. Define the methods in an interface that we want to invoke after callback.
@@ -268,9 +268,44 @@ In Java, Callbacks can be implemented using an interface. The general procedure 
   4. Use that reference to invoke the callback method.
 
 https://www.geeksforgeeks.org/asynchronous-synchronous-callbacks-java/
-### Lambda:
-In Java Lambda is used to implement `SAM` interface, its implementation signature is `(props:T) -> {}`. Note, there is no return type like kotlin, as the return type is declared in the `SAM` interface class....
 
+### Dealing with `Null`:
+Java allows `null` return in any `reference` type. Like, String, Int, Object etc. But returning null end up buggy for lots of different cases. Better approach use `Optional<T>` and return `Optional.empty()`
+
+Jetbrain's @NotNull annotation can also be used. https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
+
+```java
+public Optional<Item> getItem(int itemId){
+        
+    boolean isAvailable = inventoryChecker.checkAvailability(itemId);
+
+    if (isAvailable) {
+        Optional<Item> item = Optional.of(inventoryManager.markAsSold(itemId));
+        return item;
+    } else {
+       // return null; // not good
+       // throw new IllegalArgumentException("Message") // better than returning null
+       return Optional.empty(); // best approach
+    }
+ }
+```
+https://medium.com/javarevisited/just-dont-return-null-dcdf5d77128f
+
+### Nullability annotations (`@NotNull`, `@Nullable` by Intellij IDEA):
+By explicitly declaring the nullability of elements, the code becomes easier to maintain and less prone to nullability-related errors. `'org.jetbrains:annotations:24.0.0'` (groupid:artifact:version) is the dependency.
+```java
+protected @NotNull String getSound() {
+    // return null; // will mark by IDE if null is returned
+    return "food";
+}
+```
+https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
+
+### Java Static Method/Prop and `this`:
+- static member cannot access non-static members, but non-static member can reference static members
+- static member can access non-static members through instance of the class. Like how singleton pattern is implemented (private contractor to block instantiation directly and static member to create and hold the instance).
+- static member can access other static members directly. 
+- when referencing class members, implicit `this` is always there. can be made explicit also (redundant)
 
 ### Runnable vs Callable:
 Both interfaces are designed to represent a task that can be run by multiple threads. We can run Runnable tasks using the Thread class or ExecutorService, whereas we can only run Callables using the latter/ExecutorService.
@@ -332,7 +367,7 @@ public interface Future<V> {
 ### Completable Future:
 Java 8 introduced the CompletableFuture class. Along with the Future interface as Concurrency API improvement. it also implemented the CompletionStage interface. This interface defines the contract for an asynchronous computation step that we can combine with other steps with error handling. It is about 50 different methods for composing, combining, and executing asynchronous computation steps and handling errors.
 
- - ### Using CompletableFuture as a Simple Future:
+ ### Using CompletableFuture as a Simple Future:
  CompletableFuture class implements the Future interface, so we can use it as a Future implementation, but with additional completion logic.
 ```java
 public Future<String> calculateAsync() throws InterruptedException{
@@ -373,7 +408,7 @@ The Supplier interface is a generic functional interface with a single method th
 CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "Hello");
 assertEquals("Hello", future.get());
 ```
-- ### thenApply() : Processing Results of Asynchronous Computations
+### `thenApply()` | Processing Results of Asynchronous Computations
 thenApply() accepts a Function instance, uses it to process the result, and returns a Future that holds a value returned by a function. We can also use thenAccept() and thenRun() methods.
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
@@ -386,12 +421,12 @@ CompletableFuture<String> future = completableFuture.thenApply(s -> s + " World"
 
 assertEquals("Hello World", future.get());
 ```
-- ### Combining/Chaining Futures:
+### Combining/Chaining Futures:
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello").thenCompose(s -> CompletableFuture.supplyAsync(() -> s + " World"));
 assertEquals("Hello World", completableFuture.get());
 ```
-- ### Running Multiple Futures in Parallel:
+### Running Multiple Futures in Parallel:
 ```java
 CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Hello");
 CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "Beautiful");
@@ -544,31 +579,7 @@ Executing Time for task name - task 2 = 07:36:41
 Executing Time for task name - task 1 = 07:36:41
 Executing Time for task name - task 3 = 07:36:41
 Executing Time for task name - task 2 = 07:36:42
-Executing Time for task name - task 3 = 07:36:42
-Executing Time for task name - task 1 = 07:36:42
-task 2 complete
-Initialization Time for task name - task 4 = 07:36:43
-task 3 complete
-task 1 complete
-Initialization Time for task name - task 5 = 07:36:43
-Executing Time for task name - task 5 = 07:36:44
-Executing Time for task name - task 4 = 07:36:44
-Executing Time for task name - task 4 = 07:36:45
-Executing Time for task name - task 5 = 07:36:45
-Executing Time for task name - task 4 = 07:36:46
-Executing Time for task name - task 5 = 07:36:46
-Executing Time for task name - task 5 = 07:36:47
-Executing Time for task name - task 4 = 07:36:47
-Executing Time for task name - task 5 = 07:36:48
-Executing Time for task name - task 4 = 07:36:48
-task 4 complete
-task 5 complete
-```
-
-https://www.geeksforgeeks.org/thread-pools-java/
-https://www.baeldung.com/thread-pool-java-and-guava
-
-### Dealing with `Null`:
+Executing Time for task name - task 3 = 07:36### Dealing with `Null`:
 Java allows `null` return in any `reference` type. Like, String, Int, Object etc. But returning null end up buggy for lots of different cases. Better approach use `Optional<T>` and return `Optional.empty()`
 
 Jetbrain's @NotNull annotation can also be used. https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
@@ -592,22 +603,40 @@ https://medium.com/javarevisited/just-dont-return-null-dcdf5d77128f
 
 ### Nullability annotations (`@NotNull`, `@Nullable` by Intellij IDEA):
 By explicitly declaring the nullability of elements, the code becomes easier to maintain and less prone to nullability-related errors. `'org.jetbrains:annotations:24.0.0'` (groupid:artifact:version) is the dependency.
-
-https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
 ```java
 protected @NotNull String getSound() {
     // return null; // will mark by IDE if null is returned
     return "food";
 }
 ```
+https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
+
 ### Java Static Method/Prop and `this`:
 - static member cannot access non-static members, but non-static member can reference static members
 - static member can access non-static members through instance of the class. Like how singleton pattern is implemented (private contractor to block instantiation directly and static member to create and hold the instance).
 - static member can access other static members directly. 
-- when referencing class members, implicit `this` is always there. can be made explicit also (redundant)
+- when referencing class members, implicit `this` is always there. can be made explicit also (redundant):42
+Executing Time for task name - task 1 = 07:36:42
+task 2 complete
+Initialization Time for task name - task 4 = 07:36:43
+task 3 complete
+task 1 complete
+Initialization Time for task name - task 5 = 07:36:43
+Executing Time for task name - task 5 = 07:36:44
+Executing Time for task name - task 4 = 07:36:44
+Executing Time for task name - task 4 = 07:36:45
+Executing Time for task name - task 5 = 07:36:45
+Executing Time for task name - task 4 = 07:36:46
+Executing Time for task name - task 5 = 07:36:46
+Executing Time for task name - task 5 = 07:36:47
+Executing Time for task name - task 4 = 07:36:47
+Executing Time for task name - task 5 = 07:36:48
+Executing Time for task name - task 4 = 07:36:48
+task 4 complete
+task 5 complete
+```
 
-### Java Light-Weight-Thread (Kotlin Coroutine) Implementation:
-https://medium.com/@esocogmbh/coroutines-in-pure-java-65661a379c85
+https://www.geeksforgeeks.org/thread-pools-java/
+https://www.baeldung.com/thread-pool-java-and-guava
 
 ### Java 21 Virtual Threads
-

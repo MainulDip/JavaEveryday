@@ -9,7 +9,7 @@
 ### AtomicInteger:
 It's a java.util.concurrent.atomic.AtomicInteger class provides operations on underlying int value that can be read and written `atomically`, and also contains advanced atomic operations....
 
-AtomicInteger and other Atomic variables allow concurrent accesses along threads. It have get and set methods that work like reads and writes on volatile variables. The atomic `compareAndSet` method also has memory consistency features.
+AtomicInteger and other Atomic variables allow concurrent accesses along threads. It have get and set methods that work like reads and writes on volatile variables. The atomic `compareAndSet` method also has memory consistency features
 
 - without AtomicInteger
 ```java

@@ -40,13 +40,8 @@ public final String firstSchoolName = "School Name";
 
 <br/>
 
-### Primitive and Non-Primitive/reference data types:
 
-- System-defined/primitive types: byte, short, int, long, float, double, boolean, char
-- User-defined/non-primitive types: Class, Object, String, Array, Interface 
-
-
-### Type casting/conversion | Widening/Auto vs Narrowing/Manual
+### Type casting/conversion | `Widening`/Auto vs `Narrowing`/Manual:
 
 1. Widening Casting (automatically) - converting a smaller type to a larger type size
     - byte -> short -> char -> int -> long -> float -> double
@@ -193,8 +188,7 @@ for (int i = 0; i < 10; i++) {
 
 </details>
 
-<details>
-<summary>More on: Filter(), Map(), stream()</summary>
+### Java stream's Filter(), Map();
 
 ```java
 import java.util.ArrayList;
@@ -245,9 +239,6 @@ public class HigherOrderMethods {
     }
 }
 ```
-</details>
-
-<br/>
 
 ### Method Reference:
 Use `::fn` to reference a function. `System.out::println` with package name specified.

@@ -156,7 +156,7 @@ The Dependency-Injection (DI) pattern is a more specific version of IoC pattern
 The term Inversion of Control (IoC) originally meant any sort of programming style where an overall framework or run-time controlled the program flow (lifecycle of everything inside).
 
 Inversion of Control (IoC) means that objects do not create other objects on which they rely to do their work. Instead, they get the objects that they need, from an outside source (for example, an xml configuration file or DI).
-
+Observer
 Dependency Injection (DI) means that this is done without the object intervention, usually by a framework component that passes constructor parameters and set properties
 
 https://stackoverflow.com/questions/6550700/inversion-of-control-vs-dependency-injection.
@@ -209,12 +209,12 @@ Using Arrays.asList we can convert an array to a fixed-size List object. This Li
 
 ```java
 String[] stringArray = new String[] { "A", "B", "C", "D" };
-List stringList = Arrays.asList(stringArray);
+List stringList = Arrays.asList(stringArray);Observer
 
 stringList.set(3, "E");
  
 assertThat(stringList).containsExactly("A", "B", "C", "E"); // true
-assertThat(stringArray).containsExactly("A", "B", "C", "E"); // true
+assertThat(stringArray).containsExactly("A", "B",Observer "C", "E"); // true
 
 // stringList.add("F"); // not allowed
 ```
@@ -261,27 +261,6 @@ class JavaOptional {
         System.out.println(opCheck1); // Its still not initialized
         String opCheck2 = emptyString.isPresent() ? emptyString.get() : emptyString.orElseThrow(()->new RuntimeException("emptyString throwing runtime exception"));
     }
-}
-```
-
-### Built in Function Interface | `Function<T,R>`:
-It has been introduced in Java 8, to implement functional programming in Java. It represents a function which takes `T` argument type and produces `R` result type. 
-
-The Function interface consists of the following 4 methods
-- apply()
-- andThen()
-- compose()
-- identity()
-
-```java
-public static void main(String args[])
-{
-    // java's built in functional interface. 
-    // It will receive Integer as argument and will return Double
-    Function<Integer, Double> half = a -> a / 2.0;
-
-    // Applying the function to get the result
-    System.out.println(half.apply(10));
 }
 ```
 
