@@ -119,7 +119,7 @@ Generics was added in Java 5 to provide compile-time type checking and removing 
 ```java
 List<String> list1 = new ArrayList<String>(); // java 7 ? List<String> list1 = new ArrayList<>(); 
 list1.add("abc");
-//list1.add(new Integer(5)); //compiler error
+//list1.add(new Integer(5)); //compiler error, as the expected type is `String`
 
 // parameterized value to a parameterized type like => new HashMap<String, List<String>>()
 
@@ -130,7 +130,6 @@ for(String str : list1){
 - Generic Class and interface:
 
 ```java
-
 public class GenericsType<T> {
 
 	private T t;
@@ -143,15 +142,25 @@ public class GenericsType<T> {
 		this.t=t1;
 	}
 	
+    // note : if a generics class is not Instantiated with a type, the data type can be changed, this is called `raw type`, which is not recommended, see type1 example below
+    // instead of raw type, type restriction can be enforced using `Bounded Type Parameters`, ie `<T extends String>`
 	public static void main(String args[]){
-		GenericsType<String> type = new GenericsType<>();
-		type.set("Pankaj"); //valid
+        System.out.println(args[0]); // Prints : Apple
+		GenericsType<String> type = new GenericsType<String>();
+		type.set("Hello"); //valid
+        // type.set(123); // invalid // Error ⮕ incompatible types: int cannot be converted to java.lang.String
 		
 		GenericsType type1 = new GenericsType(); //raw type
-		type1.set("Pankaj"); //valid
+		type1.set("World"); //valid
+        System.out.println(type1.get()); // prints : World
+        System.out.println(type1.get().getClass()); // prints : class java.lang.String
 		type1.set(10); //valid and autoboxing support
+        System.out.println(type1.get()); // prints : 10
+        System.out.println(type1.get().getClass()); // prints : class java.lang.Integer
 	}
 }
+
+GenericsType.main(new String[]{"Apple"})
 
 // interface
 public interface Comparable<T> {
@@ -167,6 +176,9 @@ public interface Comparable<T> {
  - V - Value (Used in Map)
  - S,U,V etc. - 2nd, 3rd, 4th types
 
+### Generics `Raw` vs `Bounded` types:
+- Raw Types:
+If the generic type is unbounded with any other type (while creation), it's called `Raw` type `<T>`. Raw type generic classes can be instantiated without supplying the actual type, and other data type can also be used instead of the creation time type. This kind of flexibility can open up bugs and hamper type safety.
 
 - Bounded Type:
 This is used to restrict the type of objects (upper bound limit) that can be used in the parameterized type. To declare a bounded type parameter, list the type parameter’s name, followed by the extends keyword, followed by its upper bound. Java Generics supports multiple bounds also, i.e <T extends A & B & C>...

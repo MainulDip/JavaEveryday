@@ -40,6 +40,65 @@ public final String firstSchoolName = "School Name";
 
 <br/>
 
+### Java type system:
+Java has a two-fold type system consisting of primitives such as int, boolean and reference types such as Integer, Boolean. Every primitive type has it's built-in reference type.
+
+Under the hood, Java performs a conversion between the primitive and reference types if an actual type is different from the declared one. 
+
+* The process of converting a primitive type to a reference one is called autoboxing, the opposite process is called unboxing
+
+```java
+Integer j = 1;          // autoboxing
+int i = new Integer(1); // unboxing
+```
+
+
+* Primitive types cannot be `null`, as `null` is a reference. And primitive types are not reference types. Only objects are reference types.
+
+A primitive type is just data, Primitive types cannot be null. Objects (Reference types), are just pointers to where the data is stored. Objects can be null, where data is not yet assigned.
+
+
+`boolean – 1 bit` vs `Boolean – 128 bits`
+`byte – 8 bits` vs `Byte – 128 bits`
+`short, char – 16 bits` vs `Short, Character – 128 bits`
+`int, float – 32 bits` vs `Integer, Float – 128 bits`
+`long, double – 64 bits` vs `Long, Double – 192 bits`
+
+* Primitive types are faster than the reverence types, https://www.baeldung.com/java-primitives-vs-objects
+
+### Primitive vs Reference | Stack vs Heap:
+Primitives defined locally (defined inside of a function, including method arguments)  would be on the stack. 
+
+All reference types (Objects) and primitives of an object (Class Members/Variables) would be on the heap.
+
+```java
+public class Test {
+    private static class HeapClass {
+        public int y; // When an instance of HeapClass is allocated, this will be on the heap.
+    }
+    public static void main(String[] args) {
+        int x=1; // This is on the stack.
+    }
+}
+```
+
+### Array `{}` | Fixed/Immutable | vs `ArrayList`:
+Arrays are defined using `{}`. Arrays (not ArrayList) are fixed in size, but mutable.
+
+```java
+String[] arr;
+int[] myNum = {10, 20, 30, 40};
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+cars[0] = "Opel"; // arrays are mutable
+System.out.println(cars[0]); // Now outputs Opel instead of Volvo
+```
+
+Arrays are fixed in size and fast performance wise, where `ArrayList` is dynamic in size and provides more flexibility and built-in methods.
+
+- Arrays can store both primitives and reference types
+- Collections can not store primitives (although they can store the primitive wrapper classes (ref type), such as Integer etc)
+- Arrays are not part of the java collection framework, but ArrayList is.
+
 
 ### Type casting/conversion | `Widening`/Auto vs `Narrowing`/Manual:
 
@@ -309,11 +368,10 @@ HEARTS("Hearts", "red"), DIAMONDS("Diamonds", "White"),  SPADES("Spades", "Blue"
     this.color = color;
     }
 //  Works like source of truth along the application
+}
 
 // calling from main method
-//  enums
 System.out.println("Suits Enum Hearts value => " + Suits.HEARTS.color);
-}
 ```
 
 <br/>
