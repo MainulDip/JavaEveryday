@@ -90,7 +90,7 @@ String[] arr;
 int[] myNum = {10, 20, 30, 40};
 String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
 cars[0] = "Opel"; // arrays are mutable
-System.out.println(cars[0]); // Now outputs Opel instead of Volvo
+System.out.println(cars[0]); // Prints: Opel instead of Volvo
 ```
 
 Arrays are fixed in size and fast performance wise, where `ArrayList` is dynamic in size and provides more flexibility and built-in methods.

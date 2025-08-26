@@ -38,7 +38,7 @@ gradle init
 ### Gradle Tasks:
 > build project utilizing tasks, plugins through build script
 
-> plugins atomatically add tasks. There are core and third party plugins
+> plugins aromatically add tasks. There are core and third party plugins
 
 ### Groovy DSL:
 > Dynamically Typed and can be written outside of the class.

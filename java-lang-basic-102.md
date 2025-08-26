@@ -191,16 +191,9 @@ public static <T extends Comparable<T>> int compare(T t1, T t2){
 ### Generics Wildcard Bounded(<? extends Object>) / Unbounded(List<?>, etc) / Lower-Bounded (List<? super Integer>):
 The question mark (?), represents the wildcard, stands for unknown type in generics. There are 3 types of Generics Wildcards.
 
- 1. Upper-Bound / Subtyping Wildcard:
+ 1. Upper-Bound / Subtype Wildcard:
  Upper bounded wildcards are used to relax the restriction on the type of variable in a method. Reads `anything '?' that extends the specified class or the specified class itself`
 ```java
-public static void main(String[] args) {
-    List<Integer> ints = new ArrayList<>();
-    ints.add(3); ints.add(5); ints.add(10);
-    double sum = sum(ints);
-    System.out.println("Sum of ints="+sum);
-}
-
 public static double sum(List<? extends Number> list){
     double sum = 0;
     for(Number n : list){
@@ -208,10 +201,16 @@ public static double sum(List<? extends Number> list){
     }
     return sum;
 }
-```
-```java
-List<? extends Integer> intList = new ArrayList<>();
-List<? extends Number>  numList = intList;  // OK. List<? extends Integer> is a subtype of List<? extends Number>
+
+public static void main(String[] args) {
+    List<Integer> ints = new ArrayList<>();
+    ints.add(3); ints.add(5); ints.add(10);
+    double sum = sum(ints);
+    System.out.println("Sum of ints="+sum);
+
+    List<? extends Integer> intList = new ArrayList<>();
+    List<? extends Number>  numList = intList;  // OK. List<? extends Integer> is a subtype of List<? extends Number>
+}
 ```
 2. Unbounded Wildcard:
 Allow generic method to work with all types. Its same as using <? extends Object>.
@@ -227,6 +226,11 @@ public static void printData(List<?> list){
 When Generic methods argument can be that Type <T> or superclass of the Type <T>. Reads `anything '?' that is the specified class's superclass or the specified class itself`.
 
 ```java
+
+class Animal {}
+class Cat extends Animal {}
+class RedCat extends Cat {}
+class Dog extends Animal {}
 
 public class GenericsTester {
 
@@ -248,21 +252,14 @@ public class GenericsTester {
       addCat(catList);
 
       //compile time error
-      //can not add list of subclass RedCat of Cat class
+      //can't add list of subclass RedCat of Cat class
       //addCat(redCatList);
 
       //compile time error
-      //can not add list of subclass Dog of Superclass Animal of Cat class
+      //can't add list of subclass Dog of Superclass Animal of Cat class
       //addCat.addMethod(dogList); 
    }
 }
-class Animal {}
-
-class Cat extends Animal {}
-
-class RedCat extends Cat {}
-
-class Dog extends Animal {}
 ```
 
 ### Generics Type Erasure:
@@ -282,7 +279,7 @@ In Java, Callbacks can be implemented using an interface. The general procedure 
 https://www.geeksforgeeks.org/asynchronous-synchronous-callbacks-java/
 
 ### Dealing with `Null`:
-Java allows `null` return in any `reference` type. Like, String, Int, Object etc. But returning null end up buggy for lots of different cases. Better approach use `Optional<T>` and return `Optional.empty()`
+Java allows `null` return in any `reference` type (non primitive types). Like, String, Int, Object etc. But returning null end up buggy for lots of different cases. Better approach use `Optional<T>` and return `Optional.empty()`
 
 Jetbrain's @NotNull annotation can also be used. https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
 
@@ -319,7 +316,7 @@ https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotat
 - static member can access other static members directly. 
 - when referencing class members, implicit `this` is always there. can be made explicit also (redundant)
 
-### Runnable vs Callable:
+### Runnable vs Callable (Threads):
 Both interfaces are designed to represent a task that can be run by multiple threads. We can run Runnable tasks using the Thread class or ExecutorService, whereas we can only run Callables using the latter/ExecutorService.
 
 ```java

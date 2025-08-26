@@ -8,7 +8,7 @@ This is a personalized overview of the core android development concepts and ter
 
 ```java
 // add click listener adding a onClick function from the activity.xml to activity.java
-// Or set click listener programatically by passing View.OnClickListener interface
+// Or set click listener programmatically by passing View.OnClickListener interface
 Button btnClickMe = findViewById(R.id.btnClickMe);
 btnClickMe.setOnClickListener(new View.OnClickListener() {
     @Override
