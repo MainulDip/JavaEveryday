@@ -226,7 +226,7 @@ CompletableFuture<String> future = completableFuture.thenApply(s -> s + " World"
 
 assertEquals("Hello World", future.get());
 ```
-- ### Combining/Chaining Futures `thenCompose`:
+### Combining/Chaining Futures `thenCompose`:
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello").thenCompose(s -> CompletableFuture.supplyAsync(() -> s + " World"));
 assertEquals("Hello World", completableFuture.get());

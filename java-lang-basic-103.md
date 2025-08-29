@@ -100,10 +100,10 @@ class Test
 It has been introduced in Java 8, to implement functional programming in Java. It represents a function which takes `T` argument type and produces `R` result type. 
 
 The Function interface consists of the following 4 methods
-- apply()
-- andThen()
-- compose()
-- identity()
+- `apply()`
+- `andThen()`
+- `compose()`
+- `identity()`
 
 ```java
 public static void main(String args[])

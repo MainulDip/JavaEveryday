@@ -317,7 +317,7 @@ https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotat
 - when referencing class members, implicit `this` is always there. can be made explicit also (redundant)
 
 ### Runnable vs Callable (Threads):
-Both interfaces are designed to represent a task that can be run by multiple threads. We can run Runnable tasks using the Thread class or ExecutorService, whereas we can only run Callables using the latter/ExecutorService.
+Both interfaces are designed to represent a task that can be run by multiple threads. We can run Runnable tasks using the Thread class or ExecutorService, whereas we can only run Callables using the latter (`ExecutorService`).
 
 ```java
 // Runnable
@@ -329,14 +329,17 @@ class RunnableImpl implements Runnable {
   }
 }
 public class RunnableExample{
+    
     static ExecutorService executor = Executors.newFixedThreadPool(2);
-  public static void main(String[] args){
-          // Creating and running runnable task using Thread class
-          RunnableImpl task = new RunnableImpl();
+
+    public static void main(String[] args){
+        // Creating and running runnable task using Executor Service.
+        executor.submit(task);
+
+        // Creating and running runnable task using Thread class
+        RunnableImpl task = new RunnableImpl();
         Thread thread = new Thread(task);
-          thread.start();
-          // Creating and running runnable task using Executor Service.
-          executor.submit(task);
+        thread.start();
     }
 }
 
@@ -376,6 +379,8 @@ public interface Future<V> {
 ### Completable Future:
 Java 8 introduced the CompletableFuture class. Along with the Future interface as Concurrency API improvement. it also implemented the CompletionStage interface. This interface defines the contract for an asynchronous computation step that we can combine with other steps with error handling. It is about 50 different methods for composing, combining, and executing asynchronous computation steps and handling errors.
 
+* `futureInstance.get()` is used to execute the future
+
  ### Using CompletableFuture as a Simple Future:
  CompletableFuture class implements the Future interface, so we can use it as a Future implementation, but with additional completion logic.
 ```java
@@ -407,29 +412,52 @@ public boolean testComputableStandalone(){
     assertEquals("Hello", result);
 }
 ```
-- ### CompletableFuture's runAsync and supplyAsync:
-Static methods runAsync and supplyAsync allow us to create a CompletableFuture instance out of Runnable and Supplier functional types correspondingly. Both are functional interfaces that allow passing their instances as lambda expressions.
+- ### CompletableFuture's runAsync (SideEffects) and supplyAsync (Returns):
+Static methods `runAsync` and `supplyAsync` allow us to create a CompletableFuture instance out of `Runnable` and `Supplier` functional types correspondingly. Both are functional interfaces that allow passing their instances as lambda expressions.
 
-The Runnable interface is the same old interface that is used in threads and it does not allow to return a value.
+- The Runnable interface is the same old interface that is used in threads and it does not allow to return a value.
+- The Supplier interface is a generic functional interface with a single method that has no arguments and returns a value of a parameterized type.
 
-The Supplier interface is a generic functional interface with a single method that has no arguments and returns a value of a parameterized type.
 ```java
 CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> "Hello");
 assertEquals("Hello", future.get());
+
+// `supplyAsync` Exception Handling
+CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+    throw new RuntimeException("Exception occurred in asynchronous task");
+}).exceptionally(ex -> {
+    // Exception handling logic
+    return "Default value";
+});
+
+String result = future.join(); // Get the result or default value
+System.out.println("Result: " + result);
+
+// `runAsync` Example and Exception Handling
+CompletableFuture<Void> futureRN = CompletableFuture.runAsync(() -> {
+    throw new RuntimeException("Exception occurred in asynchronous task");
+});
+
+try {
+    futureRN.get(); // Exception will be thrown here
+} catch (ExecutionException ex) {
+    Throwable cause = ex.getCause();
+    System.out.println("Exception caught: " + cause.getMessage());
+}
 ```
 ### `thenApply()` | Processing Results of Asynchronous Computations
-thenApply() accepts a Function instance, uses it to process the result, and returns a Future that holds a value returned by a function. We can also use thenAccept() and thenRun() methods.
+thenApply() accepts a Function instance, uses it to process the result, and returns a Future that holds a value returned by a function. We can also use `thenAccept()` and `thenRun()` methods.
+
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
-
 CompletableFuture<String> future = completableFuture.thenApply(s -> s + " World");
 
 // CompletableFuture<Void> future = completableFuture.thenAccept(s -> System.out.println("Computation returned: " + s));
-
 // CompletableFuture<Void> future = completableFuture.thenRun(() -> System.out.println("Computation finished."));
 
 assertEquals("Hello World", future.get());
 ```
+
 ### Combining/Chaining Futures:
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello").thenCompose(s -> CompletableFuture.supplyAsync(() -> s + " World"));
@@ -482,24 +510,24 @@ Thread pool is a pattern. Other than  creating a new thread each time a request 
 Based on Thread Pool Java provides the Executor framework which is centered around the Executor interface, its sub-interface –ExecutorService and the class-ThreadPoolExecutor, which implements both of these interfaces. By using the executor, one only has to implement the Runnable objects and send them to the executor to execute.
 - this Executor Framework (Thread Pool) provides advantage of threading, but focus on the tasks that you want the thread to perform, instead of thread mechanics.
 
-- To use thread pools, we first create a object of ExecutorService and pass a set of tasks to it. ThreadPoolExecutor class allows to set the core and maximum pool size.The runnables that are run by a particular thread are executed sequentially.......
+- To use thread pools, we first create a object of ExecutorService and pass a set of tasks to it. `ThreadPoolExecutor` class allows to set the core and maximum pool size.The runnables that are run by a particular thread are executed sequentially.......
 
 ### Executor Thread Pool Methods:
- - newFixedThreadPool(int) : Creates a fixed size thread pool. if all threads are being currently run by the executor then the pending tasks are placed in a queue and are executed when a thread becomes idle.
- - newCachedThreadPool() : Creates a thread pool that creates new threads as needed, reuse previously constructed threads are available
- - newSingleThreadExecutor() : Creates a single thread.
+ - `newFixedThreadPool(int)` : Creates a fixed size thread pool. if all threads are being currently run by the executor then the pending tasks are placed in a queue and are executed when a thread becomes idle.
+ - `newCachedThreadPool()` : Creates a thread pool that creates new threads as needed, reuse previously constructed threads are available
+ - `newSingleThreadExecutor()` : Creates a single thread.
 
  Example:
- Here we are controling Task (Runnable interface) using Executors.newFixedThreadPool(int) which returns ExecutorService (java.util.concurrent.ExecutorService) or ThreadPoolExecutor which implements ExecutorService. Then we call the (ThreadPoolExecutor) "pool"'s "execute" method to run the tasks (Runnable) sequentially. The Task (Runnable) is setup to pause/hold the thread using "Thread.sleep(1000) to check the behavour of "Thread Poos" implementation and how "java.util.concurrent.ExecutorService" resue the paused thread, queque and complete tasks.
+ Here we are controlling Task (Runnable interface) using `Executors.newFixedThreadPool(int)` which returns ExecutorService (java.util.concurrent.ExecutorService) or ThreadPoolExecutor which implements ExecutorService. Then we call the (ThreadPoolExecutor) "pool"'s `execute` method to run the tasks (Runnable) sequentially. The Task (Runnable) is setup to pause/hold the thread using "Thread.sleep(1000) to check the behavior of "Thread Poos" implementation and how "java.util.concurrent.ExecutorService" reuse the paused thread, queue and complete tasks.
 
 ```java
 // Java Thread Pool Implementation using Executor's Fixed Thread Pool
-  
 // Task class to be executed (Step 1)
 class Task implements Runnable   
 {
     private String name;
-      
+
+    // constructor  
     public Task(String s)
     {
         name = s;
@@ -588,10 +616,31 @@ Executing Time for task name - task 2 = 07:36:41
 Executing Time for task name - task 1 = 07:36:41
 Executing Time for task name - task 3 = 07:36:41
 Executing Time for task name - task 2 = 07:36:42
-Executing Time for task name - task 3 = 07:36### Dealing with `Null`:
+Executing Time for task name - task 3 = 07:36:42
+Executing Time for task name - task 1 = 07:36:42
+task 2 complete
+Initialization Time for task name - task 4 = 07:36:43
+task 3 complete
+task 1 complete
+Initialization Time for task name - task 5 = 07:36:43
+Executing Time for task name - task 5 = 07:36:44
+Executing Time for task name - task 4 = 07:36:44
+Executing Time for task name - task 4 = 07:36:45
+Executing Time for task name - task 5 = 07:36:45
+Executing Time for task name - task 4 = 07:36:46
+Executing Time for task name - task 5 = 07:36:46
+Executing Time for task name - task 5 = 07:36:47
+Executing Time for task name - task 4 = 07:36:47
+Executing Time for task name - task 5 = 07:36:48
+Executing Time for task name - task 4 = 07:36:48
+task 4 complete
+task 5 complete
+
+```
+### Null Handling with optional:
 Java allows `null` return in any `reference` type. Like, String, Int, Object etc. But returning null end up buggy for lots of different cases. Better approach use `Optional<T>` and return `Optional.empty()`
 
-Jetbrain's @NotNull annotation can also be used. https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
+* Jetbrain's @NotNull annotation can also be used. https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
 
 ```java
 public Optional<Item> getItem(int itemId){
@@ -625,24 +674,9 @@ https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotat
 - static member can access non-static members through instance of the class. Like how singleton pattern is implemented (private contractor to block instantiation directly and static member to create and hold the instance).
 - static member can access other static members directly. 
 - when referencing class members, implicit `this` is always there. can be made explicit also (redundant):42
-Executing Time for task name - task 1 = 07:36:42
-task 2 complete
-Initialization Time for task name - task 4 = 07:36:43
-task 3 complete
-task 1 complete
-Initialization Time for task name - task 5 = 07:36:43
-Executing Time for task name - task 5 = 07:36:44
-Executing Time for task name - task 4 = 07:36:44
-Executing Time for task name - task 4 = 07:36:45
-Executing Time for task name - task 5 = 07:36:45
-Executing Time for task name - task 4 = 07:36:46
-Executing Time for task name - task 5 = 07:36:46
-Executing Time for task name - task 5 = 07:36:47
-Executing Time for task name - task 4 = 07:36:47
-Executing Time for task name - task 5 = 07:36:48
-Executing Time for task name - task 4 = 07:36:48
-task 4 complete
-task 5 complete
+
+
+
 ```
 
 https://www.geeksforgeeks.org/thread-pools-java/
