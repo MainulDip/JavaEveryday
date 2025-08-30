@@ -127,13 +127,13 @@ public static void main(String args[])
 
 
 ### Java SE and four main kinds of functional interfaces
-- Consumer FI => accepts only one argument or a gentrified argument has no return value (returns nothing). Bi-Consumer interface takes two arguments
+- `Consumer FI` => accepts only one argument or a gentrified argument has no return value (returns nothing). Bi-Consumer interface takes two arguments
 
-- Predicate FI => In scientific logic, a function that accepts an argument and, in return, generates a boolean value as an answer is known as a predicate. there are IntPredicate, DoublePredicate, and LongPredicate. Bi-Predicate is an extension of the Predicate functional interface which accepts two arguments, does some processing, and returns the boolean value.
+- `Predicate FI` => In scientific logic, a function that accepts an argument and, in return, generates a boolean value as an answer is known as a predicate. there are `IntPredicate`, `DoublePredicate`, and `LongPredicate`. Bi-Predicate is an extension of the Predicate functional interface which accepts two arguments, does some processing, and returns the boolean value.
 
-- Function FI => it's a type of functional interface that receives a single argument and returns a value after the required processing. There is also Bi-Function variant
+- `Function FI` => it's a type of functional interface that receives a single argument and returns a value after the required processing. There is also Bi-Function variant
 
-- Supplier FI => this does not take any input/argument but returns some output. there are BooleanSupplier, DoubleSupplier, LongSupplier, and IntSupplier. 
+- `Supplier FI` => this does not take any input/argument but returns some output. there are BooleanSupplier, DoubleSupplier, LongSupplier, and IntSupplier. 
 
 Guide => https://www.geeksforgeeks.org/functional-interfaces-java/
 
@@ -364,17 +364,20 @@ Inside interfaces, `Default` methods are those methods which have some default i
 
 ```java
 interface Operator {
-    int operate(int n);
+    int operate(int n); // this function need to be implemented
     default int inverse(int n) {
         return -operate(n);
     }
 }
 
 public int applyInverse(int n, Operator operator) {
-    return operator.inverse(n);
+    return operator.inverse(n); // calling and returning the default function's result
 }
 
 applyInverse(3, n -> n * n + 7);
+
+// here the instance of the Interface Operator is the lambda passed `n -> n * n + 7`
+// the default function/s here is implemented already, hence the `default`
 ```
 
 ### Method reference in java:

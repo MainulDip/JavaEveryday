@@ -204,7 +204,7 @@ public boolean testComputableStandalone(){
 }
 ```
 ### CompletableFuture's `runAsync` and `supplyAsync`:
-Static methods `runAsync` and `supplyAsync` allow us to create a CompletableFuture instance out of `Runnable` and `Supplier` functional types correspondingly. Both are functional interfaces that allow passing their instances as lambda expressions.
+Static methods `runAsync` and `supplyAsync` allow us to create a CompletableFuture instance out of `Runnable` and `Supplier` functional types correspondingly. Both are functional interfaces that allow passing their instances as lambda expressions
 
 The `Runnable` interface is the same old interface that is used in threads and it does not allow to return a value.
 

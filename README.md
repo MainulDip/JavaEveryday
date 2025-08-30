@@ -51,10 +51,10 @@ println myVar
 def multiply(f,s) {
     println f*s
 }
-// when calling functions, parantheses are optional if the function has at least one parameter
+// when calling functions, parentheses are optional if the function has at least one parameter
 multiply 3,4
 
-// closures are defiened by braces | closures are get passed and executeed in different points
+// closures are defined by braces | closures are get passed and executed in different points
 def myClosure = {
     println 'Executing closure'
 }
@@ -91,7 +91,7 @@ mkdir test && cd test && mkdir java && cd java && mkdir com && cd com && mkdir M
 ### Dealing with `Null`:
 Java allows `null` return in any `reference` type. Like, String, Int, Object etc. But returning null end up buggy for lots of different cases. Better approach use `Optional<T>` and return `Optional.empty()`
 
-Jetbrain's @NotNull annotation can also be used. https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations
+Jetbrain's @NotNull annotation can also be used. https://www.jetbrains.com/help/idea/annotating-source-code.html#external-annotations.......
 
 ```java
 public Optional<Item> getItem(int itemId){
